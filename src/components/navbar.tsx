@@ -14,6 +14,10 @@ import Link from "next/link";
 export default function Navbar() {
   // Helper function to check if a URL is external
   const isExternalLink = (href: string) => {
+    // Treat home URL as internal (page refresh)
+    if (href === "https://erik.day") {
+      return false;
+    }
     return href.startsWith('http://') || href.startsWith('https://');
   };
 
