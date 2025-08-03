@@ -204,7 +204,7 @@ export default function Page() {
                 Speaking about bitcoin design
                 </h2>
                 <p className="text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
-                  I&apos;ve shared my thoughts on Bitcoin UX, ecash, and product design at conferences, podcasts, and panel discussions. Each convo explores different angles of building better Bitcoin products.
+                  I&apos;ve shared my thoughts on Bitcoin UX, ecash, and product design at conferences, podcasts, and panel discussions. Each convo explores different angles of design.
                 </p>
               </div>
             </div>

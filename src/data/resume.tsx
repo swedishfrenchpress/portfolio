@@ -126,7 +126,7 @@ export const DATA = {
       href: "https://bitcoin.design/guide/how-it-works/ecash/introduction/",
       active: true,
       description:
-        "Wrote, designed, and deployed an ecash section to the Bitcoin Design Community’s official design guide. A comprehensive design guide that provides an overview of both ecash protocols, along with design best practices for each.",
+        "Wrote, designed, and deployed an ecash section to the Bitcoin Design Community’s official design guide. A comprehensive design guide that provides an overview of both ecash protocols, along with design best practices.",
       technologies: [
         "Jekyll",
         "Ruby",
@@ -229,7 +229,7 @@ export const DATA = {
       title: "Minor League Miners",
       dates: "June 2025",
       description:
-        "My hackathon submission won first place in both the Software Prize and HashLeague tracks at ATL Bit Labs’ Battle of the Mine Hackers. It introduced a new leaderboard for small miners and solo Bitaxe users, ranking them by their best session difficulty rather than total hashrate. To build it I spun up my own public pool instance, connected its API to a forked version of HashLeague, and built a UI to display best-difficulty stats.",
+        "My hackathon submission won first place in both the Software Prize and HashLeague tracks at ATL Bit Labs’ Battle of the Mine Hackers. It introduced a new leaderboard for solo Bitaxe users, ranking them by best session difficulty instead of total hashrate. To build it I spun up my own public pool instance, connected its API to a forked version of HashLeague, and built a UI to display best difficulty stats.",
       image:
         "https://pbs.twimg.com/profile_images/1640759486305431552/cavNb8x1_400x400.jpg",
       links: [
@@ -254,7 +254,7 @@ export const DATA = {
       title: "Save Our Wallets",
       dates: "June 2025",
       description:
-        "Save Our Wallets is an advocacy website built with Nuxt.js and to support Section 110 of the CLARITY Act (HR 1747), which protects the right to use non-custodial crypto wallets. I led development of the site, which provides a bill overview and lets users contact their representatives by ZIP code. The campaign went viral, sparking podcast appearances, conference talks, and even merchandise in support of the cause.",
+        "Save Our Wallets is an advocacy website built with Nuxt.js and to support Section 110 of the CLARITY Act, which protects the right to use non-custodial crypto wallets. I developed the site, which provides a bill overview and lets users contact their representatives by ZIP code. The campaign went viral, sparking podcast appearances, conference talks, and even merch in support of the cause.",
       icon: "public",
               image:
           "https://pbs.twimg.com/profile_images/1926687703636025344/iESa4aSm_400x400.jpg",
@@ -296,7 +296,7 @@ export const DATA = {
         },
         {
           title: "GitHub",
-          icon: <Icons.globe className="h-4 w-4" />,
+          icon: <Icons.github className="h-4 w-4" />,
           href: "https://github.com/cashubtc/cashu.me/pull/341",
         },
       ],
@@ -305,7 +305,7 @@ export const DATA = {
       title: "Cashu.space",
       dates: "October 2024",
       description:
-        "Cashu.space provides a comprehensive overview of the Cashu protocol, including its history, features, and how it works. I built the site using Next.js, TypeScript, and Tailwind CSS, and deployed it on Vercel. The site is designed to be a resource for anyone interested in learning more about Cashu.",
+        "Cashu.space provides a deep overview of the Cashu protocol, including features, implementations, and how it works. I built the site using Next.js, TypeScript, and Tailwind CSS. The site is designed to be a resource for developers interested in learning more about Cashu.",
       image:
         "https://cashu.space/mstile-150x150.png",
       links: [
@@ -320,7 +320,7 @@ export const DATA = {
       title: "Athenut",
       dates: "October 2024",
               description:
-          "Athenut is a privacy-preserving, pay-per-query search engine built on Kagi and Cashu. I designed the brand identity and built the entire front-end. Users pay with ecash to search. No accounts, no tracking. For technical details, check out the No BS Bitcoin article.",
+          "A privacy-preserving, pay-per-query search engine built on Kagi and Cashu. I designed the brand identity and built the entire front-end. Users pay with ecash to search. No accounts, no tracking. For technical details, check out No BS Bitcoin.",
       image:
         "/athenut.png",
       links: [
@@ -340,7 +340,7 @@ export const DATA = {
       title: "Cashu 95",
       dates: "July 2024",
       description:
-        "Cashu 95 is a playful Figma prototype that reimagines the modern Cashu protocol with a retro Windows 95 interface. Built using a full Win95-style design system, it explores how old-school UI can still deliver a functional and fun ecash experience.",
+        "Cashu 95 is a playful Figma prototype that reimagines the modern Cashu protocol with a retro Windows 95 interface. Built using a full Win95-style design system, it explores how old-school UI can still deliver a functional and fun ecash experience. I want to vibe code this into a real app one day.",
       image:
         "/cashu95.png",
       links: [
@@ -369,7 +369,7 @@ export const DATA = {
     {
       title: "What is \"Good\" Bitcoin Design?",
       dates: "August 2024",
-      description: "This was a fun and thoughtful chat with Skyler, a fellow Bitcoin designer I really respect and admire. We talked about what it actually means to design in this space — not just making things look good, but making them work well for real people.",
+      description: "This was a fun and thoughtful chat with Skyler, a fellow Bitcoin designer I really respect and admire. We talked about what it actually means to design in this space. Not just making things look good, but making them solve problems for real people.",
       image: "https://yt3.ggpht.com/yamPR71SXZzvT9xbRTt2g_laf3NBUuCvuOMfWS5L9iEQAxFcPfn9Al_WKU0unVCokxzkR_Y9Lwc=s88-c-k-c0x00ffffff-no-rj",
       links: [
         {
@@ -395,7 +395,7 @@ export const DATA = {
     {
       title: "Bitcoin Design and Ecash UX",
       dates: "August 2024",
-      description: "This was a fun one—recorded while walking along the river in Riga. We talked about designing peer-to-peer systems, the challenges of ecash UX, working on institutional products like Hoseki, and how cities like Stockholm and Riga inspire better design.",
+      description: "This was a fun one. Sahil and I recorded this while walking along the river in Riga. We talked about my background, the challenges of ecash UX, working on more institutional products like Hoseki, and how beauitful cities inspire better design.",
       image: "https://yt3.ggpht.com/ytc/AIdro_nbAZie74dK7vaZiM9edcVn-Oce_6yhOisb5buQpamAz5yB=s88-c-k-c0x00ffffff-no-rj",
       links: [
         {
@@ -408,7 +408,7 @@ export const DATA = {
     {
       title: "Designing for Ecash [Bitcoin Asia: Hong Kong]",
       dates: "May 2024",
-      description: "A talk on the future of Bitcoin through the lens of ecash design—tracing its roots from David Chaum to modern Bitcoin implementations. It explores how ecash can improve privacy, reduce censorship risks, and bring better UX to Bitcoin.",
+      description: "A talk on the future of Bitcoin through the lens of ecash design, tracing its roots from David Chaum to current Bitcoin implementations. Talked about how ecash improves privacy, reduces censorship risks, and brings better UX to Bitcoin.",
       image: "https://yt3.ggpht.com/hkwmU6TbqoMxhXRjOHVCIy38oSNZrCX_sbmtbHyR3TdjWOXgFmrPe8T0WtCOPKrbGr_9XwQQ0HI=s88-c-k-c0x00ffffff-no-rj",
       links: [
         {
@@ -434,7 +434,7 @@ export const DATA = {
     {
       title: "Scaling Bitcoin",
       dates: "January 2024",
-      description: "A deep dive into Bitcoin design, privacy, and why tools like Cashu matter. We talked about scaling, culture, freedom of speech, and the trade-offs that come with building for a more open, resilient internet.",
+      description: "A dive into Bitcoin design, privacy, and why tools like Cashu matter. We talked about scaling, culture, freedom of speech, and the trade offs that come with building for a more open, resilient internet.",
       image: "https://yt3.ggpht.com/3RXDryR7JuYe0E3H8v7mGMgUSZ3CF8AsVDeDO7DDettjjtLVnPrF6WT3ds7AMo424Ckh3Ew=s88-c-k-c0x00ffffff-no-rj",
       links: [
         {
@@ -447,7 +447,7 @@ export const DATA = {
     {
       title: "Designing for Bitcoin [Baltic Honey Badger]",
       dates: "September 2023",
-      description: "A talk on the evolution of Bitcoin wallet UI, exploring common UX challenges and how different wallets address them. It also shares lessons from mainstream tech and the design trade-offs involved in building Bitcoin products.",
+      description: "A talk on the evolution of Bitcoin wallet UI, exploring common UX challenges and how different wallets address them. It also shares lessons from mainstream tech and the design trade offs involved in building Bitcoin products.",
       image: "/bhb.png",
       links: [
         {
