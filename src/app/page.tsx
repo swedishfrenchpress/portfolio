@@ -45,36 +45,37 @@ export default function Page() {
           <h2 className="text-xl font-bold">About</h2>
         </BlurFade>
         <BlurFade delay={BLUR_FADE_DELAY * 4}>
-          <Markdown 
-            className="prose max-w-full text-pretty font-sans text-sm text-muted-foreground dark:prose-invert"
-            components={{
-              a: ({ href, children, ...props }) => {
-                if (href?.startsWith("/")) {
-                  return <Link href={href} {...props}>{children}</Link>;
+          <div className="prose max-w-full text-pretty font-sans text-sm text-muted-foreground dark:prose-invert">
+            <Markdown 
+              components={{
+                a: ({ href, children, ...props }) => {
+                  if (href?.startsWith("/")) {
+                    return <Link href={href} {...props}>{children}</Link>;
+                  }
+                  if (href === "#projects") {
+                    return (
+                      <button
+                        onClick={() => {
+                          document.getElementById("projects")?.scrollIntoView({ 
+                            behavior: "smooth" 
+                          });
+                        }}
+                        className="text-blue-500 hover:underline cursor-pointer"
+                      >
+                        {children}
+                      </button>
+                    );
+                  }
+                  if (href?.startsWith("#")) {
+                    return <a href={href} {...props}>{children}</a>;
+                  }
+                  return <a href={href} target="_blank" rel="noopener noreferrer" {...props}>{children}</a>;
                 }
-                if (href === "#projects") {
-                  return (
-                    <button
-                      onClick={() => {
-                        document.getElementById("projects")?.scrollIntoView({ 
-                          behavior: "smooth" 
-                        });
-                      }}
-                      className="text-blue-500 hover:underline cursor-pointer"
-                    >
-                      {children}
-                    </button>
-                  );
-                }
-                if (href?.startsWith("#")) {
-                  return <a href={href} {...props}>{children}</a>;
-                }
-                return <a href={href} target="_blank" rel="noopener noreferrer" {...props}>{children}</a>;
-              }
-            }}
-          >
-            {DATA.summary}
-          </Markdown>
+              }}
+            >
+              {DATA.summary}
+            </Markdown>
+          </div>
         </BlurFade>
       </section>
       <section id="work">
