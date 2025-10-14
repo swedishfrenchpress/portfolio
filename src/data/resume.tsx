@@ -354,6 +354,32 @@ export const DATA = {
   ],
   talks: [
     {
+      title: "Bitcoin Insider Interview",
+      dates: "August 2025",
+      description: "An interview with Lisa (Nity Nei), the founder of Bitcoin ++. We talked about how I got involved in Cashu, some designs I'm proud of, and what's coming next.",
+      image: "https://i.ytimg.com/vi/gA1ULUv0gQw/maxresdefault.jpg",
+      links: [
+        {
+          title: "YouTube",
+          icon: <Icons.youtube className="h-4 w-4" />,
+          href: "https://youtu.be/N2lKSRUUdKY",
+        },
+      ],
+    },
+    {
+      title: "The State of Ecash Design",
+      dates: "August 2025",
+      description: "A talk I gave at Bitcoin ++ Privacy Edition in Riga focused on the current state of Cashu design, progress, challenges, and things that are ahead.",
+      image: "https://yt3.googleusercontent.com/C-P6Xa_F5JxoUCgacx1ZxZu1y9sUZplWBD_-fNKUPstrBh0CK38HcLx8tReh6D0-gX8ybaCkMQ=s900-c-k-c0x00ffffff-no-rj",
+      links: [
+        {
+          title: "YouTube",
+          icon: <Icons.youtube className="h-4 w-4" />,
+          href: "https://youtu.be/rZmbjWuO940",
+        },
+      ],
+    },
+    {
       title: "How Better Design Will Impact Bitcoin",
       dates: "October 2024",
       description: "Discussed the history of other peer to peer protocols like BitTorrent and The Pirate Bay, and how those early systems shaped my thinking around Bitcoin. We also got into wallet UX, how to simplify the orange pill process, and where scaling tools like ecash can make a difference.",

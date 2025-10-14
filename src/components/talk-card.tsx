@@ -23,9 +23,9 @@ export function TalkCard({
 }: Props) {
   return (
     <li className="relative ml-10 py-4">
-      <div className="absolute -left-16 top-2 flex items-center justify-center bg-white rounded-full">
-        <Avatar className="border size-12 m-auto">
-          <AvatarImage src={image} alt={title} className="object-contain" />
+      <div className="absolute -left-16 top-2 flex items-center justify-center bg-background rounded-full border">
+        <Avatar className="size-12">
+          <AvatarImage src={image} alt={title} className="object-cover" />
           <AvatarFallback>{title[0]}</AvatarFallback>
         </Avatar>
       </div>
