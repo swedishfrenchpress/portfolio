@@ -45,37 +45,36 @@ export default function Page() {
           <h2 className="text-xl font-bold">About</h2>
         </BlurFade>
         <BlurFade delay={BLUR_FADE_DELAY * 4}>
-          <div className="prose max-w-full text-pretty font-sans text-sm text-muted-foreground dark:prose-invert">
-            <Markdown 
-              components={{
-                a: ({ href, children, ...props }) => {
-                  if (href?.startsWith("/")) {
-                    return <Link href={href} {...props}>{children}</Link>;
-                  }
-                  if (href === "#projects") {
-                    return (
-                      <button
-                        onClick={() => {
-                          document.getElementById("projects")?.scrollIntoView({ 
-                            behavior: "smooth" 
-                          });
-                        }}
-                        className="text-blue-500 hover:underline cursor-pointer"
-                      >
-                        {children}
-                      </button>
-                    );
-                  }
-                  if (href?.startsWith("#")) {
-                    return <a href={href} {...props}>{children}</a>;
-                  }
-                  return <a href={href} target="_blank" rel="noopener noreferrer" {...props}>{children}</a>;
+          <Markdown 
+            className="prose max-w-full text-pretty font-sans text-sm text-muted-foreground dark:prose-invert"
+            components={{
+              a: ({ href, children, ...props }) => {
+                if (href?.startsWith("/")) {
+                  return <Link href={href} {...props}>{children}</Link>;
                 }
-              }}
-            >
-              {DATA.summary}
-            </Markdown>
-          </div>
+                if (href === "#projects") {
+                  return (
+                    <button
+                      onClick={() => {
+                        document.getElementById("projects")?.scrollIntoView({ 
+                          behavior: "smooth" 
+                        });
+                      }}
+                      className="text-blue-500 hover:underline cursor-pointer"
+                    >
+                      {children}
+                    </button>
+                  );
+                }
+                if (href?.startsWith("#")) {
+                  return <a href={href} {...props}>{children}</a>;
+                }
+                return <a href={href} target="_blank" rel="noopener noreferrer" {...props}>{children}</a>;
+              }
+            }}
+          >
+            {DATA.summary}
+          </Markdown>
         </BlurFade>
       </section>
       <section id="work">
@@ -204,7 +203,7 @@ export default function Page() {
                 Speaking about bitcoin design
                 </h2>
                 <p className="text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
-                  I&apos;ve shared my thoughts on Bitcoin UX, ecash, and product design at conferences, podcasts, and panel discussions. Each convo explores different angles of design.
+                  I&apos;ve shared my thoughts on Bitcoin UX, ecash, and product design at conferences, podcasts, and panel discussions. Each convo explores different angles of building better Bitcoin products.
                 </p>
               </div>
             </div>
