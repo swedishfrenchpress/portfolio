@@ -45,9 +45,9 @@ export default function Page() {
           <h2 className="text-xl font-bold">About</h2>
         </BlurFade>
         <BlurFade delay={BLUR_FADE_DELAY * 4}>
-          <Markdown 
-            className="prose max-w-full text-pretty font-sans text-sm text-muted-foreground dark:prose-invert"
-            components={{
+          <div className="prose max-w-full text-pretty font-sans text-sm text-muted-foreground dark:prose-invert">
+            <Markdown 
+              components={{
               a: ({ href, children, ...props }) => {
                 if (href?.startsWith("/")) {
                   return <Link href={href} {...props}>{children}</Link>;
@@ -75,6 +75,7 @@ export default function Page() {
           >
             {DATA.summary}
           </Markdown>
+          </div>
         </BlurFade>
       </section>
       <section id="work">
