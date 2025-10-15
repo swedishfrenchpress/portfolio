@@ -354,6 +354,19 @@ export const DATA = {
   ],
   talks: [
     {
+      title: "Designing the Future of Money",
+      dates: "September 2025",
+      description: "Recorded during Bitcoin Design Week in San Francisco. I talked about designing the future of money and how we can capture that feeling of 'magic' in digital money. Got into my experiments with ecash and bitchat, the magic of bump to pay NFC interactions, and how the small design details make a big difference.",
+      image: "https://yt3.googleusercontent.com/628CqOS86_4xL7L3LP4V3DMrLBc9e_t3PgNTk_cZwRtO3WHMwsyTpuMGGqNIdhjEr5XfCz0Q=s160-c-k-c0x00ffffff-no-rj",
+      links: [
+        {
+          title: "YouTube",
+          icon: <Icons.youtube className="h-4 w-4" />,
+          href: "https://youtu.be/1mDxk-P8uzA",
+        },
+      ],
+    },
+    {
       title: "Bitcoin Insider Interview",
       dates: "August 2025",
       description: "An interview with Lisa (Nity Nei), the founder of Bitcoin ++. We talked about how I got involved in Cashu, some designs I'm proud of, and what's coming next.",
