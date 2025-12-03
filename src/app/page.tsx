@@ -31,7 +31,7 @@ export default function Page() {
               />
             </div>
             <BlurFade delay={BLUR_FADE_DELAY}>
-              <Avatar className="size-28 border">
+              <Avatar className="size-28 border border-border/40 shadow-sm">
                 <AvatarImage alt={DATA.name} src={DATA.avatarUrl} />
                 <AvatarFallback>{DATA.initials}</AvatarFallback>
               </Avatar>
@@ -107,7 +107,7 @@ export default function Page() {
           <BlurFade delay={BLUR_FADE_DELAY * 11}>
             <div className="flex flex-col items-center justify-center space-y-4 text-center">
               <div className="space-y-2">
-                <div className="inline-block rounded-lg bg-foreground text-background px-3 py-1 text-sm">
+                <div className="inline-block rounded-full bg-muted text-muted-foreground px-4 py-1.5 text-xs font-medium tracking-wide">
                   Work
                 </div>
                 <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl">
@@ -142,7 +142,7 @@ export default function Page() {
           <BlurFade delay={BLUR_FADE_DELAY * 13}>
             <div className="flex flex-col items-center justify-center space-y-4 text-center">
               <div className="space-y-2">
-                <div className="inline-block rounded-lg bg-foreground text-background px-3 py-1 text-sm">
+                <div className="inline-block rounded-full bg-muted text-muted-foreground px-4 py-1.5 text-xs font-medium tracking-wide">
                   Projects
                 </div>
                 <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl">
@@ -153,7 +153,7 @@ export default function Page() {
           </BlurFade>
           <BlurFade delay={BLUR_FADE_DELAY * 14}>
             <div className="max-w-[900px] mx-auto">
-              <ul className="mb-4 ml-4 divide-y divide-dashed border-l">
+              <ul className="mb-4 ml-4 divide-y divide-border/50 border-l border-border/50">
                 {DATA.hackathons.map((project, id) => (
                   <BlurFade
                     key={project.title + project.dates}
@@ -178,7 +178,7 @@ export default function Page() {
           <BlurFade delay={BLUR_FADE_DELAY * 16}>
             <div className="flex flex-col items-center justify-center space-y-4 text-center">
               <div className="space-y-2">
-                <div className="inline-block rounded-lg bg-foreground text-background px-3 py-1 text-sm">
+                <div className="inline-block rounded-full bg-muted text-muted-foreground px-4 py-1.5 text-xs font-medium tracking-wide">
                   Talks
                 </div>
                 <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl">
@@ -189,7 +189,7 @@ export default function Page() {
           </BlurFade>
           <BlurFade delay={BLUR_FADE_DELAY * 17}>
             <div className="max-w-[900px] mx-auto">
-              <ul className="mb-4 ml-4 divide-y divide-dashed border-l">
+              <ul className="mb-4 ml-4 divide-y divide-border/50 border-l border-border/50">
                 {DATA.talks.map((talk, id) => (
                   <BlurFade
                     key={talk.title + talk.dates}
@@ -213,7 +213,7 @@ export default function Page() {
         <div className="grid items-center justify-center gap-4 px-4 text-center md:px-6 w-full py-12">
           <BlurFade delay={BLUR_FADE_DELAY * 19}>
             <div className="space-y-3">
-              <div className="inline-block rounded-lg bg-foreground text-background px-3 py-1 text-sm">
+              <div className="inline-block rounded-full bg-muted text-muted-foreground px-4 py-1.5 text-xs font-medium tracking-wide">
                 Contact
               </div>
               <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl">
@@ -223,21 +223,21 @@ export default function Page() {
                 Want to chat? Shoot me an email at{" "}
                 <Link
                   href="mailto:erikcativo@pm.me"
-                  className="text-blue-500 hover:underline"
+                  className="text-foreground underline decoration-foreground/30 underline-offset-4 hover:decoration-foreground/60 transition-colors"
                 >
                   erikcativo@pm.me
                 </Link>
                 , or reach out to me on{" "}
                 <Link
                   href={DATA.contact.social.X.url}
-                  className="text-blue-500 hover:underline"
+                  className="text-foreground underline decoration-foreground/30 underline-offset-4 hover:decoration-foreground/60 transition-colors"
                 >
                   X
                 </Link>{" "}
                 or{" "}
                 <Link
                   href="https://primal.net/erik"
-                  className="text-blue-500 hover:underline"
+                  className="text-foreground underline decoration-foreground/30 underline-offset-4 hover:decoration-foreground/60 transition-colors"
                 >
                   Nostr
                 </Link>{" "}

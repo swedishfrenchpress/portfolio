@@ -75,6 +75,27 @@
     }
   }
 
+  /* Apple-like elegant link styling */
+  .prose a {
+    @apply no-underline text-foreground/80 transition-colors duration-200;
+    background-image: linear-gradient(currentColor, currentColor);
+    background-size: 100% 1px;
+    background-position: 0 100%;
+    background-repeat: no-repeat;
+  }
+  
+  .prose a:hover {
+    @apply text-foreground;
+  }
+
+  .dark .prose a {
+    @apply text-foreground/70;
+  }
+
+  .dark .prose a:hover {
+    @apply text-foreground/90;
+  }
+
   h3 code {
     @apply !text-lg md:!text-xl;
   }
