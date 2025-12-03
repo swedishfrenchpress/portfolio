@@ -5,7 +5,6 @@ import BlurFadeText from "@/components/magicui/blur-fade-text";
 import { ProjectCard } from "@/components/project-card";
 import { ResumeCard } from "@/components/resume-card";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { Badge } from "@/components/ui/badge";
 import { DATA } from "@/data/resume";
 import Link from "next/link";
 import Markdown from "react-markdown";
@@ -103,20 +102,6 @@ export default function Page() {
           ))}
         </div>
       </section>
-      <section id="skills">
-        <div className="flex min-h-0 flex-col gap-y-3">
-          <BlurFade delay={BLUR_FADE_DELAY * 9}>
-            <h2 className="text-xl font-bold">Skills</h2>
-          </BlurFade>
-          <div className="flex flex-wrap gap-1">
-            {DATA.skills.map((skill, id) => (
-              <BlurFade key={skill} delay={BLUR_FADE_DELAY * 10 + id * 0.05}>
-                <Badge key={skill}>{skill}</Badge>
-              </BlurFade>
-            ))}
-          </div>
-        </div>
-      </section>
       <section id="work">
         <div className="space-y-12 w-full py-12">
           <BlurFade delay={BLUR_FADE_DELAY * 11}>
@@ -128,9 +113,6 @@ export default function Page() {
                 <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl">
                   Check out my latest work
                 </h2>
-                <p className="text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
-                I work on a wide range of projects, from simple websites to full product designs for complex Bitcoin tools. That includes everything from message signing and signature verification to some of the most experimental areas in Bitcoin today, like multi-mint payments in Cashu wallets.
-                </p>
               </div>
             </div>
           </BlurFade>
@@ -166,9 +148,6 @@ export default function Page() {
                 <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl">
                 I like building in public
                 </h2>
-                <p className="text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
-                Outside of my main work, I like contributing to open source Bitcoin projects and taking part in the occasional hackathon.
-                </p>
               </div>
             </div>
           </BlurFade>
@@ -203,9 +182,6 @@ export default function Page() {
                 <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl">
                 Speaking about bitcoin design
                 </h2>
-                <p className="text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
-                  I&apos;ve shared my thoughts on Bitcoin UX, ecash, and product design at conferences, podcasts, and panel discussions. Each convo explores different angles of building better Bitcoin products.
-                </p>
               </div>
             </div>
           </BlurFade>
