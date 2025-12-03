@@ -10,7 +10,7 @@ export const DATA = {
   description:
     "Bitcoin Product Designer based in Stockholm, Sweden",
   summary:
-    "At the end of 2024, I left my job as a UX designer to go full time into building on bitcoin. I’m currently a [Human Rights Foundation grantee](https://hrf.org/latest/hrf-grants-800-million-satoshis-to-22-freedom-tech-projects-worldwide/) working on improving ecash design, and I’m the Lead Designer at [Hoseki](https://hoseki.app), where we’re helping people prove bitcoin ownership.\n\nLately I’ve been getting deeper into UI engineering. I'm moving beyond Figma and [ship my designs](/#projects) to life in code. I’ve been using Cursor a lot to build and ship faster, and it’s been fun pushing real projects out into the world.",
+    "At the end of 2024, I left my job as a UX designer to go full time into building on bitcoin. I’m currently a [Human Rights Foundation grantee](https://hrf.org/latest/hrf-grants-800-million-satoshis-to-22-freedom-tech-projects-worldwide/) working on improving ecash design, and I’m the Lead Designer at [Hoseki](https://hoseki.app), where we’re building proof of ownership infrastructure for bitcoin.\n\nLately I’ve been getting deeper into UI engineering. I'm moving beyond Figma and [ship my designs](/#projects) to life in code. I’ve been using Cursor a lot to build and ship faster, and it’s been fun pushing real projects out into the world.",
   avatarUrl: "me.jpg",
   navbar: [
     { href: "https://erik.day", icon: HomeIcon, label: "Home" },
