@@ -372,7 +372,7 @@ export const DATA = {
     {
       title: "What is \"Good\" Bitcoin Design?",
       dates: "August 2024",
-      description: "This was a fun and thoughtful chat with Skyler, a fellow Bitcoin designer I really respect and admire. We talked about what it actually means to design in this space — not just making things look good, but making them work well for real people.",
+      description: "This was a fun and thoughtful chat with Skyler, a fellow Bitcoin designer I really respect and admire. We talked about what it actually means to design in this space. Not just making things look good, but making them work well for real people.",
       image: "https://yt3.ggpht.com/yamPR71SXZzvT9xbRTt2g_laf3NBUuCvuOMfWS5L9iEQAxFcPfn9Al_WKU0unVCokxzkR_Y9Lwc=s88-c-k-c0x00ffffff-no-rj",
       links: [
         {
@@ -398,7 +398,7 @@ export const DATA = {
     {
       title: "Bitcoin Design and Ecash UX",
       dates: "August 2024",
-      description: "This was a fun one—recorded while walking along the river in Riga. We talked about designing peer-to-peer systems, the challenges of ecash UX, working on institutional products like Hoseki, and how cities like Stockholm and Riga inspire better design.",
+      description: "This was a fun one, recorded while walking along the river in Riga. We talked about designing peer-to-peer systems, the challenges of ecash UX, working on institutional products like Hoseki, and how cities like Stockholm and Riga inspire better design.",
       image: "https://yt3.ggpht.com/ytc/AIdro_nbAZie74dK7vaZiM9edcVn-Oce_6yhOisb5buQpamAz5yB=s88-c-k-c0x00ffffff-no-rj",
       links: [
         {
@@ -411,7 +411,7 @@ export const DATA = {
     {
       title: "Designing for Ecash [Bitcoin Asia: Hong Kong]",
       dates: "May 2024",
-      description: "A talk on the future of Bitcoin through the lens of ecash design—tracing its roots from David Chaum to modern Bitcoin implementations. It explores how ecash can improve privacy, reduce censorship risks, and bring better UX to Bitcoin.",
+      description: "A talk on the future of Bitcoin through the lens of ecash design, tracing its roots from David Chaum to modern Bitcoin implementations. It explores how ecash can improve privacy, reduce censorship risks, and bring better UX to Bitcoin.",
       image: "https://yt3.ggpht.com/hkwmU6TbqoMxhXRjOHVCIy38oSNZrCX_sbmtbHyR3TdjWOXgFmrPe8T0WtCOPKrbGr_9XwQQ0HI=s88-c-k-c0x00ffffff-no-rj",
       links: [
         {
