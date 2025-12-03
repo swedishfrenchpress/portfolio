@@ -191,6 +191,46 @@ export const DATA = {
   ],
   hackathons: [
     {
+      title: "Cashu.me",
+      dates: "2024 - Present",
+      description:
+        "I'm the [second most active contributor](https://github.com/cashubtc/cashu.me/graphs/contributors) to Cashu.me, responsible for much of the UI and UX design. I recently designed the [mint review](https://x.com/uxerik_/status/1987173744582783084) and web of trust features, helping users make more informed decisions about which mints to trust.",
+      image:
+        "/cashume.png",
+      links: [
+        {
+          title: "Application",
+          icon: <Icons.globe className="h-4 w-4" />,
+          href: "https://cashu.me",
+        },
+        {
+          title: "GitHub",
+          icon: <Icons.github className="h-4 w-4" />,
+          href: "https://github.com/cashubtc/cashu.me",
+        },
+      ],
+    },
+    {
+      title: "Bitcoin For Signal",
+      dates: "October 2025",
+      description:
+        "Created and led the Bitcoin for Signal campaign. I designed the brand identity, website, and promotional strategy that turned a hackathon project into a viral privacy-tech movement with significant community traction.",
+      image:
+        "/b4s-logo.svg",
+      links: [
+        {
+          title: "Website",
+          icon: <Icons.globe className="h-4 w-4" />,
+          href: "https://bitcoinforsignal.org/",
+        },
+        {
+          title: "Post",
+          icon: <Icons.x className="h-4 w-4" />,
+          href: "https://x.com/CashuBTC/status/1978853994635117043",
+        },
+      ],
+    },
+    {
       title: "Bitchat Cashu Wallet",
       dates: "July 2025",
       description:
@@ -237,72 +277,6 @@ export const DATA = {
           title: "YouTube",
           icon: <Icons.youtube className="h-4 w-4" />,
           href: "https://www.youtube.com/live/yQjVJcQ9L1M?feature=shared&t=3273",
-        },
-      ],
-    },
-    {
-      title: "Save Our Wallets",
-      dates: "June 2025",
-      description:
-        "Save Our Wallets is an advocacy website built with Nuxt.js and to support Section 110 of the CLARITY Act (HR 1747), which protects the right to use non-custodial crypto wallets. I led development of the site, which provides a bill overview and lets users contact their representatives by ZIP code. The campaign went viral, sparking podcast appearances, conference talks, and even merchandise in support of the cause.",
-      icon: "public",
-              image:
-          "https://pbs.twimg.com/profile_images/1926687703636025344/iESa4aSm_400x400.jpg",
-        links: [
-          {
-            title: "Website",
-            icon: <Icons.globe className="h-4 w-4" />,
-            href: "https://saveourwallets.org/",
-          },
-          {
-            title: "GitHub",
-            icon: <Icons.github className="h-4 w-4" />,
-            href: "https://github.com/swedishfrenchpress/save-our-wallets",
-          },
-          {
-            title: "Profile",
-            icon: <Icons.x className="h-4 w-4" />,
-            href: "https://x.com/saveourwalets",
-          },
-          {
-            title: "YouTube",
-            icon: <Icons.youtube className="h-4 w-4" />,
-            href: "https://www.youtube.com/watch?v=0iMhYvu5KqU",
-          },
-        ],
-    },
-    {
-      title: "Cashu.me",
-      dates: "March 2024",
-              description:
-          "Submitted PR #341 and PR #345 to cashu.me, redesigning the mint info screen and improving mint selection. Users can now tap the entire card to switch mints instead of a small radio button, and mint info updates automatically. Small change, big UX win.",
-      image:
-        "/cashume.png",
-      links: [
-        {
-          title: "Application",
-          icon: <Icons.globe className="h-4 w-4" />,
-          href: "https://cashu.me",
-        },
-        {
-          title: "GitHub",
-          icon: <Icons.globe className="h-4 w-4" />,
-          href: "https://github.com/cashubtc/cashu.me/pull/341",
-        },
-      ],
-    },
-    {
-      title: "Cashu.space",
-      dates: "October 2024",
-      description:
-        "Cashu.space provides a comprehensive overview of the Cashu protocol, including its history, features, and how it works. I built the site using Next.js, TypeScript, and Tailwind CSS, and deployed it on Vercel. The site is designed to be a resource for anyone interested in learning more about Cashu.",
-      image:
-        "https://cashu.space/mstile-150x150.png",
-      links: [
-        {
-          title: "Website",
-          icon: <Icons.globe className="h-4 w-4" />,
-          href: "https://cashu.space",
         },
       ],
     },

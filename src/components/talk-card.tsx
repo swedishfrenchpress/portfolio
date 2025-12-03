@@ -35,7 +35,7 @@ export function TalkCard({
         )}
         <h2 className="font-semibold leading-none">{title}</h2>
         {description && (
-          <span className="prose dark:prose-invert text-sm text-muted-foreground">
+          <span className="prose dark:prose-invert max-w-none text-base text-muted-foreground">
             {description}
           </span>
         )}

@@ -1,6 +1,7 @@
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
 import Link from "next/link";
+import Markdown from "react-markdown";
 
 interface Props {
   title: string;
@@ -35,9 +36,19 @@ export function HackathonCard({
         )}
         <h2 className="font-semibold leading-none">{title}</h2>
         {description && (
-          <span className="prose dark:prose-invert text-sm text-muted-foreground">
-            {description}
-          </span>
+          <div className="prose dark:prose-invert max-w-none text-base text-muted-foreground">
+            <Markdown
+              components={{
+                a: ({ href, children }) => (
+                  <a href={href} target="_blank" rel="noopener noreferrer" className="underline">
+                    {children}
+                  </a>
+                ),
+              }}
+            >
+              {description}
+            </Markdown>
+          </div>
         )}
       </div>
       {links && links.length > 0 && (

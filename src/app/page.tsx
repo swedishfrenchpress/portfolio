@@ -15,14 +15,14 @@ export default function Page() {
   return (
     <main className="flex flex-col min-h-[100dvh] space-y-10">
       <section id="hero">
-        <div className="mx-auto w-full max-w-2xl space-y-8">
+        <div className="mx-auto w-full max-w-3xl space-y-8">
           <div className="gap-2 flex justify-between">
             <div className="flex-col flex flex-1 space-y-1.5">
               <BlurFadeText
                 delay={BLUR_FADE_DELAY}
                 className="text-3xl font-bold tracking-tighter sm:text-5xl xl:text-6xl/none"
                 yOffset={8}
-                text={`Hi, I'm ${DATA.name.split(" ")[0]} 👋`}
+                text={`Hi, I'm ${DATA.name.split(" ")[0]}`}
               />
               <BlurFadeText
                 className="max-w-[600px] md:text-xl"
@@ -44,7 +44,7 @@ export default function Page() {
           <h2 className="text-xl font-bold">About</h2>
         </BlurFade>
         <BlurFade delay={BLUR_FADE_DELAY * 4}>
-          <div className="prose max-w-full text-pretty font-sans text-sm text-muted-foreground dark:prose-invert">
+          <div className="prose max-w-full text-pretty font-sans text-base text-muted-foreground dark:prose-invert">
             <Markdown 
               components={{
               a: ({ href, children, ...props }) => {
@@ -116,7 +116,7 @@ export default function Page() {
               </div>
             </div>
           </BlurFade>
-          <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 max-w-[800px] mx-auto">
+          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 max-w-[900px] mx-auto">
             {DATA.projects.map((project, id) => (
               <BlurFade
                 key={project.title}
@@ -152,22 +152,24 @@ export default function Page() {
             </div>
           </BlurFade>
           <BlurFade delay={BLUR_FADE_DELAY * 14}>
-            <ul className="mb-4 ml-4 divide-y divide-dashed border-l">
-              {DATA.hackathons.map((project, id) => (
-                <BlurFade
-                  key={project.title + project.dates}
-                  delay={BLUR_FADE_DELAY * 15 + id * 0.05}
-                >
-                  <HackathonCard
-                    title={project.title}
-                    description={project.description}
-                    dates={project.dates}
-                    image={project.image}
-                    links={project.links}
-                  />
-                </BlurFade>
-              ))}
-            </ul>
+            <div className="max-w-[900px] mx-auto">
+              <ul className="mb-4 ml-4 divide-y divide-dashed border-l">
+                {DATA.hackathons.map((project, id) => (
+                  <BlurFade
+                    key={project.title + project.dates}
+                    delay={BLUR_FADE_DELAY * 15 + id * 0.05}
+                  >
+                    <HackathonCard
+                      title={project.title}
+                      description={project.description}
+                      dates={project.dates}
+                      image={project.image}
+                      links={project.links}
+                    />
+                  </BlurFade>
+                ))}
+              </ul>
+            </div>
           </BlurFade>
         </div>
       </section>
@@ -186,22 +188,24 @@ export default function Page() {
             </div>
           </BlurFade>
           <BlurFade delay={BLUR_FADE_DELAY * 17}>
-            <ul className="mb-4 ml-4 divide-y divide-dashed border-l">
-              {DATA.talks.map((talk, id) => (
-                <BlurFade
-                  key={talk.title + talk.dates}
-                  delay={BLUR_FADE_DELAY * 18 + id * 0.05}
-                >
-                  <TalkCard
-                    title={talk.title}
-                    description={talk.description}
-                    dates={talk.dates}
-                    image={talk.image}
-                    links={talk.links}
-                  />
-                </BlurFade>
-              ))}
-            </ul>
+            <div className="max-w-[900px] mx-auto">
+              <ul className="mb-4 ml-4 divide-y divide-dashed border-l">
+                {DATA.talks.map((talk, id) => (
+                  <BlurFade
+                    key={talk.title + talk.dates}
+                    delay={BLUR_FADE_DELAY * 18 + id * 0.05}
+                  >
+                    <TalkCard
+                      title={talk.title}
+                      description={talk.description}
+                      dates={talk.dates}
+                      image={talk.image}
+                      links={talk.links}
+                    />
+                  </BlurFade>
+                ))}
+              </ul>
+            </div>
           </BlurFade>
         </div>
       </section>
@@ -218,10 +222,10 @@ export default function Page() {
               <p className="mx-auto max-w-[600px] text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
                 Want to chat? Shoot me an email at{" "}
                 <Link
-                  href="mailto:ghostsock@proton.me"
+                  href="mailto:erikcativo@pm.me"
                   className="text-blue-500 hover:underline"
                 >
-                  ghostsock@proton.me
+                  erikcativo@pm.me
                 </Link>
                 , or reach out to me on{" "}
                 <Link
