@@ -337,6 +337,19 @@ export const DATA = {
   ],
   talks: [
     {
+      title: "Why Ecash Matters For Bitcoin",
+      dates: "December 2025",
+      description: "I went on Cody's podcast and we talked about what ecash is and how it relates to Bitcoin, why a layered approach to digital money matters, and why getting the UX of payments right is so important.",
+      image: "/transform.jpg",
+      links: [
+        {
+          title: "YouTube",
+          icon: <Icons.youtube className="h-4 w-4" />,
+          href: "https://www.youtube.com/watch?v=dPC99lXzWtw",
+        },
+      ],
+    },
+    {
       title: "21 in 21, a Rapid-Fire Bitcoin Q&A Podcast",
       dates: "September 2025",
       description: "Recorded during Bitcoin Design Week in San Francisco. I talked about designing the future of money and how we can capture that feeling of 'magic' in digital money. Got into my experiments with ecash and bitchat, the magic of bump to pay NFC interactions, and how the small design details make a big difference.",
