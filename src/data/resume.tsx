@@ -10,7 +10,7 @@ export const DATA = {
   description:
     "Bitcoin Product Designer based in Stockholm, Sweden",
   summary:
-    "At the end of 2024, I left my job as a UX designer to go full time into building on bitcoin. I’m currently a [Human Rights Foundation grantee](https://hrf.org/latest/hrf-grants-800-million-satoshis-to-22-freedom-tech-projects-worldwide/) working on improving ecash design, and I’m the Lead Designer at [Hoseki](https://hoseki.app), where we’re building proof of ownership infrastructure for bitcoin.\n\nLately I’ve been getting deeper into UI engineering. I'm moving beyond Figma and [ship my designs](/#projects) to life in code. I’ve been using Cursor a lot to build and ship faster, and it’s been fun pushing real projects out into the world.",
+    "At the end of 2024, I left my job as a UX designer to go full time into building on bitcoin. I’m currently a [Human Rights Foundation grantee](https://hrf.org/latest/hrf-grants-800-million-satoshis-to-22-freedom-tech-projects-worldwide/) working on improving ecash design, and I’m the Lead Designer at [Hoseki](https://hoseki.app), where we’re building proof of ownership infrastructure for bitcoin.\n\nLately I’ve been getting deeper into UI engineering. I'm vibe coding and shipping my designs directly into code, moving beyond Figma.",
   avatarUrl: "me.jpg",
   navbar: [
     { href: "https://erik.day", icon: HomeIcon, label: "Home" },
@@ -191,6 +191,25 @@ export const DATA = {
   ],
   hackathons: [
     {
+      title: "Corruption Disrespector",
+      dates: "January 2026",
+      description:
+        "Built and deployed the front end for Corruption Disrespector, a tool for anti-corruption investigations. Our projet won third place at the [Human Rights Foundation's AI Hack for Freedom hackathon](https://mailchi.mp/hrf.org/hrf-sponsors-ai-hackathon-for-freedom-in-austin-pairing-dissidents-and-developers-9102958), where activists and developers used vibe coding to build tools in 28 hours.",
+      image: "/corruptiondisrespector.jpg",
+      links: [
+        {
+          title: "Website",
+          icon: <Icons.globe className="h-4 w-4" />,
+          href: "https://www.corruptiondisrespector.com/",
+        },
+        {
+          title: "Post",
+          icon: <Icons.x className="h-4 w-4" />,
+          href: "https://x.com/uxerik_/status/2013280213623329189?s=20",
+        },
+      ],
+    },
+    {
       title: "Cashu.me",
       dates: "2024 - Present",
       description:
@@ -317,6 +336,19 @@ export const DATA = {
     },
   ],
   talks: [
+    {
+      title: "Why Ecash Matters For Bitcoin",
+      dates: "December 2025",
+      description: "I went on Cody's podcast and we talked about what ecash is and how it relates to Bitcoin, why a layered approach to digital money matters, and why getting the UX of payments right is so important.",
+      image: "/transform.jpg",
+      links: [
+        {
+          title: "YouTube",
+          icon: <Icons.youtube className="h-4 w-4" />,
+          href: "https://www.youtube.com/watch?v=dPC99lXzWtw",
+        },
+      ],
+    },
     {
       title: "21 in 21, a Rapid-Fire Bitcoin Q&A Podcast",
       dates: "September 2025",
