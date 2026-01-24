@@ -191,6 +191,25 @@ export const DATA = {
   ],
   hackathons: [
     {
+      title: "Corruption Disrespector",
+      dates: "January 2026",
+      description:
+        "Built and deployed the front end for Corruption Disrespector, a tool for anti-corruption investigations. Our projet won third place at the [Human Rights Foundation's AI Hack for Freedom hackathon](https://mailchi.mp/hrf.org/hrf-sponsors-ai-hackathon-for-freedom-in-austin-pairing-dissidents-and-developers-9102958), where activists and developers used vibe coding to build tools in 28 hours.",
+      image: "/corruptiondisrespector.jpg",
+      links: [
+        {
+          title: "Website",
+          icon: <Icons.globe className="h-4 w-4" />,
+          href: "https://www.corruptiondisrespector.com/",
+        },
+        {
+          title: "Post",
+          icon: <Icons.x className="h-4 w-4" />,
+          href: "https://x.com/uxerik_/status/2013280213623329189?s=20",
+        },
+      ],
+    },
+    {
       title: "Cashu.me",
       dates: "2024 - Present",
       description:
