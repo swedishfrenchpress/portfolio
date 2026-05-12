@@ -29,6 +29,11 @@ export default function Page() {
                 delay={BLUR_FADE_DELAY}
                 text={DATA.description}
               />
+              <BlurFadeText
+                className="max-w-[600px] md:text-xl pt-2 font-medium"
+                delay={BLUR_FADE_DELAY * 2}
+                text={DATA.tagline}
+              />
             </div>
             <BlurFade delay={BLUR_FADE_DELAY}>
               <Avatar className="size-28 border border-border/40 shadow-sm">
@@ -40,9 +45,6 @@ export default function Page() {
         </div>
       </section>
       <section id="about">
-        <BlurFade delay={BLUR_FADE_DELAY * 3}>
-          <h2 className="text-xl font-bold">About</h2>
-        </BlurFade>
         <BlurFade delay={BLUR_FADE_DELAY * 4}>
           <div className="prose max-w-full text-pretty font-sans text-base text-muted-foreground dark:prose-invert">
             <Markdown 
@@ -108,10 +110,10 @@ export default function Page() {
             <div className="flex flex-col items-center justify-center space-y-4 text-center">
               <div className="space-y-2">
                 <div className="inline-block rounded-full bg-muted text-muted-foreground px-4 py-1.5 text-xs font-medium tracking-wide">
-                  Work
+                  Selected work
                 </div>
                 <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl">
-                  Check out my latest work
+                  Designed and shipped.
                 </h2>
               </div>
             </div>
@@ -130,6 +132,11 @@ export default function Page() {
                   tags={project.technologies}
                   image={project.image}
                   video={project.video}
+                  videoPlaybackRate={
+                    "videoPlaybackRate" in project
+                      ? project.videoPlaybackRate
+                      : undefined
+                  }
                   links={project.links}
                 />
               </BlurFade>
@@ -146,7 +153,7 @@ export default function Page() {
                   Projects
                 </div>
                 <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl">
-                I like building in public
+                  Built in public.
                 </h2>
               </div>
             </div>
@@ -182,7 +189,7 @@ export default function Page() {
                   Talks
                 </div>
                 <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl">
-                Speaking about bitcoin design
+                  On bitcoin, ecash, and design.
                 </h2>
               </div>
             </div>
@@ -217,31 +224,31 @@ export default function Page() {
                 Contact
               </div>
               <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl">
-                Get in Touch
+                Say hi.
               </h2>
               <p className="mx-auto max-w-[600px] text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
-                Want to chat? Shoot me an email at{" "}
+                Email me at{" "}
                 <Link
                   href="mailto:erikcativo@pm.me"
                   className="text-foreground underline decoration-foreground/30 underline-offset-4 hover:decoration-foreground/60 transition-colors"
                 >
                   erikcativo@pm.me
                 </Link>
-                , or reach out to me on{" "}
+                , or find me on{" "}
                 <Link
                   href={DATA.contact.social.X.url}
                   className="text-foreground underline decoration-foreground/30 underline-offset-4 hover:decoration-foreground/60 transition-colors"
                 >
                   X
                 </Link>{" "}
-                or{" "}
+                and{" "}
                 <Link
                   href="https://primal.net/erik"
                   className="text-foreground underline decoration-foreground/30 underline-offset-4 hover:decoration-foreground/60 transition-colors"
                 >
                   Nostr
-                </Link>{" "}
-                and I&apos;ll respond as soon as I can.
+                </Link>
+                . I read everything that lands.
               </p>
             </div>
           </BlurFade>

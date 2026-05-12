@@ -6,6 +6,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import { ProjectVideo } from "@/components/project-video";
 import { cn } from "@/lib/utils";
 import Image from "next/image";
 import Link from "next/link";
@@ -20,6 +21,7 @@ interface Props {
   link?: string;
   image?: string;
   video?: string;
+  videoPlaybackRate?: number;
   links?: readonly {
     icon: React.ReactNode;
     type: string;
@@ -37,6 +39,7 @@ export function ProjectCard({
   link,
   image,
   video,
+  videoPlaybackRate,
   links,
   className,
 }: Props) {
@@ -51,13 +54,10 @@ export function ProjectCard({
         className={cn("block cursor-pointer", className)}
       >
         {video && (
-          <video
+          <ProjectVideo
             src={video}
-            autoPlay
-            loop
-            muted
-            playsInline
-            className="pointer-events-none mx-auto h-56 w-full object-cover object-top" // needed because random black line at bottom of video
+            playbackRate={videoPlaybackRate}
+            className="pointer-events-none mx-auto h-56 w-full object-cover object-top"
           />
         )}
         {image && (
