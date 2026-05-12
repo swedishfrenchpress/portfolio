@@ -66,7 +66,7 @@ export default function Page() {
       <section id="work">
         <div className="flex min-h-0 flex-col gap-y-3">
           <BlurFade delay={BLUR_FADE_DELAY * 5}>
-            <h2 className="text-xl font-bold">Work Experience</h2>
+            <h2 className="text-xl font-bold font-pixel">Work Experience</h2>
           </BlurFade>
           {DATA.work.map((work, id) => (
             <BlurFade
@@ -92,7 +92,7 @@ export default function Page() {
       <section id="selected-work">
         <div className="flex flex-col gap-y-6">
           <BlurFade delay={BLUR_FADE_DELAY * 11}>
-            <h2 className="text-xl font-bold">Selected Work</h2>
+            <h2 className="text-xl font-bold font-pixel">Selected Work</h2>
           </BlurFade>
           <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
             {DATA.projects.map((project, id) => (
@@ -124,7 +124,7 @@ export default function Page() {
       <section id="hackathons">
         <div className="flex flex-col gap-y-6">
           <BlurFade delay={BLUR_FADE_DELAY * 13}>
-            <h2 className="text-xl font-bold">Projects</h2>
+            <h2 className="text-xl font-bold font-pixel">Projects</h2>
           </BlurFade>
           <BlurFade delay={BLUR_FADE_DELAY * 14}>
             <ul className="ml-4 divide-y divide-border/50 border-l border-border/50">
@@ -150,7 +150,7 @@ export default function Page() {
       <section id="talks">
         <div className="flex flex-col gap-y-6">
           <BlurFade delay={BLUR_FADE_DELAY * 16}>
-            <h2 className="text-xl font-bold">Talks</h2>
+            <h2 className="text-xl font-bold font-pixel">Talks</h2>
           </BlurFade>
           <BlurFade delay={BLUR_FADE_DELAY * 17}>
             <ul className="ml-4 divide-y divide-border/50 border-l border-border/50">
@@ -215,7 +215,7 @@ export default function Page() {
       <section id="contact">
         <div className="flex flex-col gap-y-3">
           <BlurFade delay={BLUR_FADE_DELAY * 20}>
-            <h2 className="text-xl font-bold">Contact</h2>
+            <h2 className="text-xl font-bold font-pixel">Contact</h2>
           </BlurFade>
           <BlurFade delay={BLUR_FADE_DELAY * 21}>
             <p className="max-w-prose text-base text-muted-foreground md:text-lg/relaxed">

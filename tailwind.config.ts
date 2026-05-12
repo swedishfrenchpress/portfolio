@@ -20,7 +20,8 @@ const config = {
     },
     extend: {
       fontFamily: {
-        sans: ["Satoshi", ...fontFamily.sans],
+        sans: ["var(--font-geist-sans)", ...fontFamily.sans],
+        pixel: ["var(--font-geist-pixel-square)", ...fontFamily.mono],
       },
       colors: {
         border: "hsl(var(--border))",

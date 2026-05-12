@@ -5,6 +5,8 @@ import { ThemeProvider } from "@/components/theme-provider";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { DATA } from "@/data/resume";
 import { cn } from "@/lib/utils";
+import { GeistSans } from "geist/font/sans";
+import { GeistPixelSquare } from "geist/font/pixel";
 import type { Metadata } from "next";
 import "./globals.css";
 
@@ -50,19 +52,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning>
-      <head>
-        <link rel="preconnect" href="https://api.fontshare.com" />
-        <link
-          rel="preconnect"
-          href="https://cdn.fontshare.com"
-          crossOrigin=""
-        />
-        <link
-          rel="stylesheet"
-          href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,700,900&display=swap"
-        />
-      </head>
+    <html
+      lang="en"
+      suppressHydrationWarning
+      className={cn(GeistSans.variable, GeistPixelSquare.variable)}
+    >
       <body
         className={cn(
           "min-h-screen bg-background font-sans antialiased max-w-4xl mx-auto pt-12 sm:pt-24 pb-28 px-6"
