@@ -1,8 +1,8 @@
 import { HackathonCard } from "@/components/hackathon-card";
 import { TalkCard } from "@/components/talk-card";
 import BlurFade from "@/components/magicui/blur-fade";
-import BlurFadeText from "@/components/magicui/blur-fade-text";
 import { ProjectCard } from "@/components/project-card";
+import { RedactedText } from "@/components/redacted-text";
 import { ResumeCard } from "@/components/resume-card";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { DATA } from "@/data/resume";
@@ -18,22 +18,18 @@ export default function Page() {
         <div className="mx-auto w-full space-y-8">
           <div className="gap-2 flex justify-between">
             <div className="flex-col flex flex-1 space-y-1.5">
-              <BlurFadeText
-                delay={BLUR_FADE_DELAY}
-                className="text-3xl font-bold tracking-tighter sm:text-5xl xl:text-6xl/none"
-                yOffset={8}
-                text={`Hi, I’m ${DATA.name.split(" ")[0]}`}
-              />
-              <BlurFadeText
-                className="max-w-[600px] md:text-xl"
-                delay={BLUR_FADE_DELAY}
-                text={DATA.description}
-              />
-              <BlurFadeText
-                className="max-w-[600px] md:text-xl pt-2 font-medium"
-                delay={BLUR_FADE_DELAY * 2}
-                text={DATA.tagline}
-              />
+              <h1 className="text-3xl font-bold tracking-tighter sm:text-5xl xl:text-6xl/none">
+                <RedactedText
+                  text={`Hi, I’m ${DATA.name.split(" ")[0]}`}
+                  delay={200}
+                />
+              </h1>
+              <p className="max-w-[600px] md:text-xl">
+                <RedactedText text={DATA.description} delay={400} />
+              </p>
+              <p className="max-w-[600px] md:text-xl pt-2 font-medium">
+                <RedactedText text={DATA.tagline} delay={600} />
+              </p>
             </div>
             <BlurFade delay={BLUR_FADE_DELAY}>
               <Avatar className="size-28 border border-border/40 shadow-sm">
