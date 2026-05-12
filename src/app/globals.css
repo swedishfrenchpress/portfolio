@@ -1,3 +1,5 @@
+@import url("https://api.fontshare.com/v2/css?f[]=satoshi@400,500,700,900&display=swap");
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -20,7 +22,7 @@
       --secondary-foreground: 0 0% 9%;
 
       --muted: 0 0% 96.1%;
-      --muted-foreground: 0 0% 45.1%;
+      --muted-foreground: 0 0% 38%;
 
       --accent: 0 0% 96.1%;
     --accent-foreground: 0 0% 9%;
@@ -72,6 +74,17 @@
     }
     body {
       @apply bg-background text-foreground;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
     }
   }
 

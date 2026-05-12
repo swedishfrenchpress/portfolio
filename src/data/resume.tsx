@@ -1,5 +1,5 @@
 import { Icons } from "@/components/icons";
-import { Figma, HomeIcon, NotebookIcon } from "lucide-react";
+import { NotebookIcon } from "lucide-react";
 
 export const DATA = {
   name: "Erik Cativo",
@@ -15,11 +15,10 @@ export const DATA = {
     "Money is the most surveilled thing in your life. Every transaction watched, scored, and stored, often forever. It doesn’t have to be this way, and a small group of people are working to change it. I’m one of them.\n\nI’m a [Human Rights Foundation grantee](https://hrf.org/latest/hrf-grants-800-million-satoshis-to-22-freedom-tech-projects-worldwide/) working on [Cashu](https://cashu.space), an open ecash protocol for bitcoin, descended from David Chaum’s 1983 work on untraceable digital cash. I’m also Lead Designer at [Hoseki](https://hoseki.app), building proof of ownership infrastructure for bitcoin.",
   avatarUrl: "me.jpg",
   navbar: [
-    { href: "https://erik.day", icon: HomeIcon, label: "Home" },
     { href: "https://orangewindjammer.substack.com", icon: NotebookIcon, label: "Substack" },
   ],
   contact: {
-    email: "eriksadder@gmail.com",
+    email: "erikcativo@pm.me",
     social: {
       GitHub: {
         name: "GitHub",
@@ -348,7 +347,7 @@ export const DATA = {
       ],
     },
   ],
-  talks: [
+  featuredTalks: [
     {
       title: "Why AI Agents Want Bitcoin",
       dates: "April 2026",
@@ -389,6 +388,47 @@ export const DATA = {
       ],
     },
     {
+      title: "The State of Ecash Design",
+      dates: "August 2025",
+      description: "A talk I gave at Bitcoin ++ Privacy Edition in Riga focused on the current state of Cashu design, progress, challenges, and things that are ahead.",
+      image: "https://yt3.googleusercontent.com/C-P6Xa_F5JxoUCgacx1ZxZu1y9sUZplWBD_-fNKUPstrBh0CK38HcLx8tReh6D0-gX8ybaCkMQ=s900-c-k-c0x00ffffff-no-rj",
+      links: [
+        {
+          title: "YouTube",
+          icon: <Icons.youtube className="h-4 w-4" />,
+          href: "https://youtu.be/rZmbjWuO940",
+        },
+      ],
+    },
+    {
+      title: "Ecash Panel [Baltic Honey Badger]",
+      dates: "August 2024",
+      description: "A bit of a dream come true, I got to sit next to one of my heroes, Adam Back, and talk about ecash. This panel dives into what ecash is, what problems it solves (like privacy and scalability), and where it still falls short.",
+      image: "/bhb.png",
+      links: [
+        {
+          title: "YouTube",
+          icon: <Icons.youtube className="h-4 w-4" />,
+          href: "https://youtu.be/4TxlCdI4AMg",
+        },
+      ],
+    },
+    {
+      title: "Designing for Ecash [Bitcoin Asia: Hong Kong]",
+      dates: "May 2024",
+      description: "A talk on the future of Bitcoin through the lens of ecash design, tracing its roots from David Chaum to modern Bitcoin implementations. It explores how ecash can improve privacy, reduce censorship risks, and bring better UX to Bitcoin.",
+      image: "https://yt3.ggpht.com/hkwmU6TbqoMxhXRjOHVCIy38oSNZrCX_sbmtbHyR3TdjWOXgFmrPe8T0WtCOPKrbGr_9XwQQ0HI=s88-c-k-c0x00ffffff-no-rj",
+      links: [
+        {
+          title: "YouTube",
+          icon: <Icons.youtube className="h-4 w-4" />,
+          href: "https://youtu.be/SM5t3JULg_0",
+        },
+      ],
+    },
+  ],
+  additionalTalks: [
+    {
       title: "21 in 21, a Rapid-Fire Bitcoin Q&A Podcast",
       dates: "September 2025",
       description: "Recorded during Bitcoin Design Week in San Francisco. I talked about designing the future of money and how we can capture that feeling of 'magic' in digital money. Got into my experiments with ecash and bitchat, the magic of bump to pay NFC interactions, and how the small design details make a big difference.",
@@ -411,19 +451,6 @@ export const DATA = {
           title: "YouTube",
           icon: <Icons.youtube className="h-4 w-4" />,
           href: "https://youtu.be/N2lKSRUUdKY",
-        },
-      ],
-    },
-    {
-      title: "The State of Ecash Design",
-      dates: "August 2025",
-      description: "A talk I gave at Bitcoin ++ Privacy Edition in Riga focused on the current state of Cashu design, progress, challenges, and things that are ahead.",
-      image: "https://yt3.googleusercontent.com/C-P6Xa_F5JxoUCgacx1ZxZu1y9sUZplWBD_-fNKUPstrBh0CK38HcLx8tReh6D0-gX8ybaCkMQ=s900-c-k-c0x00ffffff-no-rj",
-      links: [
-        {
-          title: "YouTube",
-          icon: <Icons.youtube className="h-4 w-4" />,
-          href: "https://youtu.be/rZmbjWuO940",
         },
       ],
     },
@@ -454,19 +481,6 @@ export const DATA = {
       ],
     },
     {
-      title: "Ecash Panel [Baltic Honey Badger]",
-      dates: "August 2024",
-      description: "A bit of a dream come true, I got to sit next to one of my heroes, Adam Back, and talk about ecash. This panel dives into what ecash is, what problems it solves (like privacy and scalability), and where it still falls short.",
-      image: "/bhb.png",
-      links: [
-        {
-          title: "YouTube",
-          icon: <Icons.youtube className="h-4 w-4" />,
-          href: "https://youtu.be/4TxlCdI4AMg",
-        },
-      ],
-    },
-    {
       title: "Bitcoin Design and Ecash UX",
       dates: "August 2024",
       description: "This was a fun one, recorded while walking along the river in Riga. We talked about designing peer-to-peer systems, the challenges of ecash UX, working on institutional products like Hoseki, and how cities like Stockholm and Riga inspire better design.",
@@ -476,19 +490,6 @@ export const DATA = {
           title: "YouTube",
           icon: <Icons.youtube className="h-4 w-4" />,
           href: "https://www.youtube.com/watch?v=r9i6uO7UtjE",
-        },
-      ],
-    },
-    {
-      title: "Designing for Ecash [Bitcoin Asia: Hong Kong]",
-      dates: "May 2024",
-      description: "A talk on the future of Bitcoin through the lens of ecash design, tracing its roots from David Chaum to modern Bitcoin implementations. It explores how ecash can improve privacy, reduce censorship risks, and bring better UX to Bitcoin.",
-      image: "https://yt3.ggpht.com/hkwmU6TbqoMxhXRjOHVCIy38oSNZrCX_sbmtbHyR3TdjWOXgFmrPe8T0WtCOPKrbGr_9XwQQ0HI=s88-c-k-c0x00ffffff-no-rj",
-      links: [
-        {
-          title: "YouTube",
-          icon: <Icons.youtube className="h-4 w-4" />,
-          href: "https://youtu.be/SM5t3JULg_0",
         },
       ],
     },
