@@ -153,6 +153,24 @@
     animation-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
   }
 
+  /* Tinted text selection: theme-aware foreground at low alpha. */
+  ::selection {
+    background: hsl(var(--foreground) / 0.13);
+    color: hsl(var(--foreground));
+  }
+
+  /* Ecash easter-egg toast: rises in, holds, settles out. */
+  .egg-toast {
+    animation: egg-rise 1.8s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  }
+
+  @keyframes egg-rise {
+    0%   { opacity: 0; transform: translateY(12px); }
+    18%  { opacity: 1; transform: translateY(0); }
+    78%  { opacity: 1; transform: translateY(0); }
+    100% { opacity: 0; transform: translateY(-4px); }
+  }
+
   /* Apple-like elegant link styling */
   .prose a {
     @apply no-underline text-foreground/80 transition-colors duration-200;

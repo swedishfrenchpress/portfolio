@@ -1,3 +1,5 @@
+import { ConsoleGreeting } from "@/components/console-greeting";
+import { EcashEgg } from "@/components/ecash-egg";
 import Navbar from "@/components/navbar";
 import { ThemeProvider } from "@/components/theme-provider";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -67,6 +69,8 @@ export default function RootLayout({
         )}
       >
         <div className="scroll-progress" aria-hidden="true" />
+        <ConsoleGreeting />
+        <EcashEgg />
         <ThemeProvider attribute="class" defaultTheme="light">
           <TooltipProvider delayDuration={0}>
             {children}
