@@ -16,33 +16,31 @@ export default function Page() {
   return (
     <main className="flex flex-col min-h-[100dvh] space-y-16">
       <section id="hero">
-        <div className="mx-auto w-full">
-          <div className="flex flex-col gap-6 sm:flex-row sm:items-start sm:justify-between sm:gap-10">
-            <div className="flex-col flex flex-1 space-y-1.5">
-              <BlurFadeText
-                delay={BLUR_FADE_DELAY}
-                className="text-3xl font-bold tracking-tighter sm:text-5xl xl:text-6xl/none"
-                yOffset={8}
-                text={`Hi, I’m ${DATA.name.split(" ")[0]}`}
-              />
-              <BlurFadeText
-                className="max-w-[600px] md:text-xl"
-                delay={BLUR_FADE_DELAY}
-                text={DATA.description}
-              />
-              <BlurFadeText
-                className="max-w-[600px] md:text-xl pt-2 font-medium"
-                delay={BLUR_FADE_DELAY * 2}
-                text={DATA.tagline}
-              />
-            </div>
-            <BlurFade delay={BLUR_FADE_DELAY}>
-              <Avatar className="size-20 sm:size-28 border border-border/40 shadow-sm">
+        <div className="flex flex-col gap-10 sm:gap-14">
+          <BlurFade delay={BLUR_FADE_DELAY}>
+            <div className="flex items-center gap-3 sm:gap-4">
+              <Avatar className="size-10 sm:size-12 border border-border/40 shadow-sm shrink-0">
                 <AvatarImage alt={DATA.name} src={DATA.avatarUrl} />
                 <AvatarFallback>{DATA.initials}</AvatarFallback>
               </Avatar>
-            </BlurFade>
-          </div>
+              <div className="flex flex-col">
+                <span className="text-sm sm:text-base font-medium tracking-tight">
+                  Hi, I’m {DATA.name.split(" ")[0]}.
+                </span>
+                <span className="text-sm sm:text-base text-muted-foreground">
+                  {DATA.description}
+                </span>
+              </div>
+            </div>
+          </BlurFade>
+
+          <BlurFade delay={BLUR_FADE_DELAY * 3} yOffset={12}>
+            <h1 className="text-4xl sm:text-6xl xl:text-7xl font-black tracking-tight leading-[0.95] text-foreground">
+              I build tools<br />
+              for private,<br />
+              uncensorable money.
+            </h1>
+          </BlurFade>
         </div>
       </section>
 
@@ -71,7 +69,9 @@ export default function Page() {
       <section id="work">
         <div className="flex min-h-0 flex-col gap-y-3">
           <BlurFade delay={BLUR_FADE_DELAY * 5}>
-            <h2 className="text-xl font-bold">Work Experience</h2>
+            <h2 className="border-t border-foreground/15 pt-4 text-[11px] font-semibold uppercase tracking-[0.18em] text-muted-foreground">
+              Work Experience
+            </h2>
           </BlurFade>
           {DATA.work.map((work, id) => (
             <BlurFade
@@ -97,7 +97,9 @@ export default function Page() {
       <section id="selected-work">
         <div className="flex flex-col gap-y-8">
           <BlurFade delay={BLUR_FADE_DELAY * 11}>
-            <h2 className="text-xl font-bold">Selected Work</h2>
+            <h2 className="border-t border-foreground/15 pt-4 text-[11px] font-semibold uppercase tracking-[0.18em] text-muted-foreground">
+              Selected Work
+            </h2>
           </BlurFade>
           <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
             {DATA.projects.map((project, id) => (
@@ -129,7 +131,9 @@ export default function Page() {
       <section id="hackathons">
         <div className="flex flex-col gap-y-6">
           <BlurFade delay={BLUR_FADE_DELAY * 13}>
-            <h2 className="text-xl font-bold">Projects</h2>
+            <h2 className="border-t border-foreground/15 pt-4 text-[11px] font-semibold uppercase tracking-[0.18em] text-muted-foreground">
+              Projects
+            </h2>
           </BlurFade>
           <BlurFade delay={BLUR_FADE_DELAY * 14}>
             <ul className="ml-4 divide-y divide-border/50 border-l border-border/50">
@@ -155,7 +159,9 @@ export default function Page() {
       <section id="talks">
         <div className="flex flex-col gap-y-6">
           <BlurFade delay={BLUR_FADE_DELAY * 16}>
-            <h2 className="text-xl font-bold">Talks</h2>
+            <h2 className="border-t border-foreground/15 pt-4 text-[11px] font-semibold uppercase tracking-[0.18em] text-muted-foreground">
+              Talks
+            </h2>
           </BlurFade>
           <BlurFade delay={BLUR_FADE_DELAY * 17}>
             <ul className="ml-4 divide-y divide-border/50 border-l border-border/50">
@@ -220,7 +226,9 @@ export default function Page() {
       <section id="contact">
         <div className="flex flex-col gap-y-3">
           <BlurFade delay={BLUR_FADE_DELAY * 20}>
-            <h2 className="text-xl font-bold">Contact</h2>
+            <h2 className="border-t border-foreground/15 pt-4 text-[11px] font-semibold uppercase tracking-[0.18em] text-muted-foreground">
+              Contact
+            </h2>
           </BlurFade>
           <BlurFade delay={BLUR_FADE_DELAY * 21}>
             <p className="max-w-prose text-base text-muted-foreground md:text-lg/relaxed">
