@@ -16,54 +16,49 @@ export default function Page() {
   return (
     <main className="flex flex-col min-h-[100dvh] space-y-16">
       <section id="hero">
-        <div className="flex flex-col gap-10 sm:gap-14">
-          <BlurFade delay={BLUR_FADE_DELAY}>
-            <div className="flex items-center gap-4 sm:gap-5">
-              <Avatar className="size-16 sm:size-20 border border-border/40 shadow-sm shrink-0">
-                <AvatarImage alt={DATA.name} src={DATA.avatarUrl} />
-                <AvatarFallback>{DATA.initials}</AvatarFallback>
-              </Avatar>
-              <div className="flex flex-col leading-tight">
-                <span className="text-2xl sm:text-3xl font-medium tracking-tight">
-                  Hi, I’m {DATA.name.split(" ")[0]}.
-                </span>
-                <span className="text-xl sm:text-2xl text-muted-foreground mt-0.5">
-                  {DATA.description}
-                </span>
-              </div>
-            </div>
-          </BlurFade>
-
-          <BlurFade delay={BLUR_FADE_DELAY * 3} yOffset={12}>
-            <h1 className="text-[clamp(2.25rem,5vw+1rem,4.5rem)] font-black tracking-tighter leading-[0.95] text-foreground">
-              I build tools<br />
-              for private,<br />
-              uncensorable money.
+        <BlurFade delay={BLUR_FADE_DELAY}>
+          <div className="flex flex-col gap-1.5 leading-tight">
+            <h1 className="text-2xl sm:text-3xl font-semibold tracking-tight">
+              {DATA.name}
             </h1>
-          </BlurFade>
-        </div>
+            <p className="text-2xl sm:text-3xl text-muted-foreground">
+              {DATA.description}
+            </p>
+            <p className="text-2xl sm:text-3xl pt-2">
+              {DATA.tagline}
+            </p>
+          </div>
+        </BlurFade>
       </section>
 
       <section id="about">
-        <BlurFade delay={BLUR_FADE_DELAY * 4}>
-          <div className="prose max-w-prose text-pretty font-sans text-lg leading-relaxed text-muted-foreground dark:prose-invert">
-            <Markdown
-              components={{
-                a: ({ href, children, ...props }) => {
-                  if (href?.startsWith("/")) {
-                    return <Link href={href} {...props}>{children}</Link>;
-                  }
-                  if (href?.startsWith("#")) {
-                    return <a href={href} {...props}>{children}</a>;
-                  }
-                  return <a href={href} target="_blank" rel="noopener noreferrer" {...props}>{children}</a>;
-                },
-              }}
-            >
-              {DATA.summary}
-            </Markdown>
-          </div>
-        </BlurFade>
+        <div className="flex flex-col gap-6">
+          <BlurFade delay={BLUR_FADE_DELAY * 3}>
+            <Avatar className="size-14 sm:size-16 border border-border/40 shadow-sm">
+              <AvatarImage alt={DATA.name} src={DATA.avatarUrl} />
+              <AvatarFallback>{DATA.initials}</AvatarFallback>
+            </Avatar>
+          </BlurFade>
+          <BlurFade delay={BLUR_FADE_DELAY * 4}>
+            <div className="prose max-w-prose text-pretty font-sans text-lg leading-relaxed text-muted-foreground dark:prose-invert">
+              <Markdown
+                components={{
+                  a: ({ href, children, ...props }) => {
+                    if (href?.startsWith("/")) {
+                      return <Link href={href} {...props}>{children}</Link>;
+                    }
+                    if (href?.startsWith("#")) {
+                      return <a href={href} {...props}>{children}</a>;
+                    }
+                    return <a href={href} target="_blank" rel="noopener noreferrer" {...props}>{children}</a>;
+                  },
+                }}
+              >
+                {DATA.summary}
+              </Markdown>
+            </div>
+          </BlurFade>
+        </div>
       </section>
 
       <section id="work">

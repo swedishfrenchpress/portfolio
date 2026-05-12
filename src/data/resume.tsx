@@ -10,7 +10,7 @@ export const DATA = {
   description:
     "Design engineer based in Stockholm.",
   tagline:
-    "I build tools for private, uncensorable money.",
+    "Building tools for private, uncensorable money.",
   summary:
     "Money is the most surveilled thing in your life. Every transaction watched, scored, and stored, often forever. It doesn’t have to be this way, and a small group of people are working to change it. I’m one of them.\n\nI’m a [Human Rights Foundation grantee](https://hrf.org/latest/hrf-grants-800-million-satoshis-to-22-freedom-tech-projects-worldwide/) working on [Cashu](https://cashu.space), an open ecash protocol for bitcoin, descended from David Chaum’s 1983 work on untraceable digital cash. I’m also Lead Designer at [Hoseki](https://hoseki.app), building proof of ownership infrastructure for bitcoin.",
   avatarUrl: "me.jpg",

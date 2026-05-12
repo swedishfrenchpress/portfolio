@@ -1,7 +1,7 @@
 import { ImageResponse } from "next/og";
 
 export const alt =
-  "Erik Cativo — I build tools for private, uncensorable money.";
+  "Erik Cativo — Building tools for private, uncensorable money.";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
@@ -43,7 +43,7 @@ export default async function Image() {
             flex: 1,
           }}
         >
-          <div style={{ display: "flex" }}>I build tools</div>
+          <div style={{ display: "flex" }}>Building tools</div>
           <div style={{ display: "flex" }}>for private,</div>
           <div style={{ display: "flex" }}>uncensorable money.</div>
         </div>
