@@ -56,8 +56,10 @@ const BlurFade = ({
         variants={combinedVariants}
         transition={{
           delay: 0.04 + delay,
-          duration,
-          ease: "easeOut",
+          type: "spring",
+          stiffness: 280,
+          damping: 32,
+          mass: 0.55,
         }}
         className={className}
       >

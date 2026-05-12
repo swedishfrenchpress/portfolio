@@ -86,15 +86,37 @@
     }
   }
 
-  /* Hero redaction reveal — bar retracts to the right, revealing text left-to-right. */
-  .redaction-bar {
-    transform-origin: right center;
-    animation: redaction-lift 620ms cubic-bezier(0.22, 1, 0.36, 1) both;
+  /* Body type tuning: Satoshi stylistic alternates + contextual numerals. */
+  body {
+    font-feature-settings: "ss01", "ss02", "cv11";
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
   }
 
-  @keyframes redaction-lift {
-    from { transform: scaleX(1); }
-    to   { transform: scaleX(0); }
+  /* Tabular figures on time elements (resume dates, talk dates). */
+  time {
+    font-variant-numeric: tabular-nums;
+    font-feature-settings: "tnum";
+  }
+
+  /* Custom focus ring: animates from a wider offset inward on focus. */
+  *:focus-visible {
+    outline: 2px solid hsl(var(--foreground) / 0.55);
+    outline-offset: 4px;
+    border-radius: 3px;
+    animation: focus-ring-settle 240ms cubic-bezier(0.22, 1, 0.36, 1) both;
+  }
+
+  @keyframes focus-ring-settle {
+    from {
+      outline-color: hsl(var(--foreground) / 0);
+      outline-offset: 9px;
+    }
+    to {
+      outline-color: hsl(var(--foreground) / 0.55);
+      outline-offset: 4px;
+    }
   }
 
   /* Scroll progress hairline. CSS-only via scroll-driven animations. */

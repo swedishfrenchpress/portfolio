@@ -1,8 +1,9 @@
 import { HackathonCard } from "@/components/hackathon-card";
 import { TalkCard } from "@/components/talk-card";
 import BlurFade from "@/components/magicui/blur-fade";
+import BlurFadeText from "@/components/magicui/blur-fade-text";
+import { Magnetic } from "@/components/magnetic";
 import { ProjectCard } from "@/components/project-card";
-import { RedactedText } from "@/components/redacted-text";
 import { ResumeCard } from "@/components/resume-card";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { DATA } from "@/data/resume";
@@ -18,18 +19,22 @@ export default function Page() {
         <div className="mx-auto w-full space-y-8">
           <div className="gap-2 flex justify-between">
             <div className="flex-col flex flex-1 space-y-1.5">
-              <h1 className="text-3xl font-bold tracking-tighter sm:text-5xl xl:text-6xl/none">
-                <RedactedText
-                  text={`Hi, I’m ${DATA.name.split(" ")[0]}`}
-                  delay={200}
-                />
-              </h1>
-              <p className="max-w-[600px] md:text-xl">
-                <RedactedText text={DATA.description} delay={400} />
-              </p>
-              <p className="max-w-[600px] md:text-xl pt-2 font-medium">
-                <RedactedText text={DATA.tagline} delay={600} />
-              </p>
+              <BlurFadeText
+                delay={BLUR_FADE_DELAY}
+                className="text-3xl font-bold tracking-tighter sm:text-5xl xl:text-6xl/none"
+                yOffset={8}
+                text={`Hi, I’m ${DATA.name.split(" ")[0]}`}
+              />
+              <BlurFadeText
+                className="max-w-[600px] md:text-xl"
+                delay={BLUR_FADE_DELAY}
+                text={DATA.description}
+              />
+              <BlurFadeText
+                className="max-w-[600px] md:text-xl pt-2 font-medium"
+                delay={BLUR_FADE_DELAY * 2}
+                text={DATA.tagline}
+              />
             </div>
             <BlurFade delay={BLUR_FADE_DELAY}>
               <Avatar className="size-28 border border-border/40 shadow-sm">
@@ -202,12 +207,14 @@ export default function Page() {
           <BlurFade delay={BLUR_FADE_DELAY * 21}>
             <p className="text-base text-muted-foreground md:text-lg/relaxed">
               Email me at{" "}
-              <Link
-                href="mailto:erikcativo@pm.me"
-                className="text-foreground underline decoration-foreground/30 underline-offset-4 hover:decoration-foreground/60 transition-colors"
-              >
-                erikcativo@pm.me
-              </Link>
+              <Magnetic className="inline-block">
+                <Link
+                  href="mailto:erikcativo@pm.me"
+                  className="text-foreground underline decoration-foreground/30 underline-offset-4 hover:decoration-foreground/60 transition-colors"
+                >
+                  erikcativo@pm.me
+                </Link>
+              </Magnetic>
               , or find me on{" "}
               <Link
                 href={DATA.contact.social.X.url}
