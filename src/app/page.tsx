@@ -18,16 +18,16 @@ export default function Page() {
       <section id="hero">
         <div className="flex flex-col gap-10 sm:gap-14">
           <BlurFade delay={BLUR_FADE_DELAY}>
-            <div className="flex items-center gap-3 sm:gap-4">
-              <Avatar className="size-10 sm:size-12 border border-border/40 shadow-sm shrink-0">
+            <div className="flex items-center gap-4 sm:gap-5">
+              <Avatar className="size-14 sm:size-16 border border-border/40 shadow-sm shrink-0">
                 <AvatarImage alt={DATA.name} src={DATA.avatarUrl} />
                 <AvatarFallback>{DATA.initials}</AvatarFallback>
               </Avatar>
               <div className="flex flex-col">
-                <span className="text-sm sm:text-base font-medium tracking-tight">
+                <span className="text-xl sm:text-2xl font-medium tracking-tight">
                   Hi, I’m {DATA.name.split(" ")[0]}.
                 </span>
-                <span className="text-sm sm:text-base text-muted-foreground">
+                <span className="text-base sm:text-lg text-muted-foreground">
                   {DATA.description}
                 </span>
               </div>
