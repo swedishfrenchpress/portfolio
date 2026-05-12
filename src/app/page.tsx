@@ -17,7 +17,7 @@ export default function Page() {
     <main className="flex flex-col min-h-[100dvh] space-y-16">
       <section id="hero">
         <div className="mx-auto w-full">
-          <div className="gap-6 sm:gap-10 flex justify-between">
+          <div className="flex flex-col gap-6 sm:flex-row sm:items-start sm:justify-between sm:gap-10">
             <div className="flex-col flex flex-1 space-y-1.5">
               <BlurFadeText
                 delay={BLUR_FADE_DELAY}
@@ -37,7 +37,7 @@ export default function Page() {
               />
             </div>
             <BlurFade delay={BLUR_FADE_DELAY}>
-              <Avatar className="size-28 border border-border/40 shadow-sm">
+              <Avatar className="size-20 sm:size-28 border border-border/40 shadow-sm">
                 <AvatarImage alt={DATA.name} src={DATA.avatarUrl} />
                 <AvatarFallback>{DATA.initials}</AvatarFallback>
               </Avatar>
@@ -177,12 +177,30 @@ export default function Page() {
           </BlurFade>
           <BlurFade delay={BLUR_FADE_DELAY * 19}>
             <details className="group ml-4">
-              <summary className="ml-10 cursor-pointer text-sm text-muted-foreground hover:text-foreground transition-colors list-none [&::-webkit-details-marker]:hidden inline-flex items-center gap-2 select-none">
-                <span aria-hidden className="inline-block transition-transform group-open:rotate-90">›</span>
-                <span className="group-open:hidden">Show {DATA.additionalTalks.length} more appearances</span>
-                <span className="hidden group-open:inline">Hide additional appearances</span>
+              <summary className="relative ml-10 py-3 cursor-pointer list-none [&::-webkit-details-marker]:hidden flex items-center select-none">
+                <span
+                  aria-hidden
+                  className="absolute -left-16 top-1/2 -translate-y-1/2 flex size-12 items-center justify-center rounded-full border border-border bg-background transition-colors duration-300 group-hover:border-foreground/50 group-open:border-foreground/70"
+                >
+                  <svg
+                    viewBox="0 0 16 16"
+                    className="size-4 transition-transform duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] group-open:rotate-45"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="1.5"
+                    strokeLinecap="round"
+                  >
+                    <path d="M8 3v10M3 8h10" />
+                  </svg>
+                </span>
+                <span className="text-base font-semibold tracking-tight text-foreground/75 transition-colors duration-200 group-hover:text-foreground group-open:hidden">
+                  more
+                </span>
+                <span className="hidden text-base font-semibold tracking-tight text-foreground/60 transition-colors duration-200 group-open:inline">
+                  less
+                </span>
               </summary>
-              <ul className="mt-6 ml-0 divide-y divide-border/50 border-l border-border/50">
+              <ul className="mt-2 ml-0 divide-y divide-border/50 border-l border-border/50">
                 {DATA.additionalTalks.map((talk) => (
                   <TalkCard
                     key={talk.title + talk.dates}
