@@ -2,6 +2,7 @@ import { HackathonCard } from "@/components/hackathon-card";
 import { TalkCard } from "@/components/talk-card";
 import BlurFade from "@/components/magicui/blur-fade";
 import BlurFadeText from "@/components/magicui/blur-fade-text";
+import { Magnetic } from "@/components/magnetic";
 import { ProjectCard } from "@/components/project-card";
 import { ResumeCard } from "@/components/resume-card";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
@@ -13,16 +14,16 @@ const BLUR_FADE_DELAY = 0.04;
 
 export default function Page() {
   return (
-    <main className="flex flex-col min-h-[100dvh] space-y-10">
+    <main className="flex flex-col min-h-[100dvh] space-y-12">
       <section id="hero">
-        <div className="mx-auto w-full space-y-8">
-          <div className="gap-2 flex justify-between">
+        <div className="mx-auto w-full">
+          <div className="flex flex-col gap-6 sm:flex-row sm:items-start sm:justify-between sm:gap-10">
             <div className="flex-col flex flex-1 space-y-1.5">
               <BlurFadeText
                 delay={BLUR_FADE_DELAY}
-                className="text-3xl font-bold tracking-tighter sm:text-5xl xl:text-6xl/none"
+                className="text-3xl font-bold tracking-tighter sm:text-5xl xl:text-6xl/none font-pixel"
                 yOffset={8}
-                text={`Hi, I'm ${DATA.name.split(" ")[0]}`}
+                text={`Hej, I’m ${DATA.name.split(" ")[0]}`}
               />
               <BlurFadeText
                 className="max-w-[600px] md:text-xl"
@@ -31,7 +32,7 @@ export default function Page() {
               />
             </div>
             <BlurFade delay={BLUR_FADE_DELAY}>
-              <Avatar className="size-28 border border-border/40 shadow-sm">
+              <Avatar className="size-20 sm:size-28 border border-border/40 shadow-sm">
                 <AvatarImage alt={DATA.name} src={DATA.avatarUrl} />
                 <AvatarFallback>{DATA.initials}</AvatarFallback>
               </Avatar>
@@ -39,48 +40,33 @@ export default function Page() {
           </div>
         </div>
       </section>
+
       <section id="about">
-        <BlurFade delay={BLUR_FADE_DELAY * 3}>
-          <h2 className="text-xl font-bold">About</h2>
-        </BlurFade>
         <BlurFade delay={BLUR_FADE_DELAY * 4}>
-          <div className="prose max-w-full text-pretty font-sans text-base text-muted-foreground dark:prose-invert">
-            <Markdown 
+          <div className="prose max-w-none text-pretty font-sans text-base leading-relaxed text-muted-foreground dark:prose-invert">
+            <Markdown
               components={{
-              a: ({ href, children, ...props }) => {
-                if (href?.startsWith("/")) {
-                  return <Link href={href} {...props}>{children}</Link>;
-                }
-                if (href === "#projects") {
-                  return (
-                    <button
-                      onClick={() => {
-                        document.getElementById("projects")?.scrollIntoView({ 
-                          behavior: "smooth" 
-                        });
-                      }}
-                      className="text-blue-500 hover:underline cursor-pointer"
-                    >
-                      {children}
-                    </button>
-                  );
-                }
-                if (href?.startsWith("#")) {
-                  return <a href={href} {...props}>{children}</a>;
-                }
-                return <a href={href} target="_blank" rel="noopener noreferrer" {...props}>{children}</a>;
-              }
-            }}
-          >
-            {DATA.summary}
-          </Markdown>
+                a: ({ href, children, ...props }) => {
+                  if (href?.startsWith("/")) {
+                    return <Link href={href} {...props}>{children}</Link>;
+                  }
+                  if (href?.startsWith("#")) {
+                    return <a href={href} {...props}>{children}</a>;
+                  }
+                  return <a href={href} target="_blank" rel="noopener noreferrer" {...props}>{children}</a>;
+                },
+              }}
+            >
+              {DATA.summary}
+            </Markdown>
           </div>
         </BlurFade>
       </section>
+
       <section id="work">
         <div className="flex min-h-0 flex-col gap-y-3">
           <BlurFade delay={BLUR_FADE_DELAY * 5}>
-            <h2 className="text-xl font-bold">Work Experience</h2>
+            <h2 className="text-xl font-bold font-pixel">Work Experience</h2>
           </BlurFade>
           {DATA.work.map((work, id) => (
             <BlurFade
@@ -102,21 +88,13 @@ export default function Page() {
           ))}
         </div>
       </section>
-      <section id="work">
-        <div className="space-y-12 w-full py-12">
+
+      <section id="selected-work">
+        <div className="flex flex-col gap-y-6">
           <BlurFade delay={BLUR_FADE_DELAY * 11}>
-            <div className="flex flex-col items-center justify-center space-y-4 text-center">
-              <div className="space-y-2">
-                <div className="inline-block rounded-full bg-muted text-muted-foreground px-4 py-1.5 text-xs font-medium tracking-wide">
-                  Work
-                </div>
-                <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl">
-                  Check out my latest work
-                </h2>
-              </div>
-            </div>
+            <h2 className="text-xl font-bold font-pixel">Selected Work</h2>
           </BlurFade>
-          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 max-w-[900px] mx-auto">
+          <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
             {DATA.projects.map((project, id) => (
               <BlurFade
                 key={project.title}
@@ -130,6 +108,11 @@ export default function Page() {
                   tags={project.technologies}
                   image={project.image}
                   video={project.video}
+                  videoPlaybackRate={
+                    "videoPlaybackRate" in project
+                      ? project.videoPlaybackRate
+                      : undefined
+                  }
                   links={project.links}
                 />
               </BlurFade>
@@ -137,113 +120,134 @@ export default function Page() {
           </div>
         </div>
       </section>
-      <section id="projects">
-        <div className="space-y-12 w-full py-12">
+
+      <section id="hackathons">
+        <div className="flex flex-col gap-y-6">
           <BlurFade delay={BLUR_FADE_DELAY * 13}>
-            <div className="flex flex-col items-center justify-center space-y-4 text-center">
-              <div className="space-y-2">
-                <div className="inline-block rounded-full bg-muted text-muted-foreground px-4 py-1.5 text-xs font-medium tracking-wide">
-                  Projects
-                </div>
-                <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl">
-                I like building in public
-                </h2>
-              </div>
-            </div>
+            <h2 className="text-xl font-bold font-pixel">Projects</h2>
           </BlurFade>
           <BlurFade delay={BLUR_FADE_DELAY * 14}>
-            <div className="max-w-[900px] mx-auto">
-              <ul className="mb-4 ml-4 divide-y divide-border/50 border-l border-border/50">
-                {DATA.hackathons.map((project, id) => (
-                  <BlurFade
-                    key={project.title + project.dates}
-                    delay={BLUR_FADE_DELAY * 15 + id * 0.05}
-                  >
-                    <HackathonCard
-                      title={project.title}
-                      description={project.description}
-                      dates={project.dates}
-                      image={project.image}
-                      links={project.links}
-                    />
-                  </BlurFade>
-                ))}
-              </ul>
-            </div>
+            <ul className="ml-4 divide-y divide-border/50 border-l border-border/50">
+              {DATA.hackathons.map((project, id) => (
+                <BlurFade
+                  key={project.title + project.dates}
+                  delay={BLUR_FADE_DELAY * 15 + id * 0.05}
+                >
+                  <HackathonCard
+                    title={project.title}
+                    description={project.description}
+                    dates={project.dates}
+                    image={project.image}
+                    links={project.links}
+                  />
+                </BlurFade>
+              ))}
+            </ul>
           </BlurFade>
         </div>
       </section>
+
       <section id="talks">
-        <div className="space-y-12 w-full py-12">
+        <div className="flex flex-col gap-y-6">
           <BlurFade delay={BLUR_FADE_DELAY * 16}>
-            <div className="flex flex-col items-center justify-center space-y-4 text-center">
-              <div className="space-y-2">
-                <div className="inline-block rounded-full bg-muted text-muted-foreground px-4 py-1.5 text-xs font-medium tracking-wide">
-                  Talks
-                </div>
-                <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl">
-                Speaking about bitcoin design
-                </h2>
-              </div>
-            </div>
+            <h2 className="text-xl font-bold font-pixel">Talks</h2>
           </BlurFade>
           <BlurFade delay={BLUR_FADE_DELAY * 17}>
-            <div className="max-w-[900px] mx-auto">
-              <ul className="mb-4 ml-4 divide-y divide-border/50 border-l border-border/50">
-                {DATA.talks.map((talk, id) => (
-                  <BlurFade
-                    key={talk.title + talk.dates}
-                    delay={BLUR_FADE_DELAY * 18 + id * 0.05}
+            <ul className="ml-4 divide-y divide-border/50 border-l border-border/50">
+              {DATA.featuredTalks.map((talk, id) => (
+                <BlurFade
+                  key={talk.title + talk.dates}
+                  delay={BLUR_FADE_DELAY * 18 + id * 0.05}
+                >
+                  <TalkCard
+                    title={talk.title}
+                    description={talk.description}
+                    dates={talk.dates}
+                    image={talk.image}
+                    links={talk.links}
+                  />
+                </BlurFade>
+              ))}
+            </ul>
+          </BlurFade>
+          <BlurFade delay={BLUR_FADE_DELAY * 19}>
+            <details className="group ml-4">
+              <summary className="relative ml-10 py-3 cursor-pointer list-none [&::-webkit-details-marker]:hidden flex items-center select-none">
+                <span
+                  aria-hidden
+                  className="absolute -left-16 top-1/2 -translate-y-1/2 flex size-12 items-center justify-center rounded-full border border-border bg-background transition-colors duration-300 group-hover:border-foreground/50 group-open:border-foreground/70"
+                >
+                  <svg
+                    viewBox="0 0 16 16"
+                    className="size-4 transition-transform duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] group-open:rotate-45"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="1.5"
+                    strokeLinecap="round"
                   >
-                    <TalkCard
-                      title={talk.title}
-                      description={talk.description}
-                      dates={talk.dates}
-                      image={talk.image}
-                      links={talk.links}
-                    />
-                  </BlurFade>
+                    <path d="M8 3v10M3 8h10" />
+                  </svg>
+                </span>
+                <span className="text-base font-semibold tracking-tight text-foreground/75 transition-colors duration-200 group-hover:text-foreground group-open:hidden">
+                  more
+                </span>
+                <span className="hidden text-base font-semibold tracking-tight text-foreground/60 transition-colors duration-200 group-open:inline">
+                  less
+                </span>
+              </summary>
+              <ul className="mt-2 ml-0 divide-y divide-border/50 border-l border-border/50">
+                {DATA.additionalTalks.map((talk) => (
+                  <TalkCard
+                    key={talk.title + talk.dates}
+                    title={talk.title}
+                    description={talk.description}
+                    dates={talk.dates}
+                    image={talk.image}
+                    links={talk.links}
+                  />
                 ))}
               </ul>
-            </div>
+            </details>
           </BlurFade>
         </div>
       </section>
+
       <section id="contact">
-        <div className="grid items-center justify-center gap-4 px-4 text-center md:px-6 w-full py-12">
-          <BlurFade delay={BLUR_FADE_DELAY * 19}>
-            <div className="space-y-3">
-              <div className="inline-block rounded-full bg-muted text-muted-foreground px-4 py-1.5 text-xs font-medium tracking-wide">
-                Contact
-              </div>
-              <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl">
-                Get in Touch
-              </h2>
-              <p className="mx-auto max-w-[600px] text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
-                Want to chat? Shoot me an email at{" "}
+        <div className="flex flex-col gap-y-3">
+          <BlurFade delay={BLUR_FADE_DELAY * 20}>
+            <h2 className="text-xl font-bold font-pixel">Contact</h2>
+          </BlurFade>
+          <BlurFade delay={BLUR_FADE_DELAY * 21}>
+            <p className="max-w-prose text-base text-muted-foreground md:text-lg/relaxed">
+              Email me at{" "}
+              <Magnetic className="inline-block">
                 <Link
                   href="mailto:erikcativo@pm.me"
                   className="text-foreground underline decoration-foreground/30 underline-offset-4 hover:decoration-foreground/60 transition-colors"
                 >
                   erikcativo@pm.me
                 </Link>
-                , or reach out to me on{" "}
-                <Link
-                  href={DATA.contact.social.X.url}
-                  className="text-foreground underline decoration-foreground/30 underline-offset-4 hover:decoration-foreground/60 transition-colors"
-                >
-                  X
-                </Link>{" "}
-                or{" "}
-                <Link
-                  href="https://primal.net/erik"
-                  className="text-foreground underline decoration-foreground/30 underline-offset-4 hover:decoration-foreground/60 transition-colors"
-                >
-                  Nostr
-                </Link>{" "}
-                and I&apos;ll respond as soon as I can.
-              </p>
-            </div>
+              </Magnetic>
+              , or find me on{" "}
+              <Link
+                href={DATA.contact.social.X.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-foreground underline decoration-foreground/30 underline-offset-4 hover:decoration-foreground/60 transition-colors"
+              >
+                X
+              </Link>{" "}
+              and{" "}
+              <Link
+                href="https://primal.net/erik"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-foreground underline decoration-foreground/30 underline-offset-4 hover:decoration-foreground/60 transition-colors"
+              >
+                Nostr
+              </Link>
+              . I read everything that lands.
+            </p>
           </BlurFade>
         </div>
       </section>

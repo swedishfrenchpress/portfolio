@@ -6,6 +6,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import { ProjectVideo } from "@/components/project-video";
 import { cn } from "@/lib/utils";
 import Image from "next/image";
 import Link from "next/link";
@@ -20,6 +21,7 @@ interface Props {
   link?: string;
   image?: string;
   video?: string;
+  videoPlaybackRate?: number;
   links?: readonly {
     icon: React.ReactNode;
     type: string;
@@ -37,6 +39,7 @@ export function ProjectCard({
   link,
   image,
   video,
+  videoPlaybackRate,
   links,
   className,
 }: Props) {
@@ -51,13 +54,10 @@ export function ProjectCard({
         className={cn("block cursor-pointer", className)}
       >
         {video && (
-          <video
+          <ProjectVideo
             src={video}
-            autoPlay
-            loop
-            muted
-            playsInline
-            className="pointer-events-none mx-auto h-56 w-full object-cover object-top" // needed because random black line at bottom of video
+            playbackRate={videoPlaybackRate}
+            className="pointer-events-none mx-auto h-56 w-full object-cover object-top"
           />
         )}
         {image && (
@@ -72,12 +72,12 @@ export function ProjectCard({
       </Link>
       <CardHeader className="px-2">
         <div className="space-y-1">
-          <CardTitle className="mt-1 text-base">{title}</CardTitle>
-          {dates && <time className="font-sans text-xs">{dates}</time>}
+          <CardTitle className="mt-1 text-lg">{title}</CardTitle>
+          {dates && <time className="font-sans text-sm">{dates}</time>}
           <div className="hidden font-sans text-xs underline print:visible">
             {link?.replace("https://", "").replace("www.", "").replace("/", "")}
           </div>
-          <div className="prose max-w-full text-pretty font-sans text-sm text-muted-foreground dark:prose-invert">
+          <div className="prose max-w-full text-pretty font-sans text-base text-muted-foreground dark:prose-invert">
             <Markdown>
               {description}
             </Markdown>
@@ -89,7 +89,7 @@ export function ProjectCard({
           <div className="mt-2 flex flex-wrap gap-1">
             {tags?.map((tag) => (
               <Badge
-                className="px-1 py-0 text-[10px]"
+                className="px-1.5 py-0.5 text-xs"
                 variant="secondary"
                 key={tag}
               >
@@ -104,7 +104,7 @@ export function ProjectCard({
           <div className="flex flex-row flex-wrap items-start gap-1">
             {links?.map((link, idx) => (
               <Link href={link?.href} key={idx} target="_blank">
-                <Badge key={idx} className="flex gap-2 px-2 py-1 text-[10px]">
+                <Badge key={idx} className="flex gap-2 px-2 py-1 text-xs">
                   {link.icon}
                   {link.type}
                 </Badge>

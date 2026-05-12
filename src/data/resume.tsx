@@ -1,5 +1,5 @@
 import { Icons } from "@/components/icons";
-import { Figma, HomeIcon, NotebookIcon } from "lucide-react";
+import { NotebookIcon } from "lucide-react";
 
 export const DATA = {
   name: "Erik Cativo",
@@ -8,16 +8,17 @@ export const DATA = {
   location: "Stockholm, Sweden",
   locationLink: "https://www.google.com/maps/place/stockholm",
   description:
-    "Bitcoin Product Designer based in Stockholm, Sweden",
+    "Design engineer based in Stockholm.",
+  tagline:
+    "Building tools for private, uncensorable money.",
   summary:
-    "At the end of 2024, I left my job as a UX designer to go full time into building on bitcoin. I’m currently a [Human Rights Foundation grantee](https://hrf.org/latest/hrf-grants-800-million-satoshis-to-22-freedom-tech-projects-worldwide/) working on improving ecash design, and I’m the Lead Designer at [Hoseki](https://hoseki.app), where we’re building proof of ownership infrastructure for bitcoin.\n\nLately I’ve been getting deeper into UI engineering. I'm vibe coding and shipping my designs directly into code, moving beyond Figma.",
+    "Money is the most surveilled thing in your life. Every transaction watched, scored, and stored, often forever. It doesn’t have to be this way, and a small group of people are working to change it. I’m one of them.\n\nI’m a [Human Rights Foundation grantee](https://hrf.org/latest/hrf-grants-800-million-satoshis-to-22-freedom-tech-projects-worldwide/) working on [Cashu](https://cashu.space), an open ecash protocol for bitcoin, descended from David Chaum’s 1983 work on untraceable digital cash. I’m also Lead Designer at [Hoseki](https://hoseki.app), building proof of ownership infrastructure for bitcoin.",
   avatarUrl: "me.jpg",
   navbar: [
-    { href: "https://erik.day", icon: HomeIcon, label: "Home" },
     { href: "https://orangewindjammer.substack.com", icon: NotebookIcon, label: "Substack" },
   ],
   contact: {
-    email: "eriksadder@gmail.com",
+    email: "erikcativo@pm.me",
     social: {
       GitHub: {
         name: "GitHub",
@@ -28,7 +29,7 @@ export const DATA = {
       },
       X: {
         name: "X",
-        url: "https://x.com/uxerik_",
+        url: "https://x.com/eriklocalhost",
         icon: Icons.x,
 
         navbar: true,
@@ -60,7 +61,7 @@ export const DATA = {
       start: "December 2021",
       end: "Present",
       description:
-        "Leading design across brand, UX, and product for a platform that helps users prove Bitcoin ownership. Responsible for the visual identity, user experience, and interface design.",
+        "Leading design across brand, UX, and product for a platform that helps users prove Bitcoin ownership without giving up custody.",
     },
     {
       company: "Ericsson",
@@ -72,7 +73,7 @@ export const DATA = {
       start: "September 2020",
       end: "October 2024",
       description:
-        "Led design for a telecom network acceptance platform built on R3 Corda, a “private blockchain.” It was a front row seat to the blockchain theater and a reminder that Bitcoin is the only thing in the space that’s real.",
+        "Led design for a telecom network acceptance platform built on R3 Corda, a “private blockchain.” A front-row seat to the blockchain theater, and a reminder that Bitcoin is the only thing in the space that’s real.",
     },
     {
       company: "Accenture",
@@ -84,7 +85,7 @@ export const DATA = {
       start: "February 2020",
       end: "September 2020",
       description:
-        "Designed web applications for government clients, mostly using platforms like Salesforce, ServiceNow, and Pega. Projects were short to mid-term, and I worked closely with both the client and internal teams to get things shipped.",
+        "Designed web applications for government clients on Salesforce, ServiceNow, and Pega. Short to mid-term engagements, shipped end-to-end with both client and internal teams.",
     },
   ],
   projects: [
@@ -93,7 +94,7 @@ export const DATA = {
       href: "https://hoseki.app",
       active: true,
       description:
-        "Leading design across brand, UX, and product. Responsible for shaping the visual identity, designing user interfaces, and building a product that makes proving Bitcoin ownership easy and delightful.",
+        "Leading design across brand, UX, and product. Building the visual identity and interface for a product that makes proving Bitcoin ownership feel as simple as showing a screenshot.",
       technologies: [
         "Figma",
         "Design systems",
@@ -116,7 +117,7 @@ export const DATA = {
       href: "https://sltracker.app/",
       active: true,
       description:
-        "Lightweight Swift app for checking Stockholm Tunnelbana departures. Clean design, quick performance, and a simple widget. Designed to be fast, beautiful, and pleasant to use.",
+        "A lightweight SwiftUI app for checking Stockholm Tunnelbana departures. Native iOS, home screen widget, no accounts.",
       technologies: [
         "SwiftUI",
         "Xcode",
@@ -139,11 +140,44 @@ export const DATA = {
       video: "/sl-tracker.mp4",
     },
     {
+      title: "Palantir for the People",
+      href: "https://www.palantirforthepeople.com/",
+      active: true,
+      description:
+        "An open-source triage tool for journalists working with leaked document dumps. Sorts by topic, rates each doc for bias and consistency, and explains its reasoning. Built at HRF's second AI Hack for Freedom; I led the front end and UX.",
+      technologies: [
+        "Next.js",
+        "TypeScript",
+        "React",
+        "TailwindCSS",
+      ],
+      links: [
+        {
+          type: "Website",
+          href: "https://www.palantirforthepeople.com/",
+          icon: <Icons.globe className="size-3" />,
+        },
+        {
+          type: "Front end",
+          href: "https://github.com/swedishfrenchpress/pftp-ui",
+          icon: <Icons.github className="size-3" />,
+        },
+        {
+          type: "Back end",
+          href: "https://github.com/carlaKC/pftp-backend",
+          icon: <Icons.github className="size-3" />,
+        },
+      ],
+      image: "",
+      video: "/pftp.mp4",
+      videoPlaybackRate: 3,
+    },
+    {
       title: "Ecash Design Guide",
       href: "https://bitcoin.design/guide/how-it-works/ecash/introduction/",
       active: true,
       description:
-        "Wrote, designed, and deployed an ecash section to the Bitcoin Design Community's official design guide. A comprehensive design guide that provides an overview of both ecash protocols, along with design best practices for each.",
+        "Wrote, designed, and deployed the ecash section of the Bitcoin Design Community's official guide. Covers both Cashu and Fedimint, with design patterns for wallets, mints, and recovery flows.",
       technologies: [
         "Jekyll",
         "Ruby",
@@ -165,36 +199,13 @@ export const DATA = {
       image: "",
       video: "/ecashguide.mp4",
     },
-    {
-      title: "Open Cash",
-      href: "https://opencash.dev/",
-      active: true,
-      description:
-        "Designed, built, and shipped the OpenCash website. A non-profit supporting open-source ecash development. Presents the organization’s mission, grant program, and donation portal, with clear messaging around privacy and digital cash.",
-      technologies: [
-        "Next.js",
-        "TypeScript",
-        "React",
-        "TailwindCSS",
-        "Vercel",
-      ],
-      links: [
-        {
-          type: "Website",
-          href: "https://opencash.dev/",
-          icon: <Icons.globe className="size-3" />,
-        },
-      ],
-      image: "",
-      video: "/opencash.mp4",
-    },
   ],
   hackathons: [
     {
       title: "Corruption Disrespector",
       dates: "January 2026",
       description:
-        "Built and deployed the front end for Corruption Disrespector, a tool for anti-corruption investigations. Our projet won third place at the [Human Rights Foundation's AI Hack for Freedom hackathon](https://mailchi.mp/hrf.org/hrf-sponsors-ai-hackathon-for-freedom-in-austin-pairing-dissidents-and-developers-9102958), where activists and developers used vibe coding to build tools in 28 hours.",
+        "Built and deployed the front end for Corruption Disrespector, a tool for anti-corruption investigations. The project won third place at the [Human Rights Foundation's AI Hack for Freedom hackathon](https://mailchi.mp/hrf.org/hrf-sponsors-ai-hackathon-for-freedom-in-austin-pairing-dissidents-and-developers-9102958), where activists and developers paired up to vibe-code freedom tools in 28 hours.",
       image: "/corruptiondisrespector.jpg",
       links: [
         {
@@ -205,7 +216,7 @@ export const DATA = {
         {
           title: "Post",
           icon: <Icons.x className="h-4 w-4" />,
-          href: "https://x.com/uxerik_/status/2013280213623329189?s=20",
+          href: "https://x.com/eriklocalhost/status/2013280213623329189?s=20",
         },
       ],
     },
@@ -213,7 +224,7 @@ export const DATA = {
       title: "Cashu.me",
       dates: "2024 - Present",
       description:
-        "I'm the [second most active contributor](https://github.com/cashubtc/cashu.me/graphs/contributors) to Cashu.me, responsible for much of the UI and UX design. I recently designed the [mint review](https://x.com/uxerik_/status/1987173744582783084) and web of trust features, helping users make more informed decisions about which mints to trust.",
+        "I'm the [second most active contributor](https://github.com/cashubtc/cashu.me/graphs/contributors) to Cashu.me, behind most of the UI and UX. Recently designed the [mint review](https://x.com/eriklocalhost/status/1987173744582783084) and web of trust features, which help users decide which mints to actually trust.",
       image:
         "/cashume.png",
       links: [
@@ -233,7 +244,7 @@ export const DATA = {
       title: "Bitcoin For Signal",
       dates: "October 2025",
       description:
-        "Created and led the Bitcoin for Signal campaign. I designed the brand identity, website, and promotional strategy that turned a hackathon project into a viral privacy-tech movement with significant community traction.",
+        "Created and led the Bitcoin for Signal campaign. Designed the identity, the site, and the launch strategy that took a hackathon weekend to a viral privacy-tech moment.",
       image:
         "/b4s-logo.svg",
       links: [
@@ -253,7 +264,7 @@ export const DATA = {
       title: "Bitchat Cashu Wallet",
       dates: "July 2025",
       description:
-        "Integrated a functional Cashu wallet into Bitchat for Android using Figma, Cursor, and Kotlin. Designed the UI in Figma and used Cursor to vibe coded the components into Kotlin. Entire build took 72 hours.",
+        "Integrated a working Cashu wallet into Bitchat for Android. Designed the UI in Figma, vibe-coded the Kotlin components in Cursor. Whole build: 72 hours.",
       image:
         "/bitchat.svg",
       links: [
@@ -265,7 +276,7 @@ export const DATA = {
         {
           title: "Post",
           icon: <Icons.x className="h-4 w-4" />,
-          href: "https://x.com/uxerik_/status/1947309923517218965",
+          href: "https://x.com/eriklocalhost/status/1947309923517218965",
         },
         {
           title: "Blog",
@@ -278,7 +289,7 @@ export const DATA = {
       title: "Minor League Miners",
       dates: "June 2025",
       description:
-        "My hackathon submission won first place in both the Software Prize and HashLeague tracks at ATL Bit Labs’ Battle of the Mine Hackers. It introduced a new leaderboard for small miners and solo Bitaxe users, ranking them by their best session difficulty rather than total hashrate. To build it I spun up my own public pool instance, connected its API to a forked version of HashLeague, and built a UI to display best-difficulty stats.",
+        "Won first place in both the Software Prize and HashLeague tracks at ATL Bit Labs’ Battle of the Mine Hackers. A new leaderboard for small miners and solo Bitaxe users that ranks by best session difficulty instead of total hashrate. To build it I spun up my own public pool, forked HashLeague, and built a UI on top of its API.",
       image:
         "https://pbs.twimg.com/profile_images/1640759486305431552/cavNb8x1_400x400.jpg",
       links: [
@@ -302,8 +313,8 @@ export const DATA = {
     {
       title: "Athenut",
       dates: "October 2024",
-              description:
-          "Athenut is a privacy-preserving, pay-per-query search engine built on Kagi and Cashu. I designed the brand identity and built the entire front-end. Users pay with ecash to search. No accounts, no tracking. For technical details, check out the No BS Bitcoin article.",
+      description:
+        "A privacy-preserving, pay-per-query search engine built on top of Kagi and Cashu. I designed the brand and built the front end. Pay with ecash to search. No accounts, no tracking.",
       image:
         "/athenut.png",
       links: [
@@ -323,19 +334,45 @@ export const DATA = {
       title: "Cashu 95",
       dates: "July 2024",
       description:
-        "Cashu 95 is a playful Figma prototype that reimagines the modern Cashu protocol with a retro Windows 95 interface. Built using a full Win95-style design system, it explores how old-school UI can still deliver a functional and fun ecash experience.",
+        "A Figma prototype that drops the Cashu protocol into a full Windows 95 interface. Built a complete Win95 design system to do it. Half experiment, half love letter to old UI.",
       image:
         "/cashu95.png",
       links: [
         {
           title: "Post",
           icon: <Icons.x className="h-4 w-4" />,
-          href: "https://x.com/uxerik_/status/1814091080389767592",
+          href: "https://x.com/eriklocalhost/status/1814091080389767592",
         },
       ],
     },
   ],
-  talks: [
+  featuredTalks: [
+    {
+      title: "Why AI Agents Want Bitcoin",
+      dates: "April 2026",
+      description: "A panel at Bitcoin 2026 in Las Vegas on why AI agents need bitcoin as their native settlement layer. We got into machine-to-machine payments, why censorship-resistance and programmability matter more once humans are out of the loop, and where ecash fits for the small, frequent transactions agents actually make.",
+      image: "https://i.ytimg.com/vi/ApuXgFoKkQc/hqdefault.jpg",
+      links: [
+        {
+          title: "YouTube",
+          icon: <Icons.youtube className="h-4 w-4" />,
+          href: "https://youtu.be/ApuXgFoKkQc",
+        },
+      ],
+    },
+    {
+      title: "Lightning + Ecash: An Atomic Match Made in Heaven?",
+      dates: "April 2026",
+      description: "A Bitcoin 2026 talk in Las Vegas on how Lightning and ecash fit together. We dug into the trade-offs each one solves on its own, how atomic swaps between them work in practice, and why a layered approach (Lightning for routing and settlement, ecash for privacy and UX) is starting to feel inevitable.",
+      image: "https://i.ytimg.com/vi/4iwEBvEByA4/hqdefault.jpg",
+      links: [
+        {
+          title: "YouTube",
+          icon: <Icons.youtube className="h-4 w-4" />,
+          href: "https://youtu.be/4iwEBvEByA4",
+        },
+      ],
+    },
     {
       title: "Why Ecash Matters For Bitcoin",
       dates: "December 2025",
@@ -349,6 +386,47 @@ export const DATA = {
         },
       ],
     },
+    {
+      title: "The State of Ecash Design",
+      dates: "August 2025",
+      description: "A talk I gave at Bitcoin ++ Privacy Edition in Riga focused on the current state of Cashu design, progress, challenges, and things that are ahead.",
+      image: "https://yt3.googleusercontent.com/C-P6Xa_F5JxoUCgacx1ZxZu1y9sUZplWBD_-fNKUPstrBh0CK38HcLx8tReh6D0-gX8ybaCkMQ=s900-c-k-c0x00ffffff-no-rj",
+      links: [
+        {
+          title: "YouTube",
+          icon: <Icons.youtube className="h-4 w-4" />,
+          href: "https://youtu.be/rZmbjWuO940",
+        },
+      ],
+    },
+    {
+      title: "Ecash Panel [Baltic Honey Badger]",
+      dates: "August 2024",
+      description: "A bit of a dream come true, I got to sit next to one of my heroes, Adam Back, and talk about ecash. This panel dives into what ecash is, what problems it solves (like privacy and scalability), and where it still falls short.",
+      image: "/bhb.png",
+      links: [
+        {
+          title: "YouTube",
+          icon: <Icons.youtube className="h-4 w-4" />,
+          href: "https://youtu.be/4TxlCdI4AMg",
+        },
+      ],
+    },
+    {
+      title: "Designing for Ecash [Bitcoin Asia: Hong Kong]",
+      dates: "May 2024",
+      description: "A talk on the future of Bitcoin through the lens of ecash design, tracing its roots from David Chaum to modern Bitcoin implementations. It explores how ecash can improve privacy, reduce censorship risks, and bring better UX to Bitcoin.",
+      image: "https://yt3.ggpht.com/hkwmU6TbqoMxhXRjOHVCIy38oSNZrCX_sbmtbHyR3TdjWOXgFmrPe8T0WtCOPKrbGr_9XwQQ0HI=s88-c-k-c0x00ffffff-no-rj",
+      links: [
+        {
+          title: "YouTube",
+          icon: <Icons.youtube className="h-4 w-4" />,
+          href: "https://youtu.be/SM5t3JULg_0",
+        },
+      ],
+    },
+  ],
+  additionalTalks: [
     {
       title: "21 in 21, a Rapid-Fire Bitcoin Q&A Podcast",
       dates: "September 2025",
@@ -372,19 +450,6 @@ export const DATA = {
           title: "YouTube",
           icon: <Icons.youtube className="h-4 w-4" />,
           href: "https://youtu.be/N2lKSRUUdKY",
-        },
-      ],
-    },
-    {
-      title: "The State of Ecash Design",
-      dates: "August 2025",
-      description: "A talk I gave at Bitcoin ++ Privacy Edition in Riga focused on the current state of Cashu design, progress, challenges, and things that are ahead.",
-      image: "https://yt3.googleusercontent.com/C-P6Xa_F5JxoUCgacx1ZxZu1y9sUZplWBD_-fNKUPstrBh0CK38HcLx8tReh6D0-gX8ybaCkMQ=s900-c-k-c0x00ffffff-no-rj",
-      links: [
-        {
-          title: "YouTube",
-          icon: <Icons.youtube className="h-4 w-4" />,
-          href: "https://youtu.be/rZmbjWuO940",
         },
       ],
     },
@@ -415,19 +480,6 @@ export const DATA = {
       ],
     },
     {
-      title: "Ecash Panel [Baltic Honey Badger]",
-      dates: "August 2024",
-      description: "A bit of a dream come true, I got to sit next to one of my heroes, Adam Back, and talk about ecash. This panel dives into what ecash is, what problems it solves (like privacy and scalability), and where it still falls short.",
-      image: "/bhb.png",
-      links: [
-        {
-          title: "YouTube",
-          icon: <Icons.youtube className="h-4 w-4" />,
-          href: "https://youtu.be/4TxlCdI4AMg",
-        },
-      ],
-    },
-    {
       title: "Bitcoin Design and Ecash UX",
       dates: "August 2024",
       description: "This was a fun one, recorded while walking along the river in Riga. We talked about designing peer-to-peer systems, the challenges of ecash UX, working on institutional products like Hoseki, and how cities like Stockholm and Riga inspire better design.",
@@ -437,19 +489,6 @@ export const DATA = {
           title: "YouTube",
           icon: <Icons.youtube className="h-4 w-4" />,
           href: "https://www.youtube.com/watch?v=r9i6uO7UtjE",
-        },
-      ],
-    },
-    {
-      title: "Designing for Ecash [Bitcoin Asia: Hong Kong]",
-      dates: "May 2024",
-      description: "A talk on the future of Bitcoin through the lens of ecash design, tracing its roots from David Chaum to modern Bitcoin implementations. It explores how ecash can improve privacy, reduce censorship risks, and bring better UX to Bitcoin.",
-      image: "https://yt3.ggpht.com/hkwmU6TbqoMxhXRjOHVCIy38oSNZrCX_sbmtbHyR3TdjWOXgFmrPe8T0WtCOPKrbGr_9XwQQ0HI=s88-c-k-c0x00ffffff-no-rj",
-      links: [
-        {
-          title: "YouTube",
-          icon: <Icons.youtube className="h-4 w-4" />,
-          href: "https://youtu.be/SM5t3JULg_0",
         },
       ],
     },

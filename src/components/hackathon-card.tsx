@@ -32,15 +32,20 @@ export function HackathonCard({
       </div>
       <div className="flex flex-1 flex-col justify-start gap-1">
         {dates && (
-          <time className="text-xs text-muted-foreground">{dates}</time>
+          <time className="text-sm text-muted-foreground">{dates}</time>
         )}
-        <h2 className="font-semibold leading-none">{title}</h2>
+        <h3 className="text-base sm:text-lg font-semibold leading-tight">{title}</h3>
         {description && (
-          <div className="prose dark:prose-invert max-w-none text-base text-muted-foreground">
+          <div className="prose dark:prose-invert max-w-prose text-base leading-relaxed text-muted-foreground">
             <Markdown
               components={{
                 a: ({ href, children }) => (
-                  <a href={href} target="_blank" rel="noopener noreferrer" className="underline decoration-foreground/30 underline-offset-2 hover:decoration-foreground/60 transition-colors">
+                  <a
+                    href={href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="underline decoration-foreground/30 underline-offset-4 hover:decoration-foreground/60 transition-colors"
+                  >
                     {children}
                   </a>
                 ),
