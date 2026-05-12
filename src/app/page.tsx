@@ -14,10 +14,10 @@ const BLUR_FADE_DELAY = 0.04;
 
 export default function Page() {
   return (
-    <main className="flex flex-col min-h-[100dvh] space-y-12">
+    <main className="flex flex-col min-h-[100dvh] space-y-16">
       <section id="hero">
-        <div className="mx-auto w-full space-y-8">
-          <div className="gap-2 flex justify-between">
+        <div className="mx-auto w-full">
+          <div className="gap-6 sm:gap-10 flex justify-between">
             <div className="flex-col flex flex-1 space-y-1.5">
               <BlurFadeText
                 delay={BLUR_FADE_DELAY}
@@ -48,7 +48,7 @@ export default function Page() {
 
       <section id="about">
         <BlurFade delay={BLUR_FADE_DELAY * 4}>
-          <div className="prose max-w-full text-pretty font-sans text-base text-muted-foreground dark:prose-invert">
+          <div className="prose max-w-prose text-pretty font-sans text-base text-muted-foreground dark:prose-invert">
             <Markdown
               components={{
                 a: ({ href, children, ...props }) => {
@@ -95,11 +95,11 @@ export default function Page() {
       </section>
 
       <section id="selected-work">
-        <div className="flex flex-col gap-y-6">
+        <div className="flex flex-col gap-y-8">
           <BlurFade delay={BLUR_FADE_DELAY * 11}>
             <h2 className="text-xl font-bold">Selected Work</h2>
           </BlurFade>
-          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+          <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
             {DATA.projects.map((project, id) => (
               <BlurFade
                 key={project.title}
@@ -182,7 +182,7 @@ export default function Page() {
                 <span className="group-open:hidden">Show {DATA.additionalTalks.length} more appearances</span>
                 <span className="hidden group-open:inline">Hide additional appearances</span>
               </summary>
-              <ul className="mt-4 ml-0 divide-y divide-border/50 border-l border-border/50">
+              <ul className="mt-6 ml-0 divide-y divide-border/50 border-l border-border/50">
                 {DATA.additionalTalks.map((talk) => (
                   <TalkCard
                     key={talk.title + talk.dates}
@@ -205,7 +205,7 @@ export default function Page() {
             <h2 className="text-xl font-bold">Contact</h2>
           </BlurFade>
           <BlurFade delay={BLUR_FADE_DELAY * 21}>
-            <p className="text-base text-muted-foreground md:text-lg/relaxed">
+            <p className="max-w-prose text-base text-muted-foreground md:text-lg/relaxed">
               Email me at{" "}
               <Magnetic className="inline-block">
                 <Link

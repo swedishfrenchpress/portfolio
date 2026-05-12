@@ -150,7 +150,6 @@ export const DATA = {
         "TypeScript",
         "React",
         "TailwindCSS",
-        "AI",
       ],
       links: [
         {
