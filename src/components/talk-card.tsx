@@ -1,6 +1,7 @@
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
 import Link from "next/link";
+import Markdown from "react-markdown";
 
 interface Props {
   title: string;
@@ -33,17 +34,37 @@ export function TalkCard({
         {dates && (
           <time className="text-xs text-muted-foreground">{dates}</time>
         )}
-        <h2 className="font-semibold leading-none">{title}</h2>
+        <h3 className="font-semibold leading-none">{title}</h3>
         {description && (
-          <span className="prose dark:prose-invert max-w-none text-base text-muted-foreground">
-            {description}
-          </span>
+          <div className="prose dark:prose-invert max-w-prose text-base text-muted-foreground">
+            <Markdown
+              components={{
+                a: ({ href, children }) => (
+                  <a
+                    href={href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="underline decoration-foreground/30 underline-offset-4 hover:decoration-foreground/60 transition-colors"
+                  >
+                    {children}
+                  </a>
+                ),
+              }}
+            >
+              {description}
+            </Markdown>
+          </div>
         )}
       </div>
       {links && links.length > 0 && (
         <div className="mt-2 flex flex-row flex-wrap items-start gap-2">
           {links?.map((link, idx) => (
-            <Link href={link.href} key={idx} target="_blank" rel="noopener noreferrer">
+            <Link
+              href={link.href}
+              key={idx}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               <Badge key={idx} title={link.title} className="flex gap-2">
                 {link.icon}
                 {link.title}
@@ -54,4 +75,4 @@ export function TalkCard({
       )}
     </li>
   );
-} 
+}

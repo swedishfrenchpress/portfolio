@@ -34,13 +34,18 @@ export function HackathonCard({
         {dates && (
           <time className="text-xs text-muted-foreground">{dates}</time>
         )}
-        <h2 className="font-semibold leading-none">{title}</h2>
+        <h3 className="font-semibold leading-none">{title}</h3>
         {description && (
-          <div className="prose dark:prose-invert max-w-none text-base text-muted-foreground">
+          <div className="prose dark:prose-invert max-w-prose text-base text-muted-foreground">
             <Markdown
               components={{
                 a: ({ href, children }) => (
-                  <a href={href} target="_blank" rel="noopener noreferrer" className="underline decoration-foreground/30 underline-offset-2 hover:decoration-foreground/60 transition-colors">
+                  <a
+                    href={href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="underline decoration-foreground/30 underline-offset-4 hover:decoration-foreground/60 transition-colors"
+                  >
                     {children}
                   </a>
                 ),

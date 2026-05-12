@@ -132,7 +132,7 @@ export default function Page() {
             <h2 className="text-xl font-bold">Projects</h2>
           </BlurFade>
           <BlurFade delay={BLUR_FADE_DELAY * 14}>
-            <ul className="mb-4 ml-4 divide-y divide-border/50 border-l border-border/50">
+            <ul className="ml-4 divide-y divide-border/50 border-l border-border/50">
               {DATA.hackathons.map((project, id) => (
                 <BlurFade
                   key={project.title + project.dates}
@@ -158,7 +158,7 @@ export default function Page() {
             <h2 className="text-xl font-bold">Talks</h2>
           </BlurFade>
           <BlurFade delay={BLUR_FADE_DELAY * 17}>
-            <ul className="mb-2 ml-4 divide-y divide-border/50 border-l border-border/50">
+            <ul className="ml-4 divide-y divide-border/50 border-l border-border/50">
               {DATA.featuredTalks.map((talk, id) => (
                 <BlurFade
                   key={talk.title + talk.dates}
@@ -236,6 +236,8 @@ export default function Page() {
               , or find me on{" "}
               <Link
                 href={DATA.contact.social.X.url}
+                target="_blank"
+                rel="noopener noreferrer"
                 className="text-foreground underline decoration-foreground/30 underline-offset-4 hover:decoration-foreground/60 transition-colors"
               >
                 X
@@ -243,6 +245,8 @@ export default function Page() {
               and{" "}
               <Link
                 href="https://primal.net/erik"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="text-foreground underline decoration-foreground/30 underline-offset-4 hover:decoration-foreground/60 transition-colors"
               >
                 Nostr
