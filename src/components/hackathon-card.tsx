@@ -36,7 +36,7 @@ export function HackathonCard({
         )}
         <h3 className="text-base sm:text-lg font-semibold leading-tight">{title}</h3>
         {description && (
-          <div className="prose dark:prose-invert max-w-prose text-base text-muted-foreground">
+          <div className="prose dark:prose-invert max-w-prose text-base leading-relaxed text-muted-foreground">
             <Markdown
               components={{
                 a: ({ href, children }) => (

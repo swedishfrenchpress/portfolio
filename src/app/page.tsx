@@ -19,15 +19,15 @@ export default function Page() {
         <div className="flex flex-col gap-10 sm:gap-14">
           <BlurFade delay={BLUR_FADE_DELAY}>
             <div className="flex items-center gap-4 sm:gap-5">
-              <Avatar className="size-14 sm:size-16 border border-border/40 shadow-sm shrink-0">
+              <Avatar className="size-16 sm:size-20 border border-border/40 shadow-sm shrink-0">
                 <AvatarImage alt={DATA.name} src={DATA.avatarUrl} />
                 <AvatarFallback>{DATA.initials}</AvatarFallback>
               </Avatar>
-              <div className="flex flex-col">
-                <span className="text-xl sm:text-2xl font-medium tracking-tight">
+              <div className="flex flex-col leading-tight">
+                <span className="text-2xl sm:text-3xl font-medium tracking-tight">
                   Hi, I’m {DATA.name.split(" ")[0]}.
                 </span>
-                <span className="text-base sm:text-lg text-muted-foreground">
+                <span className="text-xl sm:text-2xl text-muted-foreground mt-0.5">
                   {DATA.description}
                 </span>
               </div>
@@ -35,7 +35,7 @@ export default function Page() {
           </BlurFade>
 
           <BlurFade delay={BLUR_FADE_DELAY * 3} yOffset={12}>
-            <h1 className="text-4xl sm:text-6xl xl:text-7xl font-black tracking-tight leading-[0.95] text-foreground">
+            <h1 className="text-[clamp(2.25rem,5vw+1rem,4.5rem)] font-black tracking-tighter leading-[0.95] text-foreground">
               I build tools<br />
               for private,<br />
               uncensorable money.
@@ -46,7 +46,7 @@ export default function Page() {
 
       <section id="about">
         <BlurFade delay={BLUR_FADE_DELAY * 4}>
-          <div className="prose max-w-prose text-pretty font-sans text-lg text-muted-foreground dark:prose-invert">
+          <div className="prose max-w-prose text-pretty font-sans text-lg leading-relaxed text-muted-foreground dark:prose-invert">
             <Markdown
               components={{
                 a: ({ href, children, ...props }) => {

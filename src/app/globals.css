@@ -86,12 +86,12 @@
     }
   }
 
-  /* Body type tuning: Satoshi stylistic alternates + contextual numerals. */
+  /* Body type tuning. */
   body {
-    font-feature-settings: "ss01", "ss02", "cv11";
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     text-rendering: optimizeLegibility;
+    font-kerning: normal;
   }
 
   /* Tabular figures on time elements (resume dates, talk dates). */
