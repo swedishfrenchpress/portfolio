@@ -46,7 +46,7 @@ export default function Page() {
 
       <section id="about">
         <BlurFade delay={BLUR_FADE_DELAY * 4}>
-          <div className="prose max-w-prose text-pretty font-sans text-base text-muted-foreground dark:prose-invert">
+          <div className="prose max-w-prose text-pretty font-sans text-lg text-muted-foreground dark:prose-invert">
             <Markdown
               components={{
                 a: ({ href, children, ...props }) => {

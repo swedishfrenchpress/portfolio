@@ -32,9 +32,9 @@ export function TalkCard({
       </div>
       <div className="flex flex-1 flex-col justify-start gap-1">
         {dates && (
-          <time className="text-xs text-muted-foreground">{dates}</time>
+          <time className="text-sm text-muted-foreground">{dates}</time>
         )}
-        <h3 className="font-semibold leading-none">{title}</h3>
+        <h3 className="text-base sm:text-lg font-semibold leading-tight">{title}</h3>
         {description && (
           <div className="prose dark:prose-invert max-w-prose text-base text-muted-foreground">
             <Markdown

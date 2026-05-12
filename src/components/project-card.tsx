@@ -72,12 +72,12 @@ export function ProjectCard({
       </Link>
       <CardHeader className="px-2">
         <div className="space-y-1">
-          <CardTitle className="mt-1 text-base">{title}</CardTitle>
-          {dates && <time className="font-sans text-xs">{dates}</time>}
+          <CardTitle className="mt-1 text-lg">{title}</CardTitle>
+          {dates && <time className="font-sans text-sm">{dates}</time>}
           <div className="hidden font-sans text-xs underline print:visible">
             {link?.replace("https://", "").replace("www.", "").replace("/", "")}
           </div>
-          <div className="prose max-w-full text-pretty font-sans text-sm text-muted-foreground dark:prose-invert">
+          <div className="prose max-w-full text-pretty font-sans text-base text-muted-foreground dark:prose-invert">
             <Markdown>
               {description}
             </Markdown>
@@ -89,7 +89,7 @@ export function ProjectCard({
           <div className="mt-2 flex flex-wrap gap-1">
             {tags?.map((tag) => (
               <Badge
-                className="px-1 py-0 text-[10px]"
+                className="px-1.5 py-0.5 text-xs"
                 variant="secondary"
                 key={tag}
               >
@@ -104,7 +104,7 @@ export function ProjectCard({
           <div className="flex flex-row flex-wrap items-start gap-1">
             {links?.map((link, idx) => (
               <Link href={link?.href} key={idx} target="_blank">
-                <Badge key={idx} className="flex gap-2 px-2 py-1 text-[10px]">
+                <Badge key={idx} className="flex gap-2 px-2 py-1 text-xs">
                   {link.icon}
                   {link.type}
                 </Badge>
