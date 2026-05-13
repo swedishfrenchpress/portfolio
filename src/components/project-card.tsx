@@ -1,7 +1,6 @@
 import { Badge } from "@/components/ui/badge";
 import {
   Card,
-  CardContent,
   CardFooter,
   CardHeader,
   CardTitle,
@@ -17,7 +16,6 @@ interface Props {
   href?: string;
   description: string;
   dates?: string;
-  tags: readonly string[];
   link?: string;
   image?: string;
   video?: string;
@@ -35,7 +33,6 @@ export function ProjectCard({
   href,
   description,
   dates,
-  tags,
   link,
   image,
   video,
@@ -84,22 +81,7 @@ export function ProjectCard({
           </div>
         </div>
       </CardHeader>
-      <CardContent className="mt-auto flex flex-col px-2">
-        {tags && tags.length > 0 && (
-          <div className="mt-2 flex flex-wrap gap-1">
-            {tags?.map((tag) => (
-              <Badge
-                className="px-1.5 py-0.5 text-xs"
-                variant="secondary"
-                key={tag}
-              >
-                {tag}
-              </Badge>
-            ))}
-          </div>
-        )}
-      </CardContent>
-      <CardFooter className="px-2 pb-2">
+      <CardFooter className="mt-auto px-2 pb-2">
         {links && links.length > 0 && (
           <div className="flex flex-row flex-wrap items-start gap-1">
             {links?.map((link, idx) => (

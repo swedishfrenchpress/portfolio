@@ -19,12 +19,11 @@ export default function Page() {
         <div className="mx-auto w-full">
           <div className="flex flex-col gap-6 sm:flex-row sm:items-start sm:justify-between sm:gap-10">
             <div className="flex-col flex flex-1 space-y-1.5">
-              <BlurFadeText
-                delay={BLUR_FADE_DELAY}
-                className="text-3xl font-bold tracking-tighter sm:text-5xl xl:text-6xl/none font-pixel"
-                yOffset={8}
-                text={`Hej, I’m ${DATA.name.split(" ")[0]}`}
-              />
+              <BlurFade delay={BLUR_FADE_DELAY} yOffset={8}>
+                <h1 className="text-3xl font-bold tracking-tighter sm:text-5xl xl:text-6xl/none font-pixel">
+                  Hej, I’m Er<span className="inline-block ml-[0.08em]">ik</span>
+                </h1>
+              </BlurFade>
               <BlurFadeText
                 className="max-w-[600px] md:text-xl"
                 delay={BLUR_FADE_DELAY}
@@ -105,7 +104,6 @@ export default function Page() {
                   key={project.title}
                   title={project.title}
                   description={project.description}
-                  tags={project.technologies}
                   image={project.image}
                   video={project.video}
                   videoPlaybackRate={
