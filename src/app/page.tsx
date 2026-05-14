@@ -1,3 +1,4 @@
+import { CopyEmail } from "@/components/copy-email";
 import { HackathonCard } from "@/components/hackathon-card";
 import { TalkCard } from "@/components/talk-card";
 import BlurFade from "@/components/magicui/blur-fade";
@@ -5,12 +6,16 @@ import BlurFadeText from "@/components/magicui/blur-fade-text";
 import { Magnetic } from "@/components/magnetic";
 import { ProjectCard } from "@/components/project-card";
 import { ResumeCard } from "@/components/resume-card";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { DATA } from "@/data/resume";
+import Image from "next/image";
 import Link from "next/link";
-import Markdown from "react-markdown";
 
 const BLUR_FADE_DELAY = 0.04;
+
+function talkTime(dates: string) {
+  const t = Date.parse(`1 ${dates}`);
+  return Number.isNaN(t) ? 0 : t;
+}
 
 export default function Page() {
   return (
@@ -30,11 +35,16 @@ export default function Page() {
                 text={DATA.description}
               />
             </div>
-            <BlurFade delay={BLUR_FADE_DELAY}>
-              <Avatar className="size-20 sm:size-28 border border-border/40 shadow-sm">
-                <AvatarImage alt={DATA.name} src={DATA.avatarUrl} />
-                <AvatarFallback>{DATA.initials}</AvatarFallback>
-              </Avatar>
+            <BlurFade delay={BLUR_FADE_DELAY} className="order-first sm:order-none">
+              <Image
+                alt={DATA.name}
+                src={`/${DATA.avatarUrl}`}
+                width={224}
+                height={224}
+                priority
+                sizes="(min-width: 640px) 112px, 80px"
+                className="size-20 sm:size-28 rounded-full border border-border/40 shadow-sm object-cover"
+              />
             </BlurFade>
           </div>
         </div>
@@ -43,21 +53,40 @@ export default function Page() {
       <section id="about">
         <BlurFade delay={BLUR_FADE_DELAY * 4}>
           <div className="prose max-w-none text-pretty font-sans text-base leading-relaxed text-muted-foreground dark:prose-invert">
-            <Markdown
-              components={{
-                a: ({ href, children, ...props }) => {
-                  if (href?.startsWith("/")) {
-                    return <Link href={href} {...props}>{children}</Link>;
-                  }
-                  if (href?.startsWith("#")) {
-                    return <a href={href} {...props}>{children}</a>;
-                  }
-                  return <a href={href} target="_blank" rel="noopener noreferrer" {...props}>{children}</a>;
-                },
-              }}
-            >
-              {DATA.summary}
-            </Markdown>
+            <p>
+              Money is the most surveilled thing in your life. Every transaction
+              watched, scored, and stored, often forever. It doesn’t have to be
+              this way, and a small group of people are working to change it.
+              I’m one of them.
+            </p>
+            <p>
+              I’m a{" "}
+              <a
+                href="https://hrf.org/latest/hrf-grants-800-million-satoshis-to-22-freedom-tech-projects-worldwide/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Human Rights Foundation grantee
+              </a>{" "}
+              working on{" "}
+              <a
+                href="https://cashu.space"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Cashu
+              </a>
+              , an open ecash protocol for bitcoin, descended from David Chaum’s
+              1983 work on untraceable digital cash. I’m also Lead Designer at{" "}
+              <a
+                href="https://hoseki.app"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Hoseki
+              </a>
+              , building proof of ownership infrastructure for bitcoin.
+            </p>
           </div>
         </BlurFade>
       </section>
@@ -146,13 +175,21 @@ export default function Page() {
       </section>
 
       <section id="talks">
+        {(() => {
+          const sortedTalks = [...DATA.featuredTalks, ...DATA.additionalTalks].sort(
+            (a, b) => talkTime(b.dates) - talkTime(a.dates),
+          );
+          const featuredCount = DATA.featuredTalks.length;
+          const featured = sortedTalks.slice(0, featuredCount);
+          const additional = sortedTalks.slice(featuredCount);
+          return (
         <div className="flex flex-col gap-y-6">
           <BlurFade delay={BLUR_FADE_DELAY * 16}>
             <h2 className="text-xl font-bold font-pixel">Talks</h2>
           </BlurFade>
           <BlurFade delay={BLUR_FADE_DELAY * 17}>
             <ul className="ml-4 divide-y divide-border/50 border-l border-border/50">
-              {DATA.featuredTalks.map((talk, id) => (
+              {featured.map((talk, id) => (
                 <BlurFade
                   key={talk.title + talk.dates}
                   delay={BLUR_FADE_DELAY * 18 + id * 0.05}
@@ -194,7 +231,7 @@ export default function Page() {
                 </span>
               </summary>
               <ul className="mt-2 ml-0 divide-y divide-border/50 border-l border-border/50">
-                {DATA.additionalTalks.map((talk) => (
+                {additional.map((talk) => (
                   <TalkCard
                     key={talk.title + talk.dates}
                     title={talk.title}
@@ -208,6 +245,8 @@ export default function Page() {
             </details>
           </BlurFade>
         </div>
+          );
+        })()}
       </section>
 
       <section id="contact">
@@ -219,12 +258,7 @@ export default function Page() {
             <p className="max-w-prose text-base text-muted-foreground md:text-lg/relaxed">
               Email me at{" "}
               <Magnetic className="inline-block">
-                <Link
-                  href="mailto:erikcativo@pm.me"
-                  className="text-foreground underline decoration-foreground/30 underline-offset-4 hover:decoration-foreground/60 transition-colors"
-                >
-                  erikcativo@pm.me
-                </Link>
+                <CopyEmail email={DATA.contact.email} />
               </Magnetic>
               , or find me on{" "}
               <Link

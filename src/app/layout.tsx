@@ -1,6 +1,7 @@
 import { ConsoleGreeting } from "@/components/console-greeting";
 import { EcashEgg } from "@/components/ecash-egg";
 import Navbar from "@/components/navbar";
+import { SiteToaster } from "@/components/site-toaster";
 import { ThemeProvider } from "@/components/theme-provider";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { DATA } from "@/data/resume";
@@ -70,6 +71,7 @@ export default function RootLayout({
             {children}
             <Navbar />
           </TooltipProvider>
+          <SiteToaster />
         </ThemeProvider>
       </body>
     </html>

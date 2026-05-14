@@ -1,7 +1,6 @@
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
 import Link from "next/link";
-import Markdown from "react-markdown";
 
 interface Props {
   title: string;
@@ -36,24 +35,9 @@ export function TalkCard({
         )}
         <h3 className="text-base sm:text-lg font-semibold leading-tight">{title}</h3>
         {description && (
-          <div className="prose dark:prose-invert max-w-prose text-base leading-relaxed text-muted-foreground">
-            <Markdown
-              components={{
-                a: ({ href, children }) => (
-                  <a
-                    href={href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="underline decoration-foreground/30 underline-offset-4 hover:decoration-foreground/60 transition-colors"
-                  >
-                    {children}
-                  </a>
-                ),
-              }}
-            >
-              {description}
-            </Markdown>
-          </div>
+          <p className="max-w-prose text-base leading-relaxed text-muted-foreground">
+            {description}
+          </p>
         )}
       </div>
       {links && links.length > 0 && (

@@ -9,7 +9,6 @@ import { ProjectVideo } from "@/components/project-video";
 import { cn } from "@/lib/utils";
 import Image from "next/image";
 import Link from "next/link";
-import Markdown from "react-markdown";
 
 interface Props {
   title: string;
@@ -74,11 +73,9 @@ export function ProjectCard({
           <div className="hidden font-sans text-xs underline print:visible">
             {link?.replace("https://", "").replace("www.", "").replace("/", "")}
           </div>
-          <div className="prose max-w-full text-pretty font-sans text-base text-muted-foreground dark:prose-invert">
-            <Markdown>
-              {description}
-            </Markdown>
-          </div>
+          <p className="font-sans text-base text-pretty text-muted-foreground">
+            {description}
+          </p>
         </div>
       </CardHeader>
       <CardFooter className="mt-auto px-2 pb-2">

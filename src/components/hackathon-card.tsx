@@ -1,7 +1,36 @@
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
 import Link from "next/link";
-import Markdown from "react-markdown";
+
+const LINK_RE = /\[([^\]]+)\]\(([^)]+)\)/g;
+
+function renderInlineLinks(text: string): React.ReactNode {
+  const parts: React.ReactNode[] = [];
+  let lastIndex = 0;
+  let match: RegExpExecArray | null;
+  LINK_RE.lastIndex = 0;
+  while ((match = LINK_RE.exec(text)) !== null) {
+    if (match.index > lastIndex) {
+      parts.push(text.slice(lastIndex, match.index));
+    }
+    parts.push(
+      <a
+        key={parts.length}
+        href={match[2]}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="underline decoration-foreground/30 underline-offset-4 hover:decoration-foreground/60 transition-colors"
+      >
+        {match[1]}
+      </a>,
+    );
+    lastIndex = match.index + match[0].length;
+  }
+  if (lastIndex < text.length) {
+    parts.push(text.slice(lastIndex));
+  }
+  return parts;
+}
 
 interface Props {
   title: string;
@@ -36,24 +65,9 @@ export function HackathonCard({
         )}
         <h3 className="text-base sm:text-lg font-semibold leading-tight">{title}</h3>
         {description && (
-          <div className="prose dark:prose-invert max-w-prose text-base leading-relaxed text-muted-foreground">
-            <Markdown
-              components={{
-                a: ({ href, children }) => (
-                  <a
-                    href={href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="underline decoration-foreground/30 underline-offset-4 hover:decoration-foreground/60 transition-colors"
-                  >
-                    {children}
-                  </a>
-                ),
-              }}
-            >
-              {description}
-            </Markdown>
-          </div>
+          <p className="max-w-prose text-base leading-relaxed text-muted-foreground">
+            {renderInlineLinks(description)}
+          </p>
         )}
       </div>
       {links && links.length > 0 && (
