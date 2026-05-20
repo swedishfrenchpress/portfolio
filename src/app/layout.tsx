@@ -6,6 +6,7 @@ import { ThemeProvider } from "@/components/theme-provider";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { DATA } from "@/data/resume";
 import { cn } from "@/lib/utils";
+import { Analytics } from "@vercel/analytics/next";
 import { GeistSans } from "geist/font/sans";
 import { GeistPixelSquare } from "geist/font/pixel";
 import type { Metadata } from "next";
@@ -73,6 +74,7 @@ export default function RootLayout({
           </TooltipProvider>
           <SiteToaster />
         </ThemeProvider>
+        <Analytics />
       </body>
     </html>
   );
