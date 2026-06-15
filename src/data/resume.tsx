@@ -90,6 +90,33 @@ export const DATA = {
   ],
   projects: [
     {
+      title: "The Cypherpunk Library",
+      href: "https://www.cypherpunklibrary.com/",
+      active: true,
+      description:
+        "A digital library I designed and built to share public-domain cypherpunk works: manifestos, essays, and foundational texts on privacy, cryptography, and digital freedom. On June 6th it hit #1 on Hacker News, drawing nearly 100 comments and over 28,000 visitors in its first 24 hours.",
+      technologies: [
+        "Next.js",
+        "TypeScript",
+        "React",
+        "CSS Modules",
+      ],
+      links: [
+        {
+          type: "Website",
+          href: "https://www.cypherpunklibrary.com/",
+          icon: <Icons.globe className="size-3" />,
+        },
+        {
+          type: "Source",
+          href: "https://github.com/swedishfrenchpress/acervus",
+          icon: <Icons.github className="size-3" />,
+        },
+      ],
+      image: "",
+      video: "/cypherpunklibrary.mp4",
+    },
+    {
       title: "Hoseki",
       href: "https://hoseki.app",
       active: true,
@@ -171,33 +198,6 @@ export const DATA = {
       image: "",
       video: "/pftp.mp4",
       videoPlaybackRate: 3,
-    },
-    {
-      title: "Ecash Design Guide",
-      href: "https://bitcoin.design/guide/how-it-works/ecash/introduction/",
-      active: true,
-      description:
-        "Wrote, designed, and deployed the ecash section of the Bitcoin Design Community's official guide. Covers both Cashu and Fedimint, with design patterns for wallets, mints, and recovery flows.",
-      technologies: [
-        "Jekyll",
-        "Ruby",
-        "Bundler",
-        "Docker",
-      ],
-      links: [
-        {
-          type: "Website",
-          href: "https://bitcoin.design/guide/how-it-works/ecash/introduction/",
-          icon: <Icons.globe className="size-3" />,
-        },
-        {
-          type: "Source",
-          href: "https://github.com/BitcoinDesign/Guide",
-          icon: <Icons.github className="size-3" />,
-        },
-      ],
-      image: "",
-      video: "/ecashguide.mp4",
     },
   ],
   hackathons: [
