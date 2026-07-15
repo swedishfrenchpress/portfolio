@@ -7,62 +7,20 @@
       --background: 0 0% 100%;
       --foreground: 210 11.1% 3.53%;
 
-      --card: 0 0% 100%;
-      --card-foreground: 210 11.1% 3.53%;
-
-      --popover: 0 0% 100%;
-      --popover-foreground: 210 11.1% 3.53%;
-
-      --primary: 0 0% 9%;
-      --primary-foreground: 0 0% 98%;
-
-      --secondary: 0 0% 96.1%;
-      --secondary-foreground: 0 0% 9%;
-
       --muted: 0 0% 96.1%;
       --muted-foreground: 0 0% 38%;
 
-      --accent: 0 0% 96.1%;
-    --accent-foreground: 0 0% 9%;
-
-      --destructive: 0 84.2% 60.2%;
-      --destructive-foreground: 0 0% 98%;
-
       --border: 0 0% 89.8%;
-      --input: 0 0% 89.8%;
-      --ring: 0 0% 3.9%;
-
-      --radius: 0.5rem;
     }
 
     .dark {
       --background: 0 0% 9%;
       --foreground: 0 0% 98%;
 
-      --card: 0 0% 9%;
-      --card-foreground: 0 0% 98%;
-
-      --popover: 0 0% 9%;
-      --popover-foreground: 0 0% 98%;
-
-      --primary: 0 0% 98%;
-      --primary-foreground: 0 0% 9%;
-
-      --secondary: 0 0% 14.9%;
-      --secondary-foreground: 0 0% 98%;
-
       --muted: 0 0% 14.9%;
       --muted-foreground: 0 0% 63.9%;
 
-      --accent: 0 0% 14.9%;
-      --accent-foreground: 0 0% 98%;
-
-      --destructive: 0 62.8% 30.6%;
-      --destructive-foreground: 0 0% 98%;
-
       --border: 0 0% 14.9%;
-      --input: 0 0% 14.9%;
-      --ring: 0 0% 83.1%;
     }
   }
 
@@ -92,6 +50,12 @@
     -moz-osx-font-smoothing: grayscale;
     text-rendering: optimizeLegibility;
     font-kerning: normal;
+  }
+
+  /* Light-on-dark compensation: body copy perceptually thins in dark mode,
+     so open the letter-spacing a hair to keep legibility matched to light. */
+  .dark p {
+    letter-spacing: 0.01em;
   }
 
   /* Tabular figures on time elements (resume dates, talk dates). */
@@ -171,24 +135,29 @@
     100% { opacity: 0; transform: translateY(-4px); }
   }
 
-  /* Apple-like elegant link styling */
-  .prose a {
-    @apply no-underline text-foreground/80 transition-colors duration-200;
+  /* Site-wide link styling: a 1px underline drawn with a gradient.
+     `.plain` opts out (wordmark, nav); `.link` opts non-anchors in (buttons). */
+  a:not(.plain),
+  .link {
+    @apply no-underline text-foreground/80 transition-colors duration-200 cursor-pointer;
     background-image: linear-gradient(currentColor, currentColor);
     background-size: 100% 1px;
     background-position: 0 100%;
     background-repeat: no-repeat;
   }
-  
-  .prose a:hover {
+
+  a:not(.plain):hover,
+  .link:hover {
     @apply text-foreground;
   }
 
-  .dark .prose a {
+  .dark a:not(.plain),
+  .dark .link {
     @apply text-foreground/70;
   }
 
-  .dark .prose a:hover {
+  .dark a:not(.plain):hover,
+  .dark .link:hover {
     @apply text-foreground/90;
   }
 

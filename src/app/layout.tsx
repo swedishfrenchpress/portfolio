@@ -1,9 +1,8 @@
 import { ConsoleGreeting } from "@/components/console-greeting";
 import { EcashEgg } from "@/components/ecash-egg";
-import Navbar from "@/components/navbar";
+import { Header } from "@/components/header";
 import { SiteToaster } from "@/components/site-toaster";
 import { ThemeProvider } from "@/components/theme-provider";
-import { TooltipProvider } from "@/components/ui/tooltip";
 import { DATA } from "@/data/resume";
 import { cn } from "@/lib/utils";
 import { Analytics } from "@vercel/analytics/next";
@@ -61,17 +60,15 @@ export default function RootLayout({
     >
       <body
         className={cn(
-          "min-h-screen bg-background font-sans antialiased max-w-4xl mx-auto pt-12 sm:pt-24 pb-28 px-6"
+          "min-h-screen bg-background font-sans antialiased max-w-2xl mx-auto pt-12 sm:pt-24 pb-24 px-6"
         )}
       >
         <div className="scroll-progress" aria-hidden="true" />
         <ConsoleGreeting />
         <EcashEgg />
         <ThemeProvider attribute="class" defaultTheme="light">
-          <TooltipProvider delayDuration={0}>
-            {children}
-            <Navbar />
-          </TooltipProvider>
+          <Header />
+          {children}
           <SiteToaster />
         </ThemeProvider>
         <Analytics />

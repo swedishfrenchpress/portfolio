@@ -10,12 +10,13 @@ export function SiteToaster() {
       position="top-center"
       duration={2800}
       theme={(resolvedTheme as "light" | "dark") ?? "light"}
+      // Width sized to hug the single "Copied…" toast copy with even padding.
+      style={{ "--width": "288px" } as React.CSSProperties}
       toastOptions={{
         classNames: {
           toast:
-            "!bg-background !text-foreground !border-border/80 !shadow-[0_8px_30px_rgba(0,0,0,0.12)] dark:!shadow-[0_8px_30px_rgba(0,0,0,0.6)] !p-4 !min-h-[68px] !rounded-xl",
-          title: "!font-pixel !font-bold !text-base !tracking-tight",
-          description: "!font-sans !text-sm !text-muted-foreground !mt-0.5",
+            "!bg-background !text-foreground !border-border/80 !shadow-[0_8px_30px_rgba(0,0,0,0.12)] dark:!shadow-[0_8px_30px_rgba(0,0,0,0.6)] !p-4 !rounded-xl !justify-center",
+          title: "!font-sans !text-sm !font-normal !text-muted-foreground !tracking-normal !text-center",
         },
       }}
     />
