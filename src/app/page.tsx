@@ -1,287 +1,126 @@
 import { CopyEmail } from "@/components/copy-email";
-import { HackathonCard } from "@/components/hackathon-card";
-import { TalkCard } from "@/components/talk-card";
-import BlurFade from "@/components/magicui/blur-fade";
-import BlurFadeText from "@/components/magicui/blur-fade-text";
-import { Magnetic } from "@/components/magnetic";
-import { ProjectCard } from "@/components/project-card";
-import { ResumeCard } from "@/components/resume-card";
 import { DATA } from "@/data/resume";
-import Image from "next/image";
 import Link from "next/link";
 
-const BLUR_FADE_DELAY = 0.04;
-
-function talkTime(dates: string) {
-  const t = Date.parse(`1 ${dates}`);
-  return Number.isNaN(t) ? 0 : t;
-}
+const social = Object.fromEntries(
+  DATA.socials.map((s) => [s.label, s.href]),
+);
 
 export default function Page() {
   return (
-    <main className="flex flex-col min-h-[100dvh] space-y-12">
-      <section id="hero">
-        <div className="mx-auto w-full">
-          <div className="flex flex-col gap-6 sm:flex-row sm:items-start sm:justify-between sm:gap-10">
-            <div className="flex-col flex flex-1 space-y-1.5">
-              <BlurFade delay={BLUR_FADE_DELAY} yOffset={8}>
-                <h1 className="text-3xl font-bold tracking-tighter sm:text-5xl xl:text-6xl/none font-pixel">
-                  Hej, I’m Er<span className="inline-block ml-[0.08em]">ik</span>
-                </h1>
-              </BlurFade>
-              <BlurFadeText
-                className="max-w-[600px] md:text-xl"
-                delay={BLUR_FADE_DELAY}
-                text={DATA.description}
-              />
-            </div>
-            <BlurFade delay={BLUR_FADE_DELAY} className="order-first sm:order-none">
-              <Image
-                alt={DATA.name}
-                src={`/${DATA.avatarUrl}`}
-                width={224}
-                height={224}
-                priority
-                sizes="(min-width: 640px) 112px, 80px"
-                className="size-20 sm:size-28 rounded-full border border-border/40 shadow-sm object-cover"
-              />
-            </BlurFade>
-          </div>
+    <main className="space-y-4">
+      <section id="intro" className="space-y-6">
+        <div className="space-y-2">
+          <h1 className="font-pixel text-3xl font-bold tracking-tight sm:text-4xl">
+            Hej, I’m Er<span className="inline-block ml-[0.04em]">ik</span>
+          </h1>
+          <p className="text-foreground">{DATA.description}</p>
         </div>
-      </section>
 
-      <section id="about">
-        <BlurFade delay={BLUR_FADE_DELAY * 4}>
-          <div className="prose max-w-none text-pretty font-sans text-base leading-relaxed text-muted-foreground dark:prose-invert">
-            <p>
-              Money is the most surveilled thing in your life. Every transaction
-              watched, scored, and stored, often forever. It doesn’t have to be
-              this way, and a small group of people are working to change it.
-              I’m one of them.
-            </p>
-            <p>
-              I’m a{" "}
-              <a
-                href="https://hrf.org/latest/hrf-grants-800-million-satoshis-to-22-freedom-tech-projects-worldwide/"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Human Rights Foundation grantee
-              </a>{" "}
-              working on{" "}
-              <a
-                href="https://cashu.space"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Cashu
-              </a>
-              , an open ecash protocol for bitcoin, descended from David Chaum’s
-              1983 work on untraceable digital cash. I’m also Lead Designer at{" "}
-              <a
-                href="https://hoseki.app"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Hoseki
-              </a>
-              , building proof of ownership infrastructure for bitcoin.
-            </p>
-          </div>
-        </BlurFade>
-      </section>
-
-      <section id="work">
-        <div className="flex min-h-0 flex-col gap-y-3">
-          <BlurFade delay={BLUR_FADE_DELAY * 5}>
-            <h2 className="text-xl font-bold font-pixel">Work Experience</h2>
-          </BlurFade>
-          {DATA.work.map((work, id) => (
-            <BlurFade
-              key={work.company}
-              delay={BLUR_FADE_DELAY * 6 + id * 0.05}
+        <div className="space-y-4 text-base leading-relaxed text-muted-foreground text-pretty">
+          <p>
+            Money is the most surveilled thing in your life. Every transaction
+            watched, scored, and stored, often forever. It doesn’t have to be
+            this way, and a small group of people are working to change it.
+            I’m one of them.
+          </p>
+          <p>
+            I’m a{" "}
+            <a
+              href="https://hrf.org/latest/hrf-grants-800-million-satoshis-to-22-freedom-tech-projects-worldwide/"
+              target="_blank"
+              rel="noopener noreferrer"
             >
-              <ResumeCard
-                key={work.company}
-                logoUrl={work.logoUrl}
-                altText={work.company}
-                title={work.company}
-                subtitle={work.title}
-                href={work.href}
-                badges={work.badges}
-                period={`${work.start} - ${work.end ?? "Present"}`}
-                description={work.description}
-              />
-            </BlurFade>
-          ))}
+              Human Rights Foundation grantee
+            </a>{" "}
+            working on{" "}
+            <a
+              href="https://cashu.space"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Cashu
+            </a>
+            , an open ecash protocol for bitcoin, descended from David Chaum’s
+            1983 work on untraceable digital cash. I’m also Lead Designer at{" "}
+            <a
+              href="https://hoseki.app"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Hoseki
+            </a>
+            , building proof of ownership infrastructure for bitcoin.
+          </p>
+          <p>
+            Right now I’m designing{" "}
+            <a
+              href="https://cashu.me"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Cashu.me
+            </a>
+            ’s native Apple and Android apps, now in public beta. I’m also
+            building{" "}
+            <a
+              href="https://www.zeileapp.com/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Zeile
+            </a>
+            , an iPhone app for leaving little notes and doodles on someone’s
+            home screen, mine from the first sketch to the last line of code.
+          </p>
+          <p>
+            Before those came{" "}
+            <a
+              href="https://sltracker.app/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              SL Tracker
+            </a>
+            , a native app for checking Stockholm’s Tunnelbana departures, and{" "}
+            <a
+              href="https://www.cypherpunklibrary.com"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              The Cypherpunk Library
+            </a>
+            , a collection of public-domain cypherpunk texts that hit #1 on
+            Hacker News. The full list is on the{" "}
+            <Link href="/projects">projects</Link> page.
+          </p>
+          <p>
+            In my previous life I was a Senior UX Designer at Ericsson and a UX
+            / UI Designer at Accenture.
+          </p>
         </div>
-      </section>
-
-      <section id="selected-work">
-        <div className="flex flex-col gap-y-6">
-          <BlurFade delay={BLUR_FADE_DELAY * 11}>
-            <h2 className="text-xl font-bold font-pixel">Selected Work</h2>
-          </BlurFade>
-          <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
-            {DATA.projects.map((project, id) => (
-              <BlurFade
-                key={project.title}
-                delay={BLUR_FADE_DELAY * 12 + id * 0.05}
-              >
-                <ProjectCard
-                  href={project.href}
-                  key={project.title}
-                  title={project.title}
-                  description={project.description}
-                  image={project.image}
-                  video={project.video}
-                  videoPlaybackRate={
-                    "videoPlaybackRate" in project
-                      ? project.videoPlaybackRate
-                      : undefined
-                  }
-                  links={project.links}
-                />
-              </BlurFade>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section id="hackathons">
-        <div className="flex flex-col gap-y-6">
-          <BlurFade delay={BLUR_FADE_DELAY * 13}>
-            <h2 className="text-xl font-bold font-pixel">Projects</h2>
-          </BlurFade>
-          <BlurFade delay={BLUR_FADE_DELAY * 14}>
-            <ul className="ml-4 divide-y divide-border/50 border-l border-border/50">
-              {DATA.hackathons.map((project, id) => (
-                <BlurFade
-                  key={project.title + project.dates}
-                  delay={BLUR_FADE_DELAY * 15 + id * 0.05}
-                >
-                  <HackathonCard
-                    title={project.title}
-                    description={project.description}
-                    dates={project.dates}
-                    image={project.image}
-                    links={project.links}
-                  />
-                </BlurFade>
-              ))}
-            </ul>
-          </BlurFade>
-        </div>
-      </section>
-
-      <section id="talks">
-        {(() => {
-          const sortedTalks = [...DATA.featuredTalks, ...DATA.additionalTalks].sort(
-            (a, b) => talkTime(b.dates) - talkTime(a.dates),
-          );
-          const featuredCount = DATA.featuredTalks.length;
-          const featured = sortedTalks.slice(0, featuredCount);
-          const additional = sortedTalks.slice(featuredCount);
-          return (
-        <div className="flex flex-col gap-y-6">
-          <BlurFade delay={BLUR_FADE_DELAY * 16}>
-            <h2 className="text-xl font-bold font-pixel">Talks</h2>
-          </BlurFade>
-          <BlurFade delay={BLUR_FADE_DELAY * 17}>
-            <ul className="ml-4 divide-y divide-border/50 border-l border-border/50">
-              {featured.map((talk, id) => (
-                <BlurFade
-                  key={talk.title + talk.dates}
-                  delay={BLUR_FADE_DELAY * 18 + id * 0.05}
-                >
-                  <TalkCard
-                    title={talk.title}
-                    description={talk.description}
-                    dates={talk.dates}
-                    image={talk.image}
-                    links={talk.links}
-                  />
-                </BlurFade>
-              ))}
-            </ul>
-          </BlurFade>
-          <BlurFade delay={BLUR_FADE_DELAY * 19}>
-            <details className="group ml-4">
-              <summary className="relative ml-10 py-3 cursor-pointer list-none [&::-webkit-details-marker]:hidden flex items-center select-none">
-                <span
-                  aria-hidden
-                  className="absolute -left-16 top-1/2 -translate-y-1/2 flex size-12 items-center justify-center rounded-full border border-border bg-background transition-colors duration-300 group-hover:border-foreground/50 group-open:border-foreground/70"
-                >
-                  <svg
-                    viewBox="0 0 16 16"
-                    className="size-4 transition-transform duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] group-open:rotate-45"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="1.5"
-                    strokeLinecap="round"
-                  >
-                    <path d="M8 3v10M3 8h10" />
-                  </svg>
-                </span>
-                <span className="text-base font-semibold tracking-tight text-foreground/75 transition-colors duration-200 group-hover:text-foreground group-open:hidden">
-                  more
-                </span>
-                <span className="hidden text-base font-semibold tracking-tight text-foreground/60 transition-colors duration-200 group-open:inline">
-                  less
-                </span>
-              </summary>
-              <ul className="mt-2 ml-0 divide-y divide-border/50 border-l border-border/50">
-                {additional.map((talk) => (
-                  <TalkCard
-                    key={talk.title + talk.dates}
-                    title={talk.title}
-                    description={talk.description}
-                    dates={talk.dates}
-                    image={talk.image}
-                    links={talk.links}
-                  />
-                ))}
-              </ul>
-            </details>
-          </BlurFade>
-        </div>
-          );
-        })()}
       </section>
 
       <section id="contact">
-        <div className="flex flex-col gap-y-3">
-          <BlurFade delay={BLUR_FADE_DELAY * 20}>
-            <h2 className="text-xl font-bold font-pixel">Contact</h2>
-          </BlurFade>
-          <BlurFade delay={BLUR_FADE_DELAY * 21}>
-            <p className="max-w-prose text-base text-muted-foreground md:text-lg/relaxed">
-              Email me at{" "}
-              <Magnetic className="inline-block">
-                <CopyEmail email={DATA.contact.email} />
-              </Magnetic>
-              , or find me on{" "}
-              <Link
-                href={DATA.contact.social.X.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-foreground underline decoration-foreground/30 underline-offset-4 hover:decoration-foreground/60 transition-colors"
-              >
-                X
-              </Link>{" "}
-              and{" "}
-              <Link
-                href="https://primal.net/erik"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-foreground underline decoration-foreground/30 underline-offset-4 hover:decoration-foreground/60 transition-colors"
-              >
-                Nostr
-              </Link>
-              . I read everything that lands.
-            </p>
-          </BlurFade>
-        </div>
+        <p className="text-base leading-relaxed text-muted-foreground text-pretty">
+          Email me at <CopyEmail email={DATA.email} />, or find me on{" "}
+          <a href={social.X} target="_blank" rel="noopener noreferrer">
+            X
+          </a>
+          ,{" "}
+          <a href={social.Nostr} target="_blank" rel="noopener noreferrer">
+            Nostr
+          </a>
+          ,{" "}
+          <a href={social.GitHub} target="_blank" rel="noopener noreferrer">
+            GitHub
+          </a>
+          , and{" "}
+          <a href={social.Substack} target="_blank" rel="noopener noreferrer">
+            Substack
+          </a>
+          . I read everything that lands.
+        </p>
       </section>
     </main>
   );

@@ -10,9 +10,7 @@ export function CopyEmail({ email }: Props) {
   const handleClick = async () => {
     try {
       await navigator.clipboard.writeText(email);
-      toast("Email copied", {
-        description: "looking forward to hearing from you!",
-      });
+      toast("Copied. Now send me something good.");
     } catch {
       window.location.href = `mailto:${email}`;
     }
@@ -22,7 +20,7 @@ export function CopyEmail({ email }: Props) {
     <button
       type="button"
       onClick={handleClick}
-      className="text-foreground underline decoration-foreground/30 underline-offset-4 hover:decoration-foreground/60 transition-colors cursor-pointer bg-transparent p-0 border-0"
+      className="link border-0 bg-transparent p-0"
     >
       {email}
     </button>

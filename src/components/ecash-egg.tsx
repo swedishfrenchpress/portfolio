@@ -59,7 +59,7 @@ export function EcashEgg() {
   return (
     <div
       aria-hidden
-      className="egg-toast fixed bottom-24 right-6 z-50 rounded-full bg-foreground text-background px-4 py-1.5 text-sm font-medium tracking-tight pointer-events-none select-none"
+      className="egg-toast fixed bottom-6 right-6 z-50 rounded-full bg-foreground text-background px-4 py-1.5 text-sm font-medium tracking-tight pointer-events-none select-none"
     >
       unblinded.
     </div>
