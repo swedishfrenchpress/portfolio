@@ -61,7 +61,15 @@ export default function Page() {
             >
               Cashu.me
             </a>
-            ’s native Apple and Android apps, now in public beta. I’m also
+            ’s native Apple and Android apps, and lead product design on{" "}
+            <a
+              href="https://numopay.org/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Numo
+            </a>
+            , a point-of-sale app for accepting Bitcoin with a tap. I’m also
             building{" "}
             <a
               href="https://www.zeileapp.com/"

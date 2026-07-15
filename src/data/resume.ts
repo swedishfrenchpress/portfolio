@@ -18,7 +18,7 @@ export const DATA = {
       title: "Cashu.me",
       href: "https://cashu.me",
       description:
-        "I design the native Apple and Android apps, now in public beta. Second most active contributor to the project overall.",
+        "I design the native Apple and Android apps. Second most active contributor to the project overall.",
     },
     {
       year: 2026,
@@ -26,6 +26,13 @@ export const DATA = {
       href: "https://www.zeileapp.com/",
       description:
         "An iPhone app for leaving little notes and doodles on someone's home screen. Mine from the first sketch to the last line of code. In beta.",
+    },
+    {
+      year: 2026,
+      title: "Numo",
+      href: "https://numopay.org/",
+      description:
+        "An Android app for accepting Bitcoin with a tap, as easy as Apple Pay. I lead the design.",
     },
     {
       year: 2026,
