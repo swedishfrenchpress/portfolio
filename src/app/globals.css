@@ -52,12 +52,6 @@
     font-kerning: normal;
   }
 
-  /* Light-on-dark compensation: body copy perceptually thins in dark mode,
-     so open the letter-spacing a hair to keep legibility matched to light. */
-  .dark p {
-    letter-spacing: 0.01em;
-  }
-
   /* Tabular figures on time elements (resume dates, talk dates). */
   time {
     font-variant-numeric: tabular-nums;

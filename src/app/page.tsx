@@ -6,6 +6,13 @@ const social = Object.fromEntries(
   DATA.socials.map((s) => [s.label, s.href]),
 );
 
+// Evaluated once per build, so this is effectively the deploy date.
+const lastUpdated = new Date().toLocaleDateString("en-US", {
+  month: "long",
+  day: "numeric",
+  year: "numeric",
+});
+
 export default function Page() {
   return (
     <main className="space-y-4">
@@ -42,7 +49,7 @@ export default function Page() {
               Cashu
             </a>
             , an open ecash protocol for bitcoin, descended from David Chaum’s
-            1983 work on untraceable digital cash. I’m also Lead Designer at{" "}
+            1983 work on untraceable digital cash. I’m also the Founding Designer at{" "}
             <a
               href="https://hoseki.app"
               target="_blank"
@@ -78,11 +85,7 @@ export default function Page() {
             >
               Zeile
             </a>
-            , an iPhone app for leaving little notes and doodles on someone’s
-            home screen, mine from the first sketch to the last line of code.
-          </p>
-          <p>
-            Before those came{" "}
+            ,{" "}
             <a
               href="https://sltracker.app/"
               target="_blank"
@@ -90,7 +93,7 @@ export default function Page() {
             >
               SL Tracker
             </a>
-            , a native app for checking Stockholm’s Tunnelbana departures, and{" "}
+            , and{" "}
             <a
               href="https://www.cypherpunklibrary.com"
               target="_blank"
@@ -98,9 +101,7 @@ export default function Page() {
             >
               The Cypherpunk Library
             </a>
-            , a collection of public-domain cypherpunk texts that hit #1 on
-            Hacker News. The full list is on the{" "}
-            <Link href="/projects">projects</Link> page.
+            , <Link href="/projects">among others</Link>.
           </p>
           <p>
             In my previous life I was a Senior UX Designer at Ericsson and a UX
@@ -109,7 +110,21 @@ export default function Page() {
         </div>
       </section>
 
-      <section id="contact">
+      <section id="rotation" className="space-y-4 pt-4">
+        <h2 className="font-pixel text-xl font-bold tracking-tight">
+          Recent rotation
+        </h2>
+        <ul className="space-y-1.5 text-base leading-relaxed text-muted-foreground">
+          {DATA.rotation.map((item) => (
+            <li key={item.title}>
+              {item.title}{" "}
+              <span className="opacity-70">- {item.by}</span>
+            </li>
+          ))}
+        </ul>
+      </section>
+
+      <section id="contact" className="pt-4">
         <p className="text-base leading-relaxed text-muted-foreground text-pretty">
           Email me at <CopyEmail email={DATA.email} />, or find me on{" "}
           <a href={social.X} target="_blank" rel="noopener noreferrer">
@@ -130,6 +145,10 @@ export default function Page() {
           . I read everything that lands.
         </p>
       </section>
+
+      <p className="pt-8 text-sm text-muted-foreground">
+        Last updated <time>{lastUpdated}</time>
+      </p>
     </main>
   );
 }

@@ -1,8 +1,8 @@
 export const DATA = {
   name: "Erik Cativo",
   url: "https://erik.day",
-  location: "Stockholm, Sweden",
-  description: "Design engineer based in Stockholm.",
+  location: "Berlin, Germany",
+  description: "Design engineer based in Berlin.",
   tagline: "Building tools for private, uncensorable money.",
   email: "erikcativo@pm.me",
   socials: [
@@ -70,33 +70,21 @@ export const DATA = {
         "Created and led the campaign: the identity, the site, and the launch. Built in a hackathon weekend, and it went viral.",
     },
     {
-      year: 2025,
-      title: "Bitchat Cashu Wallet",
-      href: "https://github.com/swedishfrenchpress/bitchat-android/tree/parse-cashu-remote",
-      description:
-        "A working Cashu wallet inside Bitchat for Android. Designed in Figma, built in Kotlin, shipped in 72 hours.",
-    },
-    {
-      year: 2025,
-      title: "Minor League Miners",
-      href: "https://github.com/swedishfrenchpress/hash-league/tree/sbd_pool",
-      description:
-        "A leaderboard for small miners and solo Bitaxe users. First place in two tracks at ATL BitLab's Battle of the Mine Hackers.",
-    },
-    {
       year: 2024,
       title: "Athenut",
       href: "https://athenut.com",
       description:
         "Privacy-preserving, pay-per-query search built on Kagi and Cashu. No accounts, no tracking.",
     },
-    {
-      year: 2024,
-      title: "Cashu 95",
-      href: "https://x.com/eriklocalhost/status/1814091080389767592",
-      description:
-        "The Cashu protocol dropped into a full Windows 95 interface. Half experiment, half love letter to old UI.",
-    },
+  ],
+
+  rotation: [
+    { title: "The City & The City", by: "China Miéville" },
+    { title: "The Master and Margarita", by: "Mikhail Bulgakov" },
+    { title: "Thank You For Almost Everything", by: "Headache" },
+    { title: "Way of the Fathers", by: "CatholicCulture.org" },
+    { title: "History 102", by: "Rudyard Lynch & Austin Padgett" },
+    { title: "Come and See", by: "Gurriers" },
   ],
 
   talks: [

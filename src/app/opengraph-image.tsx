@@ -59,7 +59,7 @@ export default async function Image() {
           }}
         >
           <div style={{ display: "flex" }}>
-            Design engineer · Stockholm
+            Design engineer · Berlin
           </div>
           <div style={{ display: "flex" }}>erik.day</div>
         </div>

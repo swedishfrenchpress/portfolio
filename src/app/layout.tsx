@@ -66,7 +66,7 @@ export default function RootLayout({
         <div className="scroll-progress" aria-hidden="true" />
         <ConsoleGreeting />
         <EcashEgg />
-        <ThemeProvider attribute="class" defaultTheme="light">
+        <ThemeProvider attribute="class" defaultTheme="dark">
           <Header />
           {children}
           <SiteToaster />
