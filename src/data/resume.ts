@@ -144,12 +144,6 @@ export const DATA = {
     },
     {
       year: 2024,
-      title: "Bitcoin Design and Ecash UX",
-      href: "https://www.youtube.com/watch?v=r9i6uO7UtjE",
-      event: "Podcast",
-    },
-    {
-      year: 2024,
       title: "Designing for Ecash",
       href: "https://youtu.be/SM5t3JULg_0",
       event: "Bitcoin Asia, Hong Kong",
@@ -171,12 +165,6 @@ export const DATA = {
       title: "Designing for Bitcoin",
       href: "https://youtu.be/RWtqsgtsYTA",
       event: "Baltic Honey Badger, Riga",
-    },
-    {
-      year: 2023,
-      title: "Nostr 101: What the F#&* is Nostr?",
-      href: "https://youtu.be/QSX2zYa0RIU",
-      event: "Hackathon presentation",
     },
   ],
 } as const;
