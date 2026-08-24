@@ -79,12 +79,11 @@ export const DATA = {
   ],
 
   rotation: [
-    { title: "The City & The City", by: "China Miéville" },
-    { title: "The Master and Margarita", by: "Mikhail Bulgakov" },
+    { title: "Scenery", by: "Ryo Fukui" },
+    { title: "Presidio Bitcoin Jam", by: "Presidio Bitcoin" },
+    { title: "The Ghosts of Cannae", by: "Robert L. O'Connell" },
     { title: "Thank You For Almost Everything", by: "Headache" },
-    { title: "Way of the Fathers", by: "CatholicCulture.org" },
     { title: "History 102", by: "Rudyard Lynch & Austin Padgett" },
-    { title: "Come and See", by: "Gurriers" },
   ],
 
   talks: [
