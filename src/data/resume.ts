@@ -80,9 +80,9 @@ export const DATA = {
 
   rotation: [
     { title: "Scenery", by: "Ryo Fukui" },
-    { title: "Presidio Bitcoin Jam", by: "Presidio Bitcoin" },
-    { title: "The Ghosts of Cannae", by: "Robert L. O'Connell" },
-    { title: "Thank You For Almost Everything", by: "Headache" },
+    { title: "Pirate Wires", by: "Podcast" },
+    { title: "There Is No Antimemetics Division", by: "qntm" },
+    { title: "Cat", by: "Hiroshi Suzuki" },
     { title: "History 102", by: "Rudyard Lynch & Austin Padgett" },
   ],
 
