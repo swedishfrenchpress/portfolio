@@ -1,6 +1,8 @@
 "use client";
 
 import { ModeToggle } from "@/components/mode-toggle";
+import { useMondo } from "@/components/mondo/mondo-provider";
+import { PlanetToggle } from "@/components/mondo/planet-toggle";
 import { cn } from "@/lib/utils";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -13,6 +15,7 @@ const LINKS = [
 
 export function Header() {
   const pathname = usePathname();
+  const { issue } = useMondo();
 
   return (
     <header className="mb-16 flex items-center justify-end sm:mb-20">
@@ -31,7 +34,8 @@ export function Header() {
             {link.label}
           </Link>
         ))}
-        <ModeToggle />
+        {!issue && <ModeToggle />}
+        <PlanetToggle />
       </nav>
     </header>
   );

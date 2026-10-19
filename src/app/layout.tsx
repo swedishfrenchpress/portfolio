@@ -1,6 +1,8 @@
 import { ConsoleGreeting } from "@/components/console-greeting";
 import { EcashEgg } from "@/components/ecash-egg";
 import { Header } from "@/components/header";
+import { MondoProvider } from "@/components/mondo/mondo-provider";
+import { MondoBottom, MondoTop } from "@/components/mondo/mondo-slots";
 import { SiteToaster } from "@/components/site-toaster";
 import { ThemeProvider } from "@/components/theme-provider";
 import { DATA } from "@/data/resume";
@@ -67,9 +69,13 @@ export default function RootLayout({
         <ConsoleGreeting />
         <EcashEgg />
         <ThemeProvider attribute="class" defaultTheme="dark">
-          <Header />
-          {children}
-          <SiteToaster />
+          <MondoProvider>
+            <Header />
+            <MondoTop />
+            {children}
+            <MondoBottom />
+            <SiteToaster />
+          </MondoProvider>
         </ThemeProvider>
         <Analytics />
       </body>

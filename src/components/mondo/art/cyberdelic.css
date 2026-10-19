@@ -1,0 +1,236 @@
+/* Issue #1 · Cyberdelic Cover */
+
+html[data-mondo="cyberdelic"] {
+  --background: 268 75% 6%;
+  --foreground: 0 0% 100%;
+  --muted-foreground: 0 0% 100%;
+  --border: 268 40% 30%;
+  --cy-y: #ffd31a;
+  --cy-red: #c8102e;
+}
+
+html[data-mondo="cyberdelic"] body {
+  font-family: var(--mondo-tinos), "Times New Roman", serif;
+}
+
+html[data-mondo="cyberdelic"] ::selection {
+  background: var(--cy-y);
+  color: #000;
+}
+
+/* Background: nebula, a scatter of glints, and a dark column behind the prose. */
+.cy-glints {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle at 86% 30%, #fff 0 1.5px, rgba(255, 220, 255, 0.35) 3px, transparent 6px),
+    radial-gradient(circle at 79% 36%, #fff 0 1px, transparent 3.5px),
+    radial-gradient(circle at 92% 41%, rgba(255, 255, 255, 0.8) 0 1px, transparent 3px),
+    radial-gradient(circle at 10% 58%, #fff 0 1.5px, rgba(255, 200, 120, 0.3) 3px, transparent 6px),
+    radial-gradient(circle at 6% 34%, rgba(255, 255, 255, 0.7) 0 1px, transparent 3px),
+    radial-gradient(circle at 18% 82%, rgba(255, 255, 255, 0.6) 0 1px, transparent 3px),
+    radial-gradient(circle at 70% 88%, #fff 0 1px, transparent 3px);
+}
+
+.cy-shade {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 70% 30% at 50% 18%, rgba(0, 0, 0, 0.3), transparent 72%),
+    linear-gradient(
+      90deg,
+      transparent calc(50% - 32rem),
+      rgba(8, 0, 22, 0.66) calc(50% - 23rem),
+      rgba(8, 0, 22, 0.66) calc(50% + 23rem),
+      transparent calc(50% + 32rem)
+    );
+}
+
+/* Furniture */
+html[data-mondo="cyberdelic"] .mondo-mast {
+  --mast-max: 34vh;
+}
+
+/* Headroom for the halo. */
+html[data-mondo="cyberdelic"] .mondo-word:first-child {
+  margin-top: 0.2em;
+}
+
+/* Nav */
+html[data-mondo="cyberdelic"] body > header nav a {
+  font-style: italic;
+  font-weight: 700;
+  font-size: 16px;
+  color: var(--cy-y);
+  text-shadow: 1px 1px 0 #000;
+}
+
+html[data-mondo="cyberdelic"] body > header nav a.text-foreground {
+  color: #fff;
+}
+
+/* Prose */
+html[data-mondo="cyberdelic"] main {
+  color: #fff;
+  text-shadow: 1px 1px 0 #000;
+}
+
+html[data-mondo="cyberdelic"] main h1 {
+  font-family: var(--mondo-tinos), serif;
+  font-style: italic;
+  font-weight: 700;
+  font-size: clamp(34px, 7vw, 46px);
+  letter-spacing: -0.01em;
+  line-height: 1.02;
+  color: var(--cy-y);
+  text-shadow: 2px 2px 0 #000;
+}
+
+html[data-mondo="cyberdelic"] #intro h1 + p {
+  font-weight: 700;
+  font-size: 22px;
+}
+
+html[data-mondo="cyberdelic"] main :is(p, li) {
+  font-weight: 400;
+  font-size: 19px;
+  line-height: 1.5;
+  color: #fff;
+}
+
+html[data-mondo="cyberdelic"] main h2 {
+  font-family: var(--mondo-spartan), sans-serif;
+  font-weight: 900;
+  font-size: 30px;
+  text-transform: uppercase;
+  letter-spacing: -0.01em;
+  color: var(--cy-y);
+  text-shadow: 2px 2px 0 #000;
+}
+
+html[data-mondo="cyberdelic"] #rotation span {
+  opacity: 1;
+  font-style: italic;
+  color: var(--cy-y);
+}
+
+html[data-mondo="cyberdelic"] main > p:last-child {
+  font-family: var(--mondo-arimo), Arial, sans-serif;
+  font-weight: 700;
+  font-size: 12px;
+  text-transform: uppercase;
+  color: var(--cy-y);
+}
+
+html[data-mondo="cyberdelic"] main > ul a {
+  font-weight: 700;
+  font-size: 23px;
+}
+
+html[data-mondo="cyberdelic"] main > ul li p {
+  font-size: 16px;
+}
+
+html[data-mondo="cyberdelic"] a:not(.plain),
+html[data-mondo="cyberdelic"] .link {
+  color: var(--cy-y);
+}
+
+html[data-mondo="cyberdelic"] a:not(.plain):hover,
+html[data-mondo="cyberdelic"] .link:hover {
+  color: #fff;
+}
+
+/* The copy-email button becomes the Windows 98 button from hip-badge. */
+html[data-mondo="cyberdelic"] #contact button.link {
+  margin: 2px 0;
+  padding: 3px 9px;
+  font: 700 15px var(--mondo-arimo), Arial, sans-serif;
+  color: #000;
+  text-shadow: none;
+  background: #c0c0c0;
+  border: 3px outset #fff;
+}
+
+html[data-mondo="cyberdelic"] #contact button.link:active {
+  border-style: inset;
+}
+
+/* Letter materials */
+html[data-mondo="cyberdelic"] .m-chrome {
+  background-image: linear-gradient(180deg, #fff4cc, #ffc04d 27%, #e46f12 48%, #5c1d00 51%, #b84700 60%, #ff9a33 80%, #ffe3a8);
+}
+
+html[data-mondo="cyberdelic"] .m-rainbow {
+  background-image:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.6), transparent 28%),
+    linear-gradient(120deg, #ff9100, #ff2f92 24%, #ffe81a 45%, #2ad45e 63%, #1aa0ff 80%, #8f3dff);
+}
+
+html[data-mondo="cyberdelic"] .m-lava {
+  background-image:
+    radial-gradient(circle at 25% 72%, #5cbf3a 0 14%, transparent 38%),
+    radial-gradient(circle at 75% 20%, #ffd23f 0 8%, transparent 26%),
+    repeating-linear-gradient(48deg, #ff4a1c 0 0.045em, #a30d00 0.045em 0.09em);
+}
+
+html[data-mondo="cyberdelic"] .m-halo {
+  background-image: linear-gradient(175deg, #ffc2e2, #ff4aa8 38%, #c0177a 62%, #46309a);
+}
+
+html[data-mondo="cyberdelic"] .m-halo::before {
+  content: "";
+  position: absolute;
+  left: 4%;
+  right: -10%;
+  top: -0.2em;
+  height: 0.22em;
+  border: 0.06em solid #ffe45c;
+  border-radius: 50%;
+  transform: rotate(-9deg);
+  animation: cy-halo 2.8s ease-in-out infinite;
+  box-shadow:
+    0 0 0.06em 0.01em #fff3a0,
+    0 0 0.2em 0.04em rgba(255, 214, 40, 0.75),
+    inset 0 0 0.06em #fff3a0,
+    inset 0 0 0.16em rgba(255, 214, 40, 0.5);
+}
+
+@keyframes cy-halo {
+  50% {
+    box-shadow:
+      0 0 0.08em 0.02em #fff8c4,
+      0 0 0.36em 0.09em rgba(255, 214, 40, 0.9),
+      inset 0 0 0.08em #fff8c4,
+      inset 0 0 0.24em rgba(255, 214, 40, 0.65);
+  }
+}
+
+html[data-mondo="cyberdelic"] .m-marble {
+  background-image:
+    radial-gradient(ellipse at 28% 25%, #eafff8 0 9%, transparent 32%),
+    radial-gradient(ellipse at 72% 70%, #063f3a 0 16%, transparent 42%),
+    repeating-radial-gradient(circle at 38% 42%, #25b9a3 0 0.04em, #0c5550 0.04em 0.085em, #a8f2df 0.085em 0.11em);
+}
+
+html[data-mondo="cyberdelic"] .m-grid {
+  background-image:
+    repeating-linear-gradient(0deg, rgba(160, 235, 255, 0.95) 0 0.018em, transparent 0.018em 0.11em),
+    repeating-linear-gradient(90deg, rgba(160, 235, 255, 0.95) 0 0.018em, transparent 0.018em 0.11em),
+    linear-gradient(160deg, #4a22b8, #0d2277 55%, #8a1fb0);
+  filter: drop-shadow(0.012em 0.012em 0 #0a0d40) drop-shadow(0.012em 0.012em 0 #0a0d40)
+    drop-shadow(0.012em 0.012em 0 #0a0d40) drop-shadow(0.025em 0.035em 0 #000);
+}
+
+html[data-mondo="cyberdelic"] .m-holo {
+  background-image:
+    linear-gradient(105deg, transparent 38%, rgba(255, 255, 255, 0.9) 50%, transparent 62%),
+    linear-gradient(120deg, #ff9de2, #9ef7ff 22%, #fff6a8 42%, #c2a6ff 62%, #9dffc9 82%, #ff9de2);
+  background-size: 300% 100%, 100% 100%;
+  animation: cy-sheen 4.5s ease-in-out infinite;
+}
+
+@keyframes cy-sheen {
+  0%, 100% { background-position: 100% 0, 0 0; }
+  50% { background-position: 0% 0, 0 0; }
+}

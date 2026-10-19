@@ -1,0 +1,191 @@
+/* MONDO mode: shared layout, masthead DNA and the glitch transition.
+   Everything is scoped to html[data-mondo]; each issue's art/<id>.css
+   restyles the same structure in its own world. */
+
+/* Covers bleed art past the edges; never let it scroll sideways. */
+html[data-mondo] {
+  overflow-x: clip;
+}
+
+html[data-mondo] body {
+  max-width: none;
+  margin: 0;
+  padding: 0 0 4rem;
+  overflow-x: clip;
+}
+
+/* The page's own pieces, re-centered once body loses its max-width. */
+html[data-mondo] body > header,
+html[data-mondo] body > main {
+  width: 100%;
+  margin-inline: auto;
+}
+
+html[data-mondo] body > header {
+  max-width: 72rem;
+  margin-block: 0;
+  padding: 12px 20px 0;
+}
+
+html[data-mondo] body > main {
+  max-width: 42rem;
+  padding-inline: 24px;
+}
+
+/* /projects and /talks: the masthead already says it. */
+html[data-mondo] main > h1 {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+.mondo-bg {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.mondo-bg > svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.mondo-cover {
+  position: relative;
+  overflow-x: clip;
+  width: 100%;
+  max-width: 72rem;
+  margin: 20px auto 3rem;
+  padding: 0 16px;
+}
+
+.mondo-foot {
+  width: 100%;
+  max-width: 42rem;
+  margin: 3rem auto 0;
+  padding: 0 24px;
+}
+
+/* Masthead: League Spartan 900, one material per letter. */
+.mondo-mast {
+  --mast-max: 30vh;
+  font-family: var(--mondo-spartan), sans-serif;
+  font-weight: 900;
+  line-height: 0.84;
+  text-transform: uppercase;
+}
+
+.mondo-word {
+  width: max-content;
+  margin: 0 auto;
+  white-space: nowrap;
+  letter-spacing: -0.02em;
+}
+
+.mondo-mast.is-inline {
+  display: flex;
+  justify-content: center;
+  align-items: baseline;
+}
+
+.mondo-mast.is-inline .mondo-word {
+  margin: 0;
+}
+
+.mondo-mast.is-inline .mondo-word + .mondo-word {
+  margin-left: 0.22em;
+}
+
+.mondo-mast .L {
+  display: inline-block;
+  position: relative;
+  color: transparent;
+  -webkit-background-clip: text;
+  background-clip: text;
+  filter: drop-shadow(0.025em 0.035em 0 rgba(0, 0, 0, 0.9));
+}
+
+/* O and 0: little objects sitting on the baseline. */
+.mondo-mast [class*=" o-"] {
+  width: 0.72em;
+  height: 0.72em;
+  margin: 0 0.015em;
+}
+
+.mondo-mast [class*=" o-"] i {
+  position: absolute;
+}
+
+.o-ouro .o-a {
+  inset: 0;
+  border-radius: 50%;
+  background: repeating-conic-gradient(
+    from 8deg,
+    var(--ouro-1, #f2d24a) 0 6deg,
+    var(--ouro-2, #8a6512) 6deg 8deg,
+    var(--ouro-3, #c99f2c) 8deg 14deg,
+    var(--ouro-4, #4a3608) 14deg 16deg
+  );
+  -webkit-mask: radial-gradient(circle closest-side, transparent 56%, #000 58% 96%, transparent 98%);
+  mask: radial-gradient(circle closest-side, transparent 56%, #000 58% 96%, transparent 98%);
+}
+
+.o-ouro .o-b {
+  width: 0.24em;
+  height: 0.16em;
+  right: -0.03em;
+  top: 0.05em;
+  border-radius: 60% 40% 45% 55% / 55% 55% 45% 45%;
+  background: linear-gradient(150deg, var(--ouro-head-1, #ffe58a), var(--ouro-head-2, #b4860f));
+  transform: rotate(42deg);
+  box-shadow: 0 0 0 0.012em var(--ouro-4, #4a3608);
+}
+
+.o-ouro .o-b::after {
+  content: "";
+  position: absolute;
+  width: 0.04em;
+  height: 0.04em;
+  border-radius: 50%;
+  background: #111;
+  left: 0.06em;
+  top: 0.045em;
+}
+
+/* Glitch transition into and between issues: the old page tears and
+   flashes, the new one powers on like a CRT. */
+html.mondo-glitch::view-transition-old(root),
+html.mondo-glitch::view-transition-new(root) {
+  mix-blend-mode: normal;
+}
+
+html.mondo-glitch::view-transition-old(root) {
+  animation: mondo-tear 440ms steps(1, end) both;
+}
+
+html.mondo-glitch::view-transition-new(root) {
+  animation: mondo-crt-on 440ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@keyframes mondo-tear {
+  0% { transform: none; clip-path: inset(0); filter: none; }
+  10% { transform: translateX(-14px); clip-path: inset(8% 0 58% 0); filter: hue-rotate(90deg) saturate(3) contrast(1.5); }
+  20% { transform: translateX(18px); clip-path: inset(60% 0 12% 0); filter: brightness(2.2) contrast(2); }
+  30% { transform: translateX(-6px); clip-path: inset(28% 0 36% 0); filter: invert(1) hue-rotate(180deg); }
+  40% { transform: translateX(10px); clip-path: inset(44% 0 44% 0); filter: brightness(3); }
+  50%, 100% { opacity: 0; }
+}
+
+@keyframes mondo-crt-on {
+  0%, 18% { opacity: 0; transform: scale(1, 0.006); filter: brightness(8) saturate(0); }
+  30% { opacity: 1; transform: scale(1, 0.006); filter: brightness(8) saturate(0); }
+  62% { transform: scale(1, 1); filter: brightness(1.8) saturate(1.6) contrast(1.2); }
+  100% { opacity: 1; transform: none; filter: none; }
+}
