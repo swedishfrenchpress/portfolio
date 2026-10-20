@@ -78,13 +78,13 @@ export function MondoProvider({ children }: { children: React.ReactNode }) {
         return;
       }
 
-      // Into or between issues: CRT glitch. Back to normal: the theme crossfade.
-      root.classList.toggle("mondo-glitch", target !== null);
+      // Into or between issues: the CRT. Back to normal: the theme crossfade.
+      root.classList.toggle("mondo-crt", target !== null);
       const transition = document.startViewTransition(() => {
         flushSync(apply);
       });
       await transition.finished.catch(() => {});
-      root.classList.remove("mondo-glitch");
+      root.classList.remove("mondo-crt");
     } finally {
       busy.current = false;
     }

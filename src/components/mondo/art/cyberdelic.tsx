@@ -1,8 +1,52 @@
 import type { IssueArt } from "@/components/mondo/mondo-layer";
+import { useEffect, useRef } from "react";
 import "./cyberdelic.css";
 
+const SPARK_GAP_PX = 18;
+const MAX_SPARKS = 14;
+
+// The late-90s cursor trail: a few sparkles drift off behind the pointer.
+// Mouse and trackpad only, and never with reduced motion.
+function Sparkles() {
+  const ref = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const layer = ref.current;
+    if (
+      !layer ||
+      !matchMedia("(pointer: fine)").matches ||
+      matchMedia("(prefers-reduced-motion: reduce)").matches
+    ) {
+      return;
+    }
+
+    let lastX = 0;
+    let lastY = 0;
+    const onMove = (event: PointerEvent) => {
+      const { clientX: x, clientY: y } = event;
+      if (Math.hypot(x - lastX, y - lastY) < SPARK_GAP_PX) return;
+      if (layer.childElementCount >= MAX_SPARKS) return;
+      lastX = x;
+      lastY = y;
+
+      const spark = document.createElement("i");
+      spark.style.left = `${x}px`;
+      spark.style.top = `${y}px`;
+      spark.style.setProperty("--dx", `${(Math.random() - 0.5) * 28}px`);
+      spark.addEventListener("animationend", () => spark.remove());
+      layer.append(spark);
+    };
+
+    window.addEventListener("pointermove", onMove, { passive: true });
+    return () => window.removeEventListener("pointermove", onMove);
+  }, []);
+
+  return <div ref={ref} className="cy-sparkles" />;
+}
+
 // Issue #1: the hip-badge cover, remixed. A violet nebula instead of murky
-// water, glints instead of bubbles, and a new holo letter.
+// water, twinkling glints instead of bubbles, a new holo letter, and a
+// sparkle trail behind the cursor.
 export const cyberdelic: IssueArt = {
   Background: () => (
     <>
@@ -30,6 +74,7 @@ export const cyberdelic: IssueArt = {
       </svg>
       <div className="cy-glints" />
       <div className="cy-shade" />
+      <Sparkles />
     </>
   ),
 };

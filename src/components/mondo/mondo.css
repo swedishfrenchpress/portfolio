@@ -1,4 +1,4 @@
-/* MONDO mode: shared layout, masthead DNA and the glitch transition.
+/* MONDO mode: shared layout, masthead DNA and the CRT transition.
    Everything is scoped to html[data-mondo]; each issue's art/<id>.css
    restyles the same structure in its own world. */
 
@@ -159,33 +159,76 @@ html[data-mondo] main > h1 {
   top: 0.045em;
 }
 
-/* Glitch transition into and between issues: the old page tears and
-   flashes, the new one powers on like a CRT. */
-html.mondo-glitch::view-transition-old(root),
-html.mondo-glitch::view-transition-new(root) {
+/* CRT transition into and between issues: the old page switches off like a
+   tube, squashing into a bright line, and the new one warms up out of that
+   line while its scanlines fade. Leaving MONDO keeps the usual crossfade. */
+@property --mondo-scan {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 1;
+}
+
+html.mondo-crt::view-transition {
+  background: #000;
+}
+
+html.mondo-crt::view-transition-old(root),
+html.mondo-crt::view-transition-new(root) {
   mix-blend-mode: normal;
 }
 
-html.mondo-glitch::view-transition-old(root) {
-  animation: mondo-tear 440ms steps(1, end) both;
+html.mondo-crt::view-transition-old(root) {
+  animation: mondo-crt-off 300ms both;
 }
 
-html.mondo-glitch::view-transition-new(root) {
-  animation: mondo-crt-on 440ms cubic-bezier(0.22, 1, 0.36, 1) both;
+html.mondo-crt::view-transition-new(root) {
+  -webkit-mask-image: repeating-linear-gradient(#000 0 2px, rgb(0 0 0 / var(--mondo-scan)) 2px 3px);
+  mask-image: repeating-linear-gradient(#000 0 2px, rgb(0 0 0 / var(--mondo-scan)) 2px 3px);
+  animation: mondo-crt-on 540ms 250ms both;
 }
 
-@keyframes mondo-tear {
-  0% { transform: none; clip-path: inset(0); filter: none; }
-  10% { transform: translateX(-14px); clip-path: inset(8% 0 58% 0); filter: hue-rotate(90deg) saturate(3) contrast(1.5); }
-  20% { transform: translateX(18px); clip-path: inset(60% 0 12% 0); filter: brightness(2.2) contrast(2); }
-  30% { transform: translateX(-6px); clip-path: inset(28% 0 36% 0); filter: invert(1) hue-rotate(180deg); }
-  40% { transform: translateX(10px); clip-path: inset(44% 0 44% 0); filter: brightness(3); }
-  50%, 100% { opacity: 0; }
+@keyframes mondo-crt-off {
+  0% {
+    transform: none;
+    filter: none;
+    animation-timing-function: cubic-bezier(0.7, 0, 0.84, 0);
+  }
+  70% {
+    opacity: 1;
+    transform: scale(1, 0.004);
+    filter: contrast(0.3) brightness(3) saturate(0);
+    animation-timing-function: ease-out;
+  }
+  100% {
+    opacity: 0;
+    transform: scale(0.92, 0.004);
+    filter: contrast(0.3) brightness(3.5) saturate(0);
+  }
 }
 
 @keyframes mondo-crt-on {
-  0%, 18% { opacity: 0; transform: scale(1, 0.006); filter: brightness(8) saturate(0); }
-  30% { opacity: 1; transform: scale(1, 0.006); filter: brightness(8) saturate(0); }
-  62% { transform: scale(1, 1); filter: brightness(1.8) saturate(1.6) contrast(1.2); }
-  100% { opacity: 1; transform: none; filter: none; }
+  0% {
+    opacity: 0;
+    transform: scale(0.92, 0.004);
+    filter: contrast(0.3) brightness(3.5) saturate(0);
+    --mondo-scan: 0.3;
+  }
+  8% {
+    opacity: 1;
+    transform: scale(1, 0.004);
+    filter: contrast(0.3) brightness(3) saturate(0);
+    animation-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  62% {
+    transform: none;
+    filter: contrast(1) brightness(1.2) saturate(1.15);
+    --mondo-scan: 0.45;
+    animation-timing-function: ease-out;
+  }
+  100% {
+    opacity: 1;
+    transform: none;
+    filter: none;
+    --mondo-scan: 1;
+  }
 }

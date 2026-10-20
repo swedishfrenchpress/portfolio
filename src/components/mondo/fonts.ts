@@ -1,4 +1,4 @@
-import { Arimo, League_Spartan, Monoton, Tinos } from "next/font/google";
+import { Arimo, League_Spartan, Tinos } from "next/font/google";
 
 // Downloaded at build time and served from erik.day, never preloaded: a file
 // is only fetched once an issue actually uses it. next/font needs literal
@@ -6,9 +6,8 @@ import { Arimo, League_Spartan, Monoton, Tinos } from "next/font/google";
 const spartan = League_Spartan({ subsets: ["latin"], display: "swap", preload: false, weight: "900", variable: "--mondo-spartan" });
 const tinos = Tinos({ subsets: ["latin"], display: "swap", preload: false, weight: ["400", "700"], style: ["normal", "italic"], variable: "--mondo-tinos" });
 const arimo = Arimo({ subsets: ["latin"], display: "swap", preload: false, weight: ["400", "700"], variable: "--mondo-arimo" });
-const monoton = Monoton({ subsets: ["latin"], display: "swap", preload: false, weight: "400", variable: "--mondo-monoton" });
 
-export const FONT_VARIABLES = [spartan, tinos, arimo, monoton].map(
+export const FONT_VARIABLES = [spartan, tinos, arimo].map(
   (font) => font.variable,
 );
 

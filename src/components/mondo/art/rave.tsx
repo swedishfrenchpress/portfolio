@@ -1,8 +1,8 @@
 import type { IssueArt } from "@/components/mondo/mondo-layer";
 import "./rave.css";
 
-// Issue #3: a '92 rave flyer. Posterized rainbow plasma behind, a melted
-// masthead, and the recent rotation set like a lineup.
+// Issue #2: a '92 rave flyer. Posterized rainbow plasma behind, a melted
+// masthead swaying with the smiley, and the recent rotation set like a lineup.
 export const rave: IssueArt = {
   Background: () => (
     <>

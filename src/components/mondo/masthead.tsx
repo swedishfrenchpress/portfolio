@@ -2,20 +2,20 @@
 
 import { Globe } from "@/components/mondo/globe";
 import type { Issue } from "@/components/mondo/issues";
-import { useLayoutEffect, useRef } from "react";
+import { type CSSProperties, useLayoutEffect, useRef } from "react";
 
 const MEASURE_PX = 100;
 const INLINE_MIN_WIDTH = 720;
 const WORD_GAP_EM = 0.22;
 
 // O and 0 alternate: the Earth, then the ouroboros.
-function OLetter({ globe }: { globe: boolean }) {
+function OLetter({ globe, style }: { globe: boolean; style: CSSProperties }) {
   return globe ? (
-    <span className="L o-globe">
+    <span className="L o-globe" style={style}>
       <Globe className="block size-full" />
     </span>
   ) : (
-    <span className="L o-ouro">
+    <span className="L o-ouro" style={style}>
       <i className="o-a" />
       <i className="o-b" />
     </span>
@@ -107,18 +107,27 @@ export function Masthead({ text, issue }: { text: string; issue: Issue }) {
 
   let o = 0;
   let k = 0;
+  // Each letter's position across the whole masthead, so issues can stagger
+  // animations from left to right.
+  let n = 0;
 
   return (
     <div ref={ref} className="mondo-mast" aria-hidden="true">
       {words.map((word, w) => (
         <div key={`${word}-${w}`} className="mondo-word">
           {Array.from(word).map((ch, i) => {
+            const style = { "--i": n++ } as CSSProperties;
             if (ch === "O" || ch === "0") {
-              return <OLetter key={i} globe={o++ % 2 === 0} />;
+              return <OLetter key={i} globe={o++ % 2 === 0} style={style} />;
             }
             const material = issue.cycle[k++ % issue.cycle.length];
             return (
-              <span key={i} className={`L m-${material}`} data-ch={ch}>
+              <span
+                key={i}
+                className={`L m-${material}`}
+                data-ch={ch}
+                style={style}
+              >
                 {ch}
               </span>
             );
