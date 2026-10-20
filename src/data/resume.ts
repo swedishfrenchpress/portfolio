@@ -83,7 +83,7 @@ export const DATA = {
     { title: "Pirate Wires", by: "Podcast" },
     { title: "There Is No Antimemetics Division", by: "qntm" },
     { title: "Cat", by: "Hiroshi Suzuki" },
-    { title: "History 102", by: "Rudyard Lynch & Austin Padgett" },
+    { title: "The Butcher of Nazareth", by: "David Scott Hay" },
   ],
 
   talks: [

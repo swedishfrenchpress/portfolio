@@ -1,0 +1,366 @@
+/* Issue #2 · Rave Flyer */
+
+html[data-mondo="rave"] {
+  --background: 300 80% 8%;
+  --foreground: 0 0% 100%;
+  --muted-foreground: 0 0% 88%;
+  --border: 0 0% 100%;
+  --rv-pink: #ff2bd6;
+  --rv-yellow: #ffe600;
+  --rv-lime: #3dff00;
+  --rv-cyan: #00e5ff;
+  --rv-violet: #8a2bff;
+}
+
+html[data-mondo="rave"] body {
+  font-family: var(--mondo-arimo), Arial, sans-serif;
+}
+
+html[data-mondo="rave"] ::selection {
+  background: var(--rv-yellow);
+  color: #000;
+}
+
+.rv-dim {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 80% 70% at 50% 40%, rgba(0, 0, 0, 0.12), rgba(0, 0, 0, 0.55));
+}
+
+/* Furniture */
+html[data-mondo="rave"] .mondo-mast {
+  --mast-max: 32vh;
+}
+
+html[data-mondo="rave"] .mondo-word {
+  filter: url(#mondo-melt);
+}
+
+/* The masthead sways in time with the smiley. Rotating the whole masthead
+   leaves the melt filter alone, so it never has to be redrawn. */
+html[data-mondo="rave"] .mondo-mast {
+  animation: rv-sway 3.2s ease-in-out infinite;
+}
+
+@keyframes rv-sway {
+  0%, 100% { rotate: -1deg; }
+  50% { rotate: 1deg; }
+}
+
+html[data-mondo="rave"] .mondo-mast .L {
+  filter: drop-shadow(0.025em 0.025em 0 #000) drop-shadow(0.05em 0.05em 0 var(--rv-pink));
+}
+
+.rv-smiley {
+  position: relative;
+  flex: none;
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  border: 4px solid #000;
+  background:
+    radial-gradient(ellipse 7% 11% at 35% 37%, #000 0 95%, transparent 100%),
+    radial-gradient(ellipse 7% 11% at 65% 37%, #000 0 95%, transparent 100%),
+    radial-gradient(circle at 34% 30%, #fff9b0, var(--rv-yellow) 45%, #e0b800);
+  box-shadow: 5px 5px 0 var(--rv-pink);
+  animation: rv-wobble 3.2s ease-in-out infinite;
+}
+
+/* The smiley is a sticker slapped on the flyer's bottom-right corner. */
+html[data-mondo="rave"] .mondo-foot {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  justify-content: flex-end;
+  width: calc(100% - 24px);
+  max-width: 44rem;
+  margin-top: -40px;
+  padding: 0;
+  pointer-events: none;
+}
+
+html[data-mondo="rave"] .rv-smiley {
+  margin-right: -22px;
+  pointer-events: auto;
+}
+
+@media (max-width: 480px) {
+  html[data-mondo="rave"] .rv-smiley {
+    width: 60px;
+    height: 60px;
+    margin-right: -6px;
+  }
+}
+
+.rv-smiley:hover {
+  animation:
+    rv-wobble 3.2s ease-in-out infinite,
+    rv-twirl 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.rv-smiley::after {
+  content: "";
+  position: absolute;
+  left: 20%;
+  right: 20%;
+  top: 46%;
+  height: 30%;
+  border: 4px solid #000;
+  border-top: 0;
+  border-radius: 0 0 50% 50% / 0 0 100% 100%;
+}
+
+@keyframes rv-wobble {
+  0%, 100% { transform: rotate(-8deg); }
+  50% { transform: rotate(10deg); }
+}
+
+@keyframes rv-twirl {
+  from { rotate: 0turn; }
+  to { rotate: 1turn; }
+}
+
+/* Toasts are little flyer stickers: black, rainbow-framed, shouting in
+   Spartan, with a wobbling smiley. Sonner's own utilities are !important,
+   so these have to be too. */
+html[data-mondo="rave"] [data-sonner-toast] {
+  padding: 12px 16px !important;
+  background: #000 !important;
+  border: 4px solid !important;
+  border-image: linear-gradient(135deg, var(--rv-pink), var(--rv-yellow), var(--rv-lime), var(--rv-cyan), var(--rv-violet)) 1 !important;
+  border-radius: 0 !important;
+  box-shadow: 6px 6px 0 var(--rv-pink) !important;
+}
+
+html[data-mondo="rave"] [data-sonner-toast] [data-title] {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font: 900 15px/1.1 var(--mondo-spartan), sans-serif !important;
+  letter-spacing: 0.01em !important;
+  text-transform: uppercase;
+  text-align: left !important;
+  color: var(--rv-yellow) !important;
+}
+
+html[data-mondo="rave"] [data-sonner-toast] [data-title]::before {
+  content: "";
+  flex: none;
+  width: 30px;
+  height: 30px;
+  border: 2px solid #000;
+  border-radius: 50%;
+  background:
+    radial-gradient(ellipse 8% 12% at 35% 37%, #000 0 95%, transparent 100%),
+    radial-gradient(ellipse 8% 12% at 65% 37%, #000 0 95%, transparent 100%),
+    linear-gradient(var(--rv-yellow) 0 54%, transparent 54%),
+    radial-gradient(circle at 50% 46%, transparent 0 29%, #000 31% 38%, transparent 40%),
+    var(--rv-yellow);
+  animation: rv-wobble 3.2s ease-in-out infinite;
+}
+
+/* The ecash easter egg is a sticker too. */
+html[data-mondo="rave"] .egg-toast {
+  padding: 8px 14px;
+  font: 900 15px/1 var(--mondo-spartan), sans-serif;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  color: var(--rv-yellow);
+  background: #000;
+  border: 3px solid;
+  border-image: linear-gradient(135deg, var(--rv-pink), var(--rv-yellow), var(--rv-lime), var(--rv-cyan), var(--rv-violet)) 1;
+  border-radius: 0;
+  box-shadow: 4px 4px 0 var(--rv-pink);
+}
+
+/* Nav */
+html[data-mondo="rave"] body > header nav a {
+  font-family: var(--mondo-spartan), sans-serif;
+  font-weight: 900;
+  font-size: 15px;
+  text-transform: uppercase;
+  color: #fff;
+  text-shadow: 2px 2px 0 #000;
+}
+
+html[data-mondo="rave"] body > header nav a.text-foreground {
+  color: var(--rv-yellow);
+}
+
+html[data-mondo="rave"] body > header nav a:hover {
+  animation: rv-rainbow 1.6s linear infinite;
+}
+
+/* Prose: a black flyer panel with a rainbow frame, so the copy stays readable
+   over the plasma. The frame cycles its colors on its own layer, so the copy
+   inside is never repainted. */
+html[data-mondo="rave"] body > main {
+  position: relative;
+  width: calc(100% - 24px);
+  max-width: 44rem;
+  padding: 30px 28px 32px;
+  background: #000;
+  border: 6px solid transparent;
+  box-shadow: 12px 12px 0 rgba(0, 0, 0, 0.55);
+}
+
+html[data-mondo="rave"] body > main::before {
+  content: "";
+  position: absolute;
+  inset: -6px;
+  border: 6px solid;
+  border-image: linear-gradient(135deg, var(--rv-pink), var(--rv-yellow), var(--rv-lime), var(--rv-cyan), var(--rv-violet)) 1;
+  pointer-events: none;
+  animation: rv-cycle 6s linear infinite;
+}
+
+@keyframes rv-cycle {
+  to { filter: hue-rotate(1turn); }
+}
+
+html[data-mondo="rave"] main h1 {
+  font-family: var(--mondo-spartan), sans-serif;
+  font-weight: 900;
+  font-size: clamp(34px, 7vw, 50px);
+  line-height: 0.95;
+  letter-spacing: -0.01em;
+  text-transform: uppercase;
+  color: #fff;
+  text-shadow: 3px 3px 0 var(--rv-pink), -3px -2px 0 var(--rv-cyan);
+}
+
+html[data-mondo="rave"] #intro h1 + p {
+  margin-top: 12px;
+  font-weight: 700;
+  font-size: 13px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--rv-yellow);
+}
+
+html[data-mondo="rave"] main :is(p, li) {
+  font-size: 17px;
+  line-height: 1.65;
+  color: #fff;
+}
+
+/* Section heads: a rainbow that flows through the letters. */
+html[data-mondo="rave"] main h2 {
+  width: fit-content;
+  font-family: var(--mondo-spartan), sans-serif;
+  font-weight: 900;
+  font-size: clamp(28px, 6vw, 40px);
+  line-height: 1;
+  letter-spacing: -0.01em;
+  text-transform: uppercase;
+  color: transparent;
+  background: linear-gradient(90deg, var(--rv-pink), var(--rv-yellow), var(--rv-lime), var(--rv-cyan), var(--rv-violet), var(--rv-pink)) 0 0 / 200% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  filter: drop-shadow(3px 3px 0 #fff);
+  animation: rv-flow 5s linear infinite;
+}
+
+@keyframes rv-flow {
+  to { background-position: -200% 0; }
+}
+
+/* Recent rotation as the night's lineup. */
+html[data-mondo="rave"] #rotation li {
+  font-family: var(--mondo-spartan), sans-serif;
+  font-weight: 900;
+  font-size: 23px;
+  line-height: 1.15;
+  text-transform: uppercase;
+}
+
+html[data-mondo="rave"] #rotation li:nth-child(5n + 1) { color: var(--rv-yellow); }
+html[data-mondo="rave"] #rotation li:nth-child(5n + 2) { color: var(--rv-pink); }
+html[data-mondo="rave"] #rotation li:nth-child(5n + 3) { color: var(--rv-cyan); }
+html[data-mondo="rave"] #rotation li:nth-child(5n + 4) { color: var(--rv-lime); }
+html[data-mondo="rave"] #rotation li:nth-child(5n) { color: #ff8a00; }
+
+html[data-mondo="rave"] #rotation li span {
+  white-space: nowrap;
+  font-family: var(--mondo-arimo), Arial, sans-serif;
+  font-weight: 700;
+  font-size: 12px;
+  letter-spacing: 0.1em;
+  color: #fff;
+  opacity: 0.85;
+}
+
+html[data-mondo="rave"] main > p:last-child {
+  font-weight: 700;
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--rv-cyan);
+}
+
+html[data-mondo="rave"] main > ul a {
+  font-family: var(--mondo-spartan), sans-serif;
+  font-weight: 900;
+  font-size: 22px;
+  text-transform: uppercase;
+}
+
+html[data-mondo="rave"] main > ul li:nth-child(4n + 1) a { color: var(--rv-yellow); }
+html[data-mondo="rave"] main > ul li:nth-child(4n + 2) a { color: var(--rv-pink); }
+html[data-mondo="rave"] main > ul li:nth-child(4n + 3) a { color: var(--rv-cyan); }
+html[data-mondo="rave"] main > ul li:nth-child(4n) a { color: var(--rv-lime); }
+
+html[data-mondo="rave"] main > ul li p {
+  font-size: 15px;
+}
+
+html[data-mondo="rave"] a:not(.plain),
+html[data-mondo="rave"] .link {
+  color: var(--rv-yellow);
+}
+
+html[data-mondo="rave"] a:not(.plain):hover,
+html[data-mondo="rave"] .link:hover {
+  animation: rv-rainbow 1.6s linear infinite;
+}
+
+/* Hovered links fade through the flyer palette, slow enough not to strobe. */
+@keyframes rv-rainbow {
+  0%, 100% { color: var(--rv-cyan); }
+  25% { color: var(--rv-pink); }
+  50% { color: var(--rv-yellow); }
+  75% { color: var(--rv-lime); }
+}
+
+/* Letter materials */
+html[data-mondo="rave"] .m-acid {
+  background-image: linear-gradient(180deg, #f6ff00, #7dff00 45%, #00d084);
+}
+
+html[data-mondo="rave"] .m-liquid {
+  background-image: linear-gradient(180deg, #fff 0%, #c9d6ff 18%, #3b3f8f 42%, #fff 48%, #8a96d8 62%, #20235a 80%, #e6ebff 100%);
+}
+
+html[data-mondo="rave"] .m-smiley {
+  background-image:
+    radial-gradient(circle at 30% 30%, #fffbd0 0 10%, transparent 30%),
+    linear-gradient(180deg, #ffe600, #ffb800);
+}
+
+html[data-mondo="rave"] .m-uv {
+  background-image: linear-gradient(180deg, #ffb3ff, #ff2bd6 40%, #7a00ff);
+}
+
+html[data-mondo="rave"] .m-candy {
+  background-image: repeating-linear-gradient(135deg, #ff6ec7 0 0.06em, #fff 0.06em 0.1em, #6ecbff 0.1em 0.16em, #fff 0.16em 0.2em);
+}
+
+/* Rainbow-tinted ouroboros for this one. */
+html[data-mondo="rave"] .o-ouro {
+  --ouro-1: #ff2bd6;
+  --ouro-2: #3a0060;
+  --ouro-3: #00e5ff;
+  --ouro-4: #120030;
+  --ouro-head-1: #f6ff00;
+  --ouro-head-2: #3dff00;
+}
