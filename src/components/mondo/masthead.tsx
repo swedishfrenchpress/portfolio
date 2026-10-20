@@ -105,6 +105,7 @@ export function Masthead({ text, issue }: { text: string; issue: Issue }) {
     };
   }, [text, issue.id]);
 
+  const spell = issue.spell?.[text];
   let o = 0;
   let k = 0;
   // Each letter's position across the whole masthead, so issues can stagger
@@ -120,7 +121,9 @@ export function Masthead({ text, issue }: { text: string; issue: Issue }) {
             if (ch === "O" || ch === "0") {
               return <OLetter key={i} globe={o++ % 2 === 0} style={style} />;
             }
-            const material = issue.cycle[k++ % issue.cycle.length];
+            const material =
+              spell?.[k] ?? issue.cycle[k % issue.cycle.length];
+            k++;
             return (
               <span
                 key={i}
