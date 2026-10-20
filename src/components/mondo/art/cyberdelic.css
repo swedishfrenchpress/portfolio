@@ -103,6 +103,13 @@ html[data-mondo="cyberdelic"] .mondo-word:first-child {
   margin-top: 0.2em;
 }
 
+/* On phones the halo would brush the nav. */
+@media (max-width: 480px) {
+  html[data-mondo="cyberdelic"] .mondo-cover {
+    margin-top: 30px;
+  }
+}
+
 /* The masthead waves like a Java applet. */
 html[data-mondo="cyberdelic"] .mondo-mast .L {
   animation: cy-wave 3.6s ease-in-out calc(var(--i) * -0.22s) infinite;
@@ -124,6 +131,11 @@ html[data-mondo="cyberdelic"] body > header nav a {
 
 html[data-mondo="cyberdelic"] body > header nav a.text-foreground {
   color: #fff;
+}
+
+html[data-mondo="cyberdelic"] body > header nav a:hover {
+  color: #fff;
+  animation: cy-glow 0.9s ease-in-out infinite alternate;
 }
 
 /* Prose */
@@ -148,6 +160,34 @@ html[data-mondo="cyberdelic"] #intro h1 + p {
   font-size: 22px;
 }
 
+/* The cover story opens on a chrome drop cap. A text shadow would paint over
+   the clipped chrome, so this one goes without. */
+html[data-mondo="cyberdelic"] #intro > div + div > p:first-child::first-letter {
+  float: left;
+  margin: 0.04em 0.07em 0 0;
+  font-family: var(--mondo-spartan), sans-serif;
+  font-weight: 900;
+  font-size: 5.6em;
+  line-height: 0.76;
+  color: transparent;
+  background-image: linear-gradient(180deg, #fff4cc, #ffc04d 27%, #e46f12 48%, #5c1d00 51%, #b84700 60%, #ff9a33 80%, #ffe3a8);
+  -webkit-background-clip: text;
+  background-clip: text;
+  text-shadow: none;
+}
+
+/* Where supported, sink it exactly three lines instead of guessing. */
+@supports (initial-letter: 3) or (-webkit-initial-letter: 3) {
+  html[data-mondo="cyberdelic"] #intro > div + div > p:first-child::first-letter {
+    float: none;
+    margin: 0 12px 0 0;
+    font-size: inherit;
+    line-height: inherit;
+    -webkit-initial-letter: 3;
+    initial-letter: 3;
+  }
+}
+
 html[data-mondo="cyberdelic"] main :is(p, li) {
   font-weight: 400;
   font-size: 19px;
@@ -166,6 +206,7 @@ html[data-mondo="cyberdelic"] main h2 {
 }
 
 html[data-mondo="cyberdelic"] #rotation span {
+  white-space: nowrap;
   opacity: 1;
   font-style: italic;
   color: var(--cy-y);
@@ -294,6 +335,18 @@ html[data-mondo="cyberdelic"] [data-sonner-toast] [data-close-button] svg {
   width: 9px;
   height: 9px;
   stroke-width: 3.5;
+}
+
+/* The ecash easter egg is a yellow Windows tooltip. */
+html[data-mondo="cyberdelic"] .egg-toast {
+  padding: 3px 7px;
+  font: 400 12px var(--mondo-arimo), Arial, sans-serif;
+  letter-spacing: 0;
+  color: #000;
+  background: #ffffe1;
+  border: 1px solid #000;
+  border-radius: 0;
+  box-shadow: 2px 2px 0 rgba(0, 0, 0, 0.45);
 }
 
 /* Letter materials */

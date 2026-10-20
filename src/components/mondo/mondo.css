@@ -42,6 +42,12 @@ html[data-mondo] main > h1 {
   white-space: nowrap;
 }
 
+/* The hidden h1 still gives the list after it the page's `space-y` gap.
+   Tailwind's sibling selector outranks anything reasonable, hence !important. */
+html[data-mondo] main > h1 + * {
+  margin-top: 0 !important;
+}
+
 .mondo-bg {
   position: fixed;
   inset: 0;

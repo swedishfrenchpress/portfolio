@@ -66,6 +66,32 @@ html[data-mondo="rave"] .mondo-mast .L {
   animation: rv-wobble 3.2s ease-in-out infinite;
 }
 
+/* The smiley is a sticker slapped on the flyer's bottom-right corner. */
+html[data-mondo="rave"] .mondo-foot {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  justify-content: flex-end;
+  width: calc(100% - 24px);
+  max-width: 44rem;
+  margin-top: -40px;
+  padding: 0;
+  pointer-events: none;
+}
+
+html[data-mondo="rave"] .rv-smiley {
+  margin-right: -22px;
+  pointer-events: auto;
+}
+
+@media (max-width: 480px) {
+  html[data-mondo="rave"] .rv-smiley {
+    width: 60px;
+    height: 60px;
+    margin-right: -6px;
+  }
+}
+
 .rv-smiley:hover {
   animation:
     rv-wobble 3.2s ease-in-out infinite,
@@ -133,6 +159,20 @@ html[data-mondo="rave"] [data-sonner-toast] [data-title]::before {
   animation: rv-wobble 3.2s ease-in-out infinite;
 }
 
+/* The ecash easter egg is a sticker too. */
+html[data-mondo="rave"] .egg-toast {
+  padding: 8px 14px;
+  font: 900 15px/1 var(--mondo-spartan), sans-serif;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  color: var(--rv-yellow);
+  background: #000;
+  border: 3px solid;
+  border-image: linear-gradient(135deg, var(--rv-pink), var(--rv-yellow), var(--rv-lime), var(--rv-cyan), var(--rv-violet)) 1;
+  border-radius: 0;
+  box-shadow: 4px 4px 0 var(--rv-pink);
+}
+
 /* Nav */
 html[data-mondo="rave"] body > header nav a {
   font-family: var(--mondo-spartan), sans-serif;
@@ -145,6 +185,10 @@ html[data-mondo="rave"] body > header nav a {
 
 html[data-mondo="rave"] body > header nav a.text-foreground {
   color: var(--rv-yellow);
+}
+
+html[data-mondo="rave"] body > header nav a:hover {
+  animation: rv-rainbow 1.6s linear infinite;
 }
 
 /* Prose: a black flyer panel with a rainbow frame, so the copy stays readable
@@ -237,6 +281,7 @@ html[data-mondo="rave"] #rotation li:nth-child(5n + 4) { color: var(--rv-lime); 
 html[data-mondo="rave"] #rotation li:nth-child(5n) { color: #ff8a00; }
 
 html[data-mondo="rave"] #rotation li span {
+  white-space: nowrap;
   font-family: var(--mondo-arimo), Arial, sans-serif;
   font-weight: 700;
   font-size: 12px;

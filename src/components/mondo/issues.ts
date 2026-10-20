@@ -17,10 +17,11 @@ export const ISSUES: readonly Issue[] = [
     cycle: ["chrome", "rainbow", "lava", "halo", "marble", "grid", "holo"],
     spell: {
       // The plain cycle stacks halo, marble and grid in the same spots on
-      // both lines. WEBPAGE runs cool to warm instead, against ERIK’S.
+      // both lines. This order never puts a fill on top of its twin when
+      // stacked, nor within three letters of it on one line.
       "Erik’s Webpage": [
         "chrome", "rainbow", "lava", "halo", "marble", "grid",
-        "holo", "grid", "halo", "marble", "chrome", "lava", "rainbow",
+        "holo", "lava", "halo", "grid", "chrome", "rainbow", "marble",
       ],
     },
   },
