@@ -14,9 +14,9 @@ export function SiteToaster() {
       theme={(resolvedTheme as "light" | "dark") ?? "light"}
       // Width sized to hug the single "Copied…" toast copy with even padding.
       style={{ "--width": "288px" } as React.CSSProperties}
-      // MONDO's Cyberdelic toast is a Windows 98 dialog, so it gets a real
-      // close box in its title bar.
-      closeButton={issue?.id === "cyberdelic"}
+      // MONDO's Raytrace toast is a Netscape JavaScript alert, so it gets a
+      // real OK button.
+      closeButton={issue?.id === "raytrace"}
       toastOptions={{
         classNames: {
           toast:

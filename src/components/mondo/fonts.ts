@@ -1,27 +1,22 @@
-import { Arimo, League_Spartan, Tinos } from "next/font/google";
+import { Tinos } from "next/font/google";
+import localFont from "next/font/local";
 
-// Downloaded at build time and served from erik.day, never preloaded: a file
-// is only fetched once an issue actually uses it. next/font needs literal
-// options, hence the repetition.
-const spartan = League_Spartan({ subsets: ["latin"], display: "swap", preload: false, weight: "900", variable: "--mondo-spartan" });
+// Served from erik.day and never preloaded: nothing is fetched until MONDO
+// is switched on. next/font needs literal options, hence the repetition.
+
+// Alpha Lyrae by Fontfabric for Vega (SIL OFL, see fonts/OFL.md), shipped
+// unmodified. MONDO sets it with SS05, the pixel set with displaced pixels.
+const lyrae = localFont({ src: "./fonts/AlphaLyrae-Medium.woff2", weight: "500", display: "swap", preload: false, variable: "--mondo-lyrae" });
 const tinos = Tinos({ subsets: ["latin"], display: "swap", preload: false, weight: ["400", "700"], style: ["normal", "italic"], variable: "--mondo-tinos" });
-const arimo = Arimo({ subsets: ["latin"], display: "swap", preload: false, weight: ["400", "700"], variable: "--mondo-arimo" });
 
-export const FONT_VARIABLES = [spartan, tinos, arimo].map(
-  (font) => font.variable,
-);
+export const FONT_VARIABLES = [lyrae, tinos].map((font) => font.variable);
 
 const family = (font: { style: { fontFamily: string } }) =>
   font.style.fontFamily;
 
-// The faces each issue needs on first paint, as CSS font shorthands.
-const ISSUE_FONTS: Record<string, string[]> = {
-  cyberdelic: [`900 1em ${family(spartan)}`, `400 1em ${family(tinos)}`, `700 1em ${family(tinos)}`, `italic 700 1em ${family(tinos)}`],
-  rave: [`900 1em ${family(spartan)}`, `400 1em ${family(arimo)}`, `700 1em ${family(arimo)}`],
-};
+// Every issue sets headings in Alpha Lyrae and prose in Times.
+const FACES = [`500 1em ${family(lyrae)}`, `400 1em ${family(tinos)}`, `700 1em ${family(tinos)}`, `italic 400 1em ${family(tinos)}`];
 
-export function loadIssueFonts(id: string) {
-  return Promise.all(
-    (ISSUE_FONTS[id] ?? []).map((font) => document.fonts.load(font)),
-  );
+export function loadIssueFonts() {
+  return Promise.all(FACES.map((font) => document.fonts.load(font)));
 }

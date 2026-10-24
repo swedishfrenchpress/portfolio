@@ -1,0 +1,104 @@
+/* Issue: Raytrace · cobalt sky, checkerboard, a default-grey 1995 page */
+
+html[data-mondo="raytrace"] {
+  --background: 220 76% 48%;
+  --foreground: 0 0% 0%;
+  --muted-foreground: 0 0% 25%;
+  --border: 0 0% 50%;
+  --mondo-panel: #c0c0c0;
+  --mondo-ink: #000;
+  --mondo-dim: #3a3a3a;
+  --mondo-head: #0a2a9e;
+  --mondo-link: #0000ee;
+  --mondo-hover: #ee0000;
+  --mondo-visited: #551a8b;
+  --mondo-hi: #fff;
+  --mondo-lo: #505050;
+  --mondo-nav: #0a1f6e;
+  --mondo-glow: 1px 1px 0 rgb(255 255 255 / 0.85);
+  --mondo-field: #fff;
+  --mondo-fallback: linear-gradient(#1546c8, #8cc8ff 55%, #e9e86c 55.2%, #23439c);
+}
+
+/* Over the pale sky the nav is navy, embossed; the page you're on lights up. */
+html[data-mondo="raytrace"] body > header nav a.text-foreground {
+  color: #fff;
+  text-shadow: 2px 2px 0 #0a1f6e;
+}
+
+html[data-mondo="raytrace"] ::selection {
+  background: #000080;
+  color: #fff;
+}
+
+/* The prose sits on a classic grey page, embossed like a Mac window. */
+html[data-mondo="raytrace"] body > main {
+  box-shadow:
+    inset -1px -1px 0 #808080,
+    inset 1px 1px 0 #dfdfdf,
+    10px 12px 0 rgb(10 31 110 / 0.35);
+}
+
+html[data-mondo="raytrace"] #intro h1 {
+  text-shadow: 2px 2px 0 #fff, 4px 4px 0 #8a8a8a;
+}
+
+/* Windows 95 buttons have black labels. */
+html[data-mondo="raytrace"] .gb-button {
+  color: #000;
+}
+
+html[data-mondo="raytrace"] .mondo-counter .mondo-digit {
+  color: #c00;
+  background: #000;
+}
+
+/* The copy toast is a Netscape JavaScript alert, and its OK button is
+   Sonner's real close button. */
+html[data-mondo="raytrace"] [data-sonner-toast] {
+  padding: 0 0 54px !important;
+}
+
+html[data-mondo="raytrace"] [data-sonner-toast] [data-content]::before {
+  content: "[JavaScript Application]";
+  display: block;
+  margin-bottom: 12px;
+  padding: 3px 8px;
+  font: 700 13px var(--mondo-tinos), serif;
+  color: #fff;
+  background: linear-gradient(90deg, #000080, #1084d0);
+}
+
+html[data-mondo="raytrace"] [data-sonner-toast] [data-title] {
+  padding: 0 18px;
+  color: #000 !important;
+}
+
+html[data-mondo="raytrace"] [data-sonner-toast] [data-close-button] {
+  top: auto !important;
+  right: auto !important;
+  bottom: 14px !important;
+  left: 50% !important;
+  width: 78px !important;
+  height: 26px !important;
+  transform: translateX(-50%) !important;
+  color: #000 !important;
+  background: #c0c0c0 !important;
+  border: 2px solid !important;
+  border-color: #fff #505050 #505050 #fff !important;
+  border-radius: 0 !important;
+  box-shadow: 0 0 0 1px #000 !important;
+}
+
+html[data-mondo="raytrace"] [data-sonner-toast] [data-close-button]:active {
+  border-color: #505050 #fff #fff #505050 !important;
+}
+
+html[data-mondo="raytrace"] [data-sonner-toast] [data-close-button] svg {
+  display: none;
+}
+
+html[data-mondo="raytrace"] [data-sonner-toast] [data-close-button]::after {
+  content: "OK";
+  font: 400 14px var(--mondo-tinos), serif;
+}

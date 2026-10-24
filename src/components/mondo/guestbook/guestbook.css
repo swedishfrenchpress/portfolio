@@ -1,0 +1,159 @@
+/* The MONDO guestbook: a 1996 sign-in form and its entries, in whichever
+   issue is showing. Built only from the issue's --mondo-* palette;
+   --mondo-field is the inset background of a text box. */
+
+.gb {
+  display: grid;
+  gap: 22px;
+}
+
+.gb-intro {
+  font-size: 21px !important;
+  font-style: italic;
+  text-wrap: pretty;
+}
+
+.gb-form {
+  display: grid;
+  gap: 16px;
+}
+
+.gb-field {
+  display: grid;
+  gap: 6px;
+  font-weight: 700;
+  font-size: 17px;
+  color: var(--mondo-head);
+}
+
+.gb-field i {
+  font-weight: 400;
+  color: var(--mondo-dim);
+}
+
+.gb-field :is(input, textarea) {
+  width: 100%;
+  padding: 7px 9px;
+  font: 400 18px/1.4 var(--mondo-tinos), "Times New Roman", serif;
+  color: var(--mondo-ink);
+  caret-color: var(--mondo-link);
+  background: var(--mondo-field);
+  border: 2px solid;
+  border-color: var(--mondo-lo) var(--mondo-hi) var(--mondo-hi) var(--mondo-lo);
+  border-radius: 0;
+  resize: vertical;
+}
+
+.gb-field :is(input, textarea)::placeholder {
+  color: var(--mondo-dim);
+}
+
+.gb-count {
+  justify-self: end;
+  font: 400 14px var(--mondo-tinos), serif;
+  color: var(--mondo-dim);
+}
+
+/* Off-screen rather than display: none, which some bots know to skip. */
+.gb-trap {
+  position: absolute;
+  left: -9999px;
+  width: 1px;
+  height: 1px;
+}
+
+.gb-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 18px;
+  align-items: center;
+}
+
+/* A raised 90s button that presses in. */
+.gb-button {
+  padding: 7px 18px 8px;
+  font: 700 17px var(--mondo-tinos), "Times New Roman", serif;
+  color: var(--mondo-link);
+  background: var(--mondo-panel);
+  border: 3px solid;
+  border-color: var(--mondo-hi) var(--mondo-lo) var(--mondo-lo) var(--mondo-hi);
+  box-shadow: 3px 3px 0 rgb(0 0 0 / 0.5);
+  cursor: pointer;
+}
+
+.gb-button:hover {
+  color: var(--mondo-hover);
+}
+
+.gb-button:active:not(:disabled) {
+  border-color: var(--mondo-lo) var(--mondo-hi) var(--mondo-hi) var(--mondo-lo);
+  box-shadow: none;
+  transform: translate(2px, 2px);
+}
+
+.gb-button:disabled {
+  cursor: progress;
+  opacity: 0.7;
+}
+
+.gb-status {
+  font-size: 17px !important;
+  font-style: italic;
+  color: var(--mondo-head) !important;
+}
+
+/* A grooved 1996 <hr>. */
+.gb-rule {
+  border: 0;
+  border-top: 1px solid var(--mondo-lo);
+  border-bottom: 1px solid var(--mondo-hi);
+}
+
+.gb-entries {
+  display: grid;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.gb-entry {
+  padding: 18px 0;
+  border-bottom: 1px dashed var(--mondo-lo);
+}
+
+.gb-entry:first-child {
+  padding-top: 4px;
+}
+
+.gb-who {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2px 10px;
+  align-items: baseline;
+}
+
+.gb-who b {
+  color: var(--mondo-head);
+}
+
+.gb-date {
+  font-size: 15px;
+  font-style: italic;
+  color: var(--mondo-dim);
+}
+
+.gb-message {
+  margin-top: 6px;
+  white-space: pre-line;
+  overflow-wrap: anywhere;
+}
+
+.gb-empty {
+  font-style: italic;
+  color: var(--mondo-dim) !important;
+}
+
+.gb-retry {
+  font: inherit;
+  font-style: normal;
+}

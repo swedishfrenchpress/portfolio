@@ -1,7 +1,8 @@
 "use client";
 
 import { GlobeDefs } from "@/components/mondo/globe";
-import { ISSUES, type Issue } from "@/components/mondo/issues";
+import { GUESTBOOK_PATH, ISSUES, type Issue } from "@/components/mondo/issues";
+import { usePathname, useRouter } from "next/navigation";
 import {
   createContext,
   useCallback,
@@ -23,6 +24,14 @@ export function loadMondoLayer() {
 }
 
 const FONT_TIMEOUT_MS = 800;
+// The warp: the page shatters into beads at once; between issues the old
+// world plays on for a beat before the new one flashes in; the page then
+// rushes back out of the vanishing point while the masthead re-forms.
+const WARP_SWAP_MS = 420;
+const WARP_CONTENT_MS = 650;
+const WARP_SETTLE_MS = 800;
+
+const wait = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
 
 type MondoState = {
   issue: Issue | null;
@@ -56,10 +65,7 @@ export function MondoProvider({ children }: { children: React.ReactNode }) {
       if (target) {
         loaded = await loadMondoLayer();
         root.classList.add(...loaded.FONT_VARIABLES);
-        await Promise.race([
-          loaded.loadIssueFonts(target.id),
-          new Promise((resolve) => setTimeout(resolve, FONT_TIMEOUT_MS)),
-        ]);
+        await Promise.race([loaded.loadIssueFonts(), wait(FONT_TIMEOUT_MS)]);
       }
 
       const apply = () => {
@@ -73,27 +79,66 @@ export function MondoProvider({ children }: { children: React.ReactNode }) {
         "(prefers-reduced-motion: reduce)",
       ).matches;
       // Sync either way, so the issue CSS never paints over the old DOM.
-      if (!animate || reduceMotion || !document.startViewTransition) {
+      if (!animate || reduceMotion) {
         flushSync(apply);
         return;
       }
 
-      // Into or between issues: the CRT. Back to normal: the theme crossfade.
-      root.classList.toggle("mondo-crt", target !== null);
+      // Into or between issues: the warp. Hiding the page and seeding the
+      // stage happen in one frame, so the text turns to beads in place.
+      if (loaded) {
+        const between = "mondo" in root.dataset;
+        loaded.warp(loaded.sampleWarpSeed());
+        root.classList.add("mondo-warp");
+        if (between) await wait(WARP_SWAP_MS);
+        flushSync(apply);
+        await wait(WARP_CONTENT_MS);
+        root.classList.replace("mondo-warp", "mondo-warp-in");
+        await wait(WARP_SETTLE_MS);
+        root.classList.remove("mondo-warp-in");
+        return;
+      }
+
+      // Back to normal: the theme crossfade.
+      if (!document.startViewTransition) {
+        flushSync(apply);
+        return;
+      }
       const transition = document.startViewTransition(() => {
         flushSync(apply);
       });
+      // A hidden tab aborts the animation; the switch itself still happens.
+      transition.ready.catch(() => {});
       await transition.finished.catch(() => {});
-      root.classList.remove("mondo-crt");
     } finally {
       busy.current = false;
     }
   }, []);
 
+  const pathname = usePathname();
+  const router = useRouter();
+  /** Set while switching MONDO off on the guestbook, until the way home lands. */
+  const leaving = useRef(false);
+
   const next = useCallback(() => {
     const index = issue ? ISSUES.indexOf(issue) : -1;
-    show(ISSUES[index + 1] ?? null, true);
-  }, [issue, show]);
+    const target = ISSUES[index + 1] ?? null;
+    // The guestbook only exists in MONDO, so leaving MONDO leaves it too.
+    if (!target && pathname === GUESTBOOK_PATH) {
+      leaving.current = true;
+      router.push("/");
+    }
+    show(target, true);
+  }, [issue, pathname, router, show]);
+
+  // Landing on the guestbook directly, or reloading it, switches MONDO on.
+  useEffect(() => {
+    if (pathname !== GUESTBOOK_PATH) {
+      leaving.current = false;
+    } else if (!leaving.current && !("mondo" in document.documentElement.dataset)) {
+      show(ISSUES[0], false);
+    }
+  }, [pathname, show]);
 
   // Dev only: ?issue=<id> opens straight into an issue while iterating.
   useEffect(() => {
