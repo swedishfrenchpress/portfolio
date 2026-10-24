@@ -4,7 +4,8 @@ import { placeMasthead } from "@/components/mondo/stage";
 import { CAP_HEIGHT, PIXEL, SPACE, WORDS } from "@/components/mondo/stage/beads";
 import { useLayoutEffect, useRef } from "react";
 
-const INLINE_MIN_WIDTH = 720;
+/** Words share one line only if their beads still come out this tall (cap height, px). */
+const INLINE_MIN_CAP = 88;
 /** Tallest a line of beads gets, as a share of the viewport and in px. */
 const MAX_CAP_VH = 0.22;
 const MAX_CAP_PX = 170;
@@ -17,8 +18,8 @@ const BEAD = 1.22;
  * The chrome masthead's footprint. The beads themselves are drawn by the
  * stage behind the page; this box reserves their space, works out where each
  * pixel of each SS05 letter goes, and is what they follow as you scroll.
- * Wide screens set the words on one line; narrow ones stack them, each word
- * as large as fits.
+ * Wide screens set the words on one line; narrower ones stack them, each
+ * word as large as fits, rather than shrink the beads to crumbs.
  */
 export function Masthead({ text }: { text: string }) {
   const ref = useRef<HTMLDivElement>(null);
@@ -36,7 +37,9 @@ export function Masthead({ text }: { text: string }) {
       const avail = box.clientWidth;
       if (!avail) return;
       const maxCap = Math.min(innerHeight * MAX_CAP_VH, MAX_CAP_PX);
-      const rows = avail >= INLINE_MIN_WIDTH ? [words] : words.map((word) => [word]);
+      const inlineWidth = words.reduce((sum, word) => sum + WORDS[word].width, 0) + SPACE * (words.length - 1);
+      const inline = words.length > 1 && (avail / inlineWidth) * CAP_HEIGHT >= INLINE_MIN_CAP;
+      const rows = inline ? [words] : words.map((word) => [word]);
       const beads = new Float32Array(total * 5);
       let n = 0;
       let top = 0;

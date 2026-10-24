@@ -231,7 +231,9 @@ export class Stage {
       f.warp = 0;
       this.coverAlpha = 0;
     }
-    f.scroll = scrollY;
+    // Reduced motion still redraws on scroll so the masthead follows the
+    // page, but the world itself stays put: no scroll-linked camera.
+    f.scroll = this.motion ? scrollY : 0;
     this.lastScroll = scrollY;
 
     const r = this.renderer;

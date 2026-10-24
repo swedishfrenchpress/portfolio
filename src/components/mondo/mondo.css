@@ -82,7 +82,7 @@ html[data-mondo] body > header nav a:hover {
 .mondo-cover {
   width: 100%;
   max-width: 80rem;
-  margin: 20px auto 2.25rem;
+  margin: 30px auto 2.25rem;
   padding: 0 16px;
 }
 
@@ -105,9 +105,10 @@ html.mondo-nogl .mondo-mast-text {
   color: var(--mondo-head);
 }
 
+/* As wide as the panel, so their edges line up. */
 .mondo-marquee {
   overflow: hidden;
-  max-width: 46rem;
+  max-width: 44rem;
   margin: 22px auto 0;
   padding: 5px 0;
   font: 700 17px/1.2 var(--mondo-tinos), "Times New Roman", serif;
@@ -250,14 +251,21 @@ html[data-mondo] .link:hover {
   padding: 0 16px;
 }
 
+/* Its own little bevelled plate, so it reads over any part of the world. */
 .mondo-counter {
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 8px;
-  font: italic 400 19px var(--mondo-tinos), "Times New Roman", serif;
+  width: fit-content;
+  margin: 0 auto;
+  padding: 10px 18px 14px;
+  font: italic 400 17px var(--mondo-tinos), "Times New Roman", serif;
   color: var(--mondo-nav);
-  text-shadow: var(--mondo-glow);
+  background: var(--mondo-panel);
+  border: 3px solid;
+  border-color: var(--mondo-hi) var(--mondo-lo) var(--mondo-lo) var(--mondo-hi);
+  box-shadow: 6px 6px 0 rgb(0 0 0 / 0.45);
 }
 
 .mondo-digits {
@@ -278,6 +286,7 @@ html[data-mondo] .link:hover {
   background: var(--mondo-panel);
   border: 2px solid;
   border-color: var(--mondo-lo) var(--mondo-hi) var(--mondo-hi) var(--mondo-lo);
+  /* Overshoot on purpose: a mechanical odometer clicking into place. */
   animation: mondo-roll 420ms cubic-bezier(0.34, 1.56, 0.64, 1) both;
 }
 
@@ -289,7 +298,12 @@ html[data-mondo] .link:hover {
 }
 
 /* Toasts become little bevelled 90s dialogs in the issue's colours. Sonner's
-   own utilities are !important, so these have to be too. */
+   own utilities are !important, so these have to be too. Times runs wider
+   than Geist, so the toaster widens to keep the message on one line. */
+html[data-mondo] [data-sonner-toaster] {
+  --width: 340px !important;
+}
+
 html[data-mondo] [data-sonner-toast] {
   padding: 14px 18px !important;
   color: var(--mondo-ink) !important;
@@ -301,8 +315,9 @@ html[data-mondo] [data-sonner-toast] {
 }
 
 html[data-mondo] [data-sonner-toast] [data-title] {
-  font: 700 16px/1.35 var(--mondo-tinos), "Times New Roman", serif !important;
-  color: var(--mondo-head) !important;
+  font: 400 16px/1.4 var(--mondo-tinos), "Times New Roman", serif !important;
+  color: var(--mondo-ink) !important;
+  text-align: left !important;
 }
 
 html[data-mondo] .egg-toast {

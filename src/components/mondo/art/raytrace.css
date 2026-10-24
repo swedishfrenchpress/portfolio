@@ -14,9 +14,15 @@ html[data-mondo="raytrace"] {
   --mondo-visited: #551a8b;
   --mondo-hi: #fff;
   --mondo-lo: #505050;
-  --mondo-nav: #fff;
-  --mondo-glow: 2px 2px 0 #0a1f6e;
+  --mondo-nav: #0a1f6e;
+  --mondo-glow: 1px 1px 0 rgb(255 255 255 / 0.85);
   --mondo-fallback: linear-gradient(#1546c8, #8cc8ff 55%, #e9e86c 55.2%, #23439c);
+}
+
+/* Over the pale sky the nav is navy, embossed; the page you're on lights up. */
+html[data-mondo="raytrace"] body > header nav a.text-foreground {
+  color: #fff;
+  text-shadow: 2px 2px 0 #0a1f6e;
 }
 
 html[data-mondo="raytrace"] ::selection {
@@ -41,9 +47,10 @@ html[data-mondo="raytrace"] .mondo-counter .mondo-digit {
   background: #000;
 }
 
-/* The copy toast is a Netscape JavaScript alert. */
+/* The copy toast is a Netscape JavaScript alert, and its OK button is
+   Sonner's real close button. */
 html[data-mondo="raytrace"] [data-sonner-toast] {
-  padding: 0 0 14px !important;
+  padding: 0 0 54px !important;
 }
 
 html[data-mondo="raytrace"] [data-sonner-toast] [data-content]::before {
@@ -59,4 +66,33 @@ html[data-mondo="raytrace"] [data-sonner-toast] [data-content]::before {
 html[data-mondo="raytrace"] [data-sonner-toast] [data-title] {
   padding: 0 18px;
   color: #000 !important;
+}
+
+html[data-mondo="raytrace"] [data-sonner-toast] [data-close-button] {
+  top: auto !important;
+  right: auto !important;
+  bottom: 14px !important;
+  left: 50% !important;
+  width: 78px !important;
+  height: 26px !important;
+  transform: translateX(-50%) !important;
+  color: #000 !important;
+  background: #c0c0c0 !important;
+  border: 2px solid !important;
+  border-color: #fff #505050 #505050 #fff !important;
+  border-radius: 0 !important;
+  box-shadow: 0 0 0 1px #000 !important;
+}
+
+html[data-mondo="raytrace"] [data-sonner-toast] [data-close-button]:active {
+  border-color: #505050 #fff #fff #505050 !important;
+}
+
+html[data-mondo="raytrace"] [data-sonner-toast] [data-close-button] svg {
+  display: none;
+}
+
+html[data-mondo="raytrace"] [data-sonner-toast] [data-close-button]::after {
+  content: "OK";
+  font: 400 14px var(--mondo-tinos), serif;
 }
