@@ -34,25 +34,40 @@ export function Marquee() {
   );
 }
 
-// The count is the number of days since the first website went up
-// (6 August 1991), plus one for every page opened while MONDO is on.
-const FIRST_WEBSITE = Date.UTC(1991, 7, 6);
 const DIGITS = 6;
-let views = 0;
+
+// A real hit counter: every MONDO page view bumps the count on the server
+// (src/app/api/visits). Each page is counted once, however many times React
+// mounts the counter, and switching issues on the same page isn't a new view.
 let lastPath = "";
+let latest: Promise<number | null> = Promise.resolve(null);
+
+function countVisit(pathname: string) {
+  if (pathname !== lastPath) {
+    lastPath = pathname;
+    latest = fetch("/api/visits", { method: "POST" })
+      .then((res) => (res.ok ? res.json() : null))
+      .then((body) => (typeof body?.count === "number" ? body.count : null))
+      .catch(() => null);
+  }
+  return latest;
+}
 
 export function VisitorCounter() {
   const pathname = usePathname();
   const [count, setCount] = useState<number | null>(null);
 
   useEffect(() => {
-    if (pathname !== lastPath) {
-      lastPath = pathname;
-      views++;
-    }
-    setCount(Math.floor((Date.now() - FIRST_WEBSITE) / 86_400_000) + views);
+    let live = true;
+    countVisit(pathname).then((n) => {
+      if (live) setCount(n);
+    });
+    return () => {
+      live = false;
+    };
   }, [pathname]);
 
+  // No count, no counter: it never shows a made-up number.
   if (count === null) return null;
   const digits = String(count).padStart(DIGITS, "0").split("");
 
