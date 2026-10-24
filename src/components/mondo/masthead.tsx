@@ -1,142 +1,93 @@
 "use client";
 
-import { Globe } from "@/components/mondo/globe";
-import type { Issue } from "@/components/mondo/issues";
-import { type CSSProperties, useLayoutEffect, useRef } from "react";
+import { placeMasthead } from "@/components/mondo/stage";
+import { CAP_HEIGHT, PIXEL, SPACE, WORDS } from "@/components/mondo/stage/beads";
+import { useLayoutEffect, useRef } from "react";
 
-const MEASURE_PX = 100;
 const INLINE_MIN_WIDTH = 720;
-const WORD_GAP_EM = 0.22;
-
-// O and 0 alternate: the Earth, then the ouroboros.
-function OLetter({ globe, style }: { globe: boolean; style: CSSProperties }) {
-  return globe ? (
-    <span className="L o-globe" style={style}>
-      <Globe className="block size-full" />
-    </span>
-  ) : (
-    <span className="L o-ouro" style={style}>
-      <i className="o-a" />
-      <i className="o-b" />
-    </span>
-  );
-}
-
-/** Resolves a CSS length token (px, vh, vw, rem) to pixels. */
-function toPx(token: string, fallback: number) {
-  const value = parseFloat(token);
-  if (Number.isNaN(value)) return fallback;
-  if (token.endsWith("vh")) return (value * window.innerHeight) / 100;
-  if (token.endsWith("vw")) return (value * window.innerWidth) / 100;
-  if (token.endsWith("rem")) return value * 16;
-  return value;
-}
+/** Tallest a line of beads gets, as a share of the viewport and in px. */
+const MAX_CAP_VH = 0.22;
+const MAX_CAP_PX = 170;
+/** Space between stacked words, in cap heights. */
+const LINE_GAP = 0.3;
+/** Bead diameter per font pixel: a touch over 1, so neighbours kiss like a string of pearls. */
+const BEAD = 1.22;
 
 /**
- * The hip-badge "The Office" masthead: every letter its own material, O and 0
- * alternate between two objects, and each word gets the largest size that
- * fits. Wide screens set the words on one line instead of stacking them.
+ * The chrome masthead's footprint. The beads themselves are drawn by the
+ * stage behind the page; this box reserves their space, works out where each
+ * pixel of each SS05 letter goes, and is what they follow as you scroll.
+ * Wide screens set the words on one line; narrow ones stack them, each word
+ * as large as fits.
  */
-export function Masthead({ text, issue }: { text: string; issue: Issue }) {
+export function Masthead({ text }: { text: string }) {
   const ref = useRef<HTMLDivElement>(null);
-  const words = text.toUpperCase().split(/\s+/).filter(Boolean);
 
   useLayoutEffect(() => {
-    const mast = ref.current;
-    if (!mast) return;
+    const box = ref.current;
+    if (!box) return;
+    const words = text
+      .toUpperCase()
+      .split(/\s+/)
+      .filter((word) => WORDS[word]);
+    const total = words.reduce((sum, word) => sum + WORDS[word].beads.length / 5, 0);
 
     const fit = () => {
-      const lines = Array.from(mast.children) as HTMLElement[];
-      const avail = mast.clientWidth;
+      const avail = box.clientWidth;
       if (!avail) return;
-      const max = toPx(
-        getComputedStyle(mast).getPropertyValue("--mast-max").trim(),
-        160,
-      );
-      const inline = avail >= INLINE_MIN_WIDTH && lines.length > 1;
-      mast.classList.toggle("is-inline", inline);
+      const maxCap = Math.min(innerHeight * MAX_CAP_VH, MAX_CAP_PX);
+      const rows = avail >= INLINE_MIN_WIDTH ? [words] : words.map((word) => [word]);
+      const beads = new Float32Array(total * 5);
+      let n = 0;
+      let top = 0;
+      let gap = 0;
+      let letters = 0;
 
-      const widths = lines.map((line) => {
-        line.style.fontSize = `${MEASURE_PX}px`;
-        return line.offsetWidth;
-      });
+      for (const row of rows) {
+        const width = row.reduce((sum, word) => sum + WORDS[word].width, 0) + SPACE * (row.length - 1);
+        const scale = Math.min(avail / width, maxCap / CAP_HEIGHT);
+        const pad = (PIXEL * scale) / 2;
+        let pen = (avail - width * scale) / 2;
 
-      if (inline) {
-        const total =
-          widths.reduce((sum, w) => sum + w, 0) +
-          WORD_GAP_EM * MEASURE_PX * (lines.length - 1);
-        const size = Math.min(max, (MEASURE_PX * avail) / total);
-        for (const line of lines) line.style.fontSize = `${size}px`;
-      } else {
-        lines.forEach((line, i) => {
-          const size = Math.min(max, (MEASURE_PX * avail) / widths[i]);
-          line.style.fontSize = `${size}px`;
-        });
-      }
-
-      // Measuring at one size and scaling is almost exact; shave off any
-      // rounding that still pushes a line past the edge.
-      const shrink = (line: HTMLElement, by: number) => {
-        line.style.fontSize = `${parseFloat(line.style.fontSize) / by}px`;
-      };
-      if (inline) {
-        const size = parseFloat(lines[0].style.fontSize);
-        const total =
-          lines.reduce((sum, line) => sum + line.offsetWidth, 0) +
-          WORD_GAP_EM * size * (lines.length - 1);
-        if (total > avail) for (const line of lines) shrink(line, total / avail);
-      } else {
-        for (const line of lines) {
-          if (line.offsetWidth > avail) shrink(line, line.offsetWidth / avail);
+        for (const word of row) {
+          const { beads: source, width: advance } = WORDS[word];
+          let last = 0;
+          for (let i = 0; i < source.length; i += 5) {
+            beads[n * 5] = pen + source[i] * scale;
+            beads[n * 5 + 1] = top + pad + (CAP_HEIGHT - source[i + 1]) * scale;
+            beads[n * 5 + 2] = (source[i + 2] * PIXEL * scale * BEAD) / 2;
+            beads[n * 5 + 3] = (source[i + 3] * PIXEL * scale * BEAD) / 2;
+            beads[n * 5 + 4] = letters + source[i + 4];
+            last = Math.max(last, source[i + 4]);
+            n++;
+          }
+          letters += last + 1;
+          pen += (advance + SPACE) * scale;
         }
+        gap = CAP_HEIGHT * scale * LINE_GAP;
+        top += CAP_HEIGHT * scale + pad * 2 + gap;
+        box.style.setProperty("--cap", `${CAP_HEIGHT * scale}px`);
       }
+
+      box.style.height = `${top - gap}px`;
+      placeMasthead(box, { beads, count: n });
     };
 
     fit();
-    // Refit whenever a face finishes loading, in case it swapped in after the
-    // first measurement (slow network, or the font wait timed out).
-    document.fonts.ready.then(fit);
-    document.fonts.addEventListener("loadingdone", fit);
     const observer = new ResizeObserver(fit);
-    observer.observe(mast);
+    observer.observe(box);
+    addEventListener("resize", fit);
     return () => {
       observer.disconnect();
-      document.fonts.removeEventListener("loadingdone", fit);
+      removeEventListener("resize", fit);
+      placeMasthead(null, null);
     };
-  }, [text, issue.id]);
-
-  const spell = issue.spell?.[text];
-  let o = 0;
-  let k = 0;
-  // Each letter's position across the whole masthead, so issues can stagger
-  // animations from left to right.
-  let n = 0;
+  }, [text]);
 
   return (
     <div ref={ref} className="mondo-mast" aria-hidden="true">
-      {words.map((word, w) => (
-        <div key={`${word}-${w}`} className="mondo-word">
-          {Array.from(word).map((ch, i) => {
-            const style = { "--i": n++ } as CSSProperties;
-            if (ch === "O" || ch === "0") {
-              return <OLetter key={i} globe={o++ % 2 === 0} style={style} />;
-            }
-            const material =
-              spell?.[k] ?? issue.cycle[k % issue.cycle.length];
-            k++;
-            return (
-              <span
-                key={i}
-                className={`L m-${material}`}
-                data-ch={ch}
-                style={style}
-              >
-                {ch}
-              </span>
-            );
-          })}
-        </div>
-      ))}
+      {/* Only shown when WebGL isn't available. */}
+      <span className="mondo-mast-text">{text}</span>
     </div>
   );
 }

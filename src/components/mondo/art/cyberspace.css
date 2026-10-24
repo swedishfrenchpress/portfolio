@@ -1,0 +1,40 @@
+/* Issue: Cyberspace · black void, cyan wireframe, acid links */
+
+html[data-mondo="cyberspace"] {
+  --background: 0 0% 0%;
+  --foreground: 0 0% 100%;
+  --muted-foreground: 0 0% 64%;
+  --border: 196 83% 60%;
+  --mondo-panel: #000;
+  --mondo-ink: #fff;
+  --mondo-dim: #a3a3a3;
+  --mondo-head: #fff;
+  --mondo-link: #ccff00;
+  --mondo-hover: #fff;
+  --mondo-visited: #ff2e8a;
+  --mondo-hi: #45c2ee;
+  --mondo-lo: #0e4a66;
+  --mondo-nav: #ccff00;
+  --mondo-glow: 2px 2px 0 #000, 0 0 10px rgb(69 194 238 / 0.85);
+  --mondo-fallback: radial-gradient(circle, #0a1a26, #000 70%);
+}
+
+/* The panel is a lit screen in the tunnel: a cyan wire that glows. */
+html[data-mondo="cyberspace"] body > main {
+  box-shadow:
+    0 0 0 1px #000,
+    0 0 28px rgb(69 194 238 / 0.45),
+    10px 10px 0 rgb(0 0 0 / 0.6);
+}
+
+html[data-mondo="cyberspace"] main h2 {
+  color: #ff2e8a;
+}
+
+html[data-mondo="cyberspace"] #intro h1 {
+  text-shadow: 3px 3px 0 #ff2e8a;
+}
+
+html[data-mondo="cyberspace"] .mondo-marquee {
+  color: #ccff00;
+}

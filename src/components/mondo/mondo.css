@@ -1,8 +1,14 @@
-/* MONDO mode: shared layout, masthead DNA and the CRT transition.
-   Everything is scoped to html[data-mondo]; each issue's art/<id>.css
-   restyles the same structure in its own world. */
+/* MONDO mode: the shared furniture every issue restyles. The world itself is
+   the WebGL stage behind the page; everything here is scoped to
+   html[data-mondo], and each issue's art/<id>.css only sets the variables
+   below plus its own flourishes.
 
-/* Covers bleed art past the edges; never let it scroll sideways. */
+   --mondo-panel   page panel background      --mondo-ink     prose
+   --mondo-dim     secondary prose            --mondo-head    headings
+   --mondo-link    links                      --mondo-hover   hovered links
+   --mondo-visited visited links              --mondo-hi/-lo  bevel light/dark
+   --mondo-nav     nav links on the world     --mondo-glow    nav text shadow */
+
 html[data-mondo] {
   overflow-x: clip;
 }
@@ -12,24 +18,134 @@ html[data-mondo] body {
   margin: 0;
   padding: 0 0 4rem;
   overflow-x: clip;
+  background: transparent;
+  font-family: var(--mondo-tinos), "Times New Roman", Times, serif;
 }
 
-/* The page's own pieces, re-centered once body loses its max-width. */
-html[data-mondo] body > header,
-html[data-mondo] body > main {
+html[data-mondo] ::selection {
+  background: var(--mondo-link);
+  color: var(--mondo-panel);
+}
+
+html[data-mondo] .scroll-progress {
+  height: 3px;
+  background: var(--mondo-link);
+}
+
+/* The world: a fixed canvas behind everything. */
+.mondo-bg {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  overflow: hidden;
+  pointer-events: none;
+  background: var(--mondo-fallback, #000);
+}
+
+.mondo-stage {
+  display: block;
   width: 100%;
-  margin-inline: auto;
+  height: 100%;
 }
 
+/* Header: bracketed 1996 nav floating over the world. */
 html[data-mondo] body > header {
-  max-width: 72rem;
-  margin-block: 0;
-  padding: 12px 20px 0;
+  width: 100%;
+  max-width: 80rem;
+  margin: 0 auto;
+  padding: 14px 20px 0;
 }
 
+html[data-mondo] body > header nav a {
+  font: 700 17px/1 var(--mondo-tinos), "Times New Roman", serif;
+  color: var(--mondo-nav);
+  text-shadow: var(--mondo-glow);
+}
+
+html[data-mondo] body > header nav a::before {
+  content: "[ ";
+}
+
+html[data-mondo] body > header nav a::after {
+  content: " ]";
+}
+
+html[data-mondo] body > header nav a.text-foreground {
+  color: var(--mondo-head);
+}
+
+html[data-mondo] body > header nav a:hover {
+  color: var(--mondo-hover);
+}
+
+/* Cover: the bead masthead and the marquee. */
+.mondo-cover {
+  width: 100%;
+  max-width: 80rem;
+  margin: 20px auto 2.25rem;
+  padding: 0 16px;
+}
+
+.mondo-mast {
+  position: relative;
+  width: 100%;
+}
+
+/* The masthead as plain type, for browsers without WebGL. */
+.mondo-mast-text {
+  display: none;
+}
+
+html.mondo-nogl .mondo-mast-text {
+  display: block;
+  font: 500 calc(var(--cap, 80px) / 0.706) / 1 var(--mondo-lyrae), sans-serif;
+  font-feature-settings: "ss05";
+  text-align: center;
+  text-transform: uppercase;
+  color: var(--mondo-head);
+}
+
+.mondo-marquee {
+  overflow: hidden;
+  max-width: 46rem;
+  margin: 22px auto 0;
+  padding: 5px 0;
+  font: 700 17px/1.2 var(--mondo-tinos), "Times New Roman", serif;
+  white-space: nowrap;
+  color: var(--mondo-head);
+  background: var(--mondo-panel);
+  border: 2px solid;
+  border-color: var(--mondo-lo) var(--mondo-hi) var(--mondo-hi) var(--mondo-lo);
+}
+
+.mondo-marquee-track {
+  display: flex;
+  width: max-content;
+  animation: mondo-marquee calc(var(--chars) * 0.17s) linear infinite;
+}
+
+.mondo-marquee-track span {
+  padding-right: 0.3em;
+}
+
+@keyframes mondo-marquee {
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+/* The page itself: a solid bevelled panel, so the prose always reads. */
 html[data-mondo] body > main {
-  max-width: 42rem;
-  padding-inline: 24px;
+  position: relative;
+  width: calc(100% - 32px);
+  max-width: 44rem;
+  margin: 0 auto;
+  padding: clamp(22px, 4vw, 40px);
+  color: var(--mondo-ink);
+  background: var(--mondo-panel);
+  border: 3px solid;
+  border-color: var(--mondo-hi) var(--mondo-lo) var(--mondo-lo) var(--mondo-hi);
+  box-shadow: 10px 10px 0 rgb(0 0 0 / 0.45);
 }
 
 /* /projects and /talks: the masthead already says it. */
@@ -48,193 +164,184 @@ html[data-mondo] main > h1 + * {
   margin-top: 0 !important;
 }
 
-.mondo-bg {
-  position: fixed;
-  inset: 0;
-  z-index: -1;
-  overflow: hidden;
-  pointer-events: none;
+/* Headings: Alpha Lyrae, displaced pixels. */
+html[data-mondo] main :is(h1, h2) {
+  font-family: var(--mondo-lyrae), sans-serif;
+  font-feature-settings: "ss05";
+  font-weight: 500;
+  letter-spacing: 0;
+  color: var(--mondo-head);
 }
 
-.mondo-bg > svg {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
+html[data-mondo] #intro h1 {
+  font-size: clamp(34px, 7vw, 54px);
+  line-height: 1.05;
 }
 
-.mondo-cover {
-  position: relative;
-  overflow-x: clip;
+/* Geist Pixel needed a nudge before "ik"; Alpha Lyrae doesn't. */
+html[data-mondo] #intro h1 span {
+  margin-left: 0;
+}
+
+html[data-mondo] main h2 {
+  font-size: 30px;
+  line-height: 1.1;
+}
+
+html[data-mondo] main :is(p, li) {
+  font-size: 19px;
+  line-height: 1.5;
+  color: var(--mondo-ink);
+}
+
+html[data-mondo] #intro h1 + p {
+  font-size: 22px;
+  font-style: italic;
+}
+
+html[data-mondo] main .text-muted-foreground,
+html[data-mondo] #rotation span {
+  color: var(--mondo-dim);
+  opacity: 1;
+}
+
+html[data-mondo] #rotation span {
+  font-style: italic;
+}
+
+html[data-mondo] main > p:last-child {
+  font-size: 15px;
+  font-style: italic;
+  color: var(--mondo-dim);
+}
+
+html[data-mondo] main > ul a {
+  font-weight: 700;
+  font-size: 22px;
+}
+
+html[data-mondo] main > ul li p {
+  font-size: 17px;
+}
+
+html[data-mondo] a:not(.plain),
+html[data-mondo] .link {
+  color: var(--mondo-link);
+  background-image: none;
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+}
+
+html[data-mondo] main a:not(.plain):visited {
+  color: var(--mondo-visited);
+}
+
+html[data-mondo] a:not(.plain):hover,
+html[data-mondo] .link:hover {
+  color: var(--mondo-hover);
+}
+
+/* Footer: the visitor counter. */
+.mondo-foot {
   width: 100%;
-  max-width: 72rem;
-  margin: 20px auto 3rem;
+  max-width: 44rem;
+  margin: 2.5rem auto 0;
   padding: 0 16px;
 }
 
-.mondo-foot {
-  width: 100%;
-  max-width: 42rem;
-  margin: 3rem auto 0;
-  padding: 0 24px;
-}
-
-/* Masthead: League Spartan 900, one material per letter. */
-.mondo-mast {
-  --mast-max: 30vh;
-  font-family: var(--mondo-spartan), sans-serif;
-  font-weight: 900;
-  line-height: 0.84;
-  text-transform: uppercase;
-}
-
-.mondo-word {
-  width: max-content;
-  margin: 0 auto;
-  white-space: nowrap;
-  letter-spacing: -0.02em;
-}
-
-.mondo-mast.is-inline {
+.mondo-counter {
   display: flex;
-  justify-content: center;
-  align-items: baseline;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  font: italic 400 19px var(--mondo-tinos), "Times New Roman", serif;
+  color: var(--mondo-nav);
+  text-shadow: var(--mondo-glow);
 }
 
-.mondo-mast.is-inline .mondo-word {
-  margin: 0;
+.mondo-digits {
+  display: flex;
+  gap: 3px;
 }
 
-.mondo-mast.is-inline .mondo-word + .mondo-word {
-  margin-left: 0.22em;
+.mondo-digit {
+  display: grid;
+  place-items: center;
+  width: 1.15em;
+  height: 1.4em;
+  font: 500 24px var(--mondo-lyrae), monospace;
+  font-feature-settings: "ss05";
+  font-style: normal;
+  color: var(--mondo-head);
+  text-shadow: none;
+  background: var(--mondo-panel);
+  border: 2px solid;
+  border-color: var(--mondo-lo) var(--mondo-hi) var(--mondo-hi) var(--mondo-lo);
+  animation: mondo-roll 420ms cubic-bezier(0.34, 1.56, 0.64, 1) both;
 }
 
-.mondo-mast .L {
-  display: inline-block;
-  position: relative;
-  color: transparent;
-  -webkit-background-clip: text;
-  background-clip: text;
-  filter: drop-shadow(0.025em 0.035em 0 rgba(0, 0, 0, 0.9));
-}
-
-/* O and 0: little objects sitting on the baseline. */
-.mondo-mast [class*=" o-"] {
-  width: 0.72em;
-  height: 0.72em;
-  margin: 0 0.015em;
-}
-
-.mondo-mast [class*=" o-"] i {
-  position: absolute;
-}
-
-.o-ouro .o-a {
-  inset: 0;
-  border-radius: 50%;
-  background: repeating-conic-gradient(
-    from 8deg,
-    var(--ouro-1, #f2d24a) 0 6deg,
-    var(--ouro-2, #8a6512) 6deg 8deg,
-    var(--ouro-3, #c99f2c) 8deg 14deg,
-    var(--ouro-4, #4a3608) 14deg 16deg
-  );
-  -webkit-mask: radial-gradient(circle closest-side, transparent 56%, #000 58% 96%, transparent 98%);
-  mask: radial-gradient(circle closest-side, transparent 56%, #000 58% 96%, transparent 98%);
-}
-
-.o-ouro .o-b {
-  width: 0.24em;
-  height: 0.16em;
-  right: -0.03em;
-  top: 0.05em;
-  border-radius: 60% 40% 45% 55% / 55% 55% 45% 45%;
-  background: linear-gradient(150deg, var(--ouro-head-1, #ffe58a), var(--ouro-head-2, #b4860f));
-  transform: rotate(42deg);
-  box-shadow: 0 0 0 0.012em var(--ouro-4, #4a3608);
-}
-
-.o-ouro .o-b::after {
-  content: "";
-  position: absolute;
-  width: 0.04em;
-  height: 0.04em;
-  border-radius: 50%;
-  background: #111;
-  left: 0.06em;
-  top: 0.045em;
-}
-
-/* CRT transition into and between issues: the old page switches off like a
-   tube, squashing into a bright line, and the new one warms up out of that
-   line while its scanlines fade. Leaving MONDO keeps the usual crossfade. */
-@property --mondo-scan {
-  syntax: "<number>";
-  inherits: false;
-  initial-value: 1;
-}
-
-html.mondo-crt::view-transition {
-  background: #000;
-}
-
-html.mondo-crt::view-transition-old(root),
-html.mondo-crt::view-transition-new(root) {
-  mix-blend-mode: normal;
-}
-
-html.mondo-crt::view-transition-old(root) {
-  animation: mondo-crt-off 300ms both;
-}
-
-html.mondo-crt::view-transition-new(root) {
-  -webkit-mask-image: repeating-linear-gradient(#000 0 2px, rgb(0 0 0 / var(--mondo-scan)) 2px 3px);
-  mask-image: repeating-linear-gradient(#000 0 2px, rgb(0 0 0 / var(--mondo-scan)) 2px 3px);
-  animation: mondo-crt-on 540ms 250ms both;
-}
-
-@keyframes mondo-crt-off {
-  0% {
-    transform: none;
-    filter: none;
-    animation-timing-function: cubic-bezier(0.7, 0, 0.84, 0);
-  }
-  70% {
-    opacity: 1;
-    transform: scale(1, 0.004);
-    filter: contrast(0.3) brightness(3) saturate(0);
-    animation-timing-function: ease-out;
-  }
-  100% {
+@keyframes mondo-roll {
+  from {
+    transform: translateY(-55%);
     opacity: 0;
-    transform: scale(0.92, 0.004);
-    filter: contrast(0.3) brightness(3.5) saturate(0);
   }
 }
 
-@keyframes mondo-crt-on {
-  0% {
+/* Toasts become little bevelled 90s dialogs in the issue's colours. Sonner's
+   own utilities are !important, so these have to be too. */
+html[data-mondo] [data-sonner-toast] {
+  padding: 14px 18px !important;
+  color: var(--mondo-ink) !important;
+  background: var(--mondo-panel) !important;
+  border: 3px solid !important;
+  border-color: var(--mondo-hi) var(--mondo-lo) var(--mondo-lo) var(--mondo-hi) !important;
+  border-radius: 0 !important;
+  box-shadow: 6px 6px 0 rgb(0 0 0 / 0.5) !important;
+}
+
+html[data-mondo] [data-sonner-toast] [data-title] {
+  font: 700 16px/1.35 var(--mondo-tinos), "Times New Roman", serif !important;
+  color: var(--mondo-head) !important;
+}
+
+html[data-mondo] .egg-toast {
+  padding: 4px 9px;
+  font: 500 15px var(--mondo-lyrae), monospace;
+  font-feature-settings: "ss05";
+  letter-spacing: 0;
+  color: var(--mondo-head);
+  background: var(--mondo-panel);
+  border: 2px solid;
+  border-color: var(--mondo-hi) var(--mondo-lo) var(--mondo-lo) var(--mondo-hi);
+  border-radius: 0;
+}
+
+/* The warp. The stage has already swapped the text for beads, so the page
+   simply vanishes, then rushes back up out of the vanishing point. */
+html.mondo-warp :is(main, .mondo-marquee, .mondo-foot) {
+  visibility: hidden;
+}
+
+html.mondo-warp-in :is(main, .mondo-marquee, .mondo-foot) {
+  transform-origin: 50% 30vh;
+  animation: mondo-arrive 760ms cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+html.mondo-warp-in main {
+  animation-delay: 70ms;
+}
+
+html.mondo-warp-in .mondo-foot {
+  animation-delay: 140ms;
+}
+
+@keyframes mondo-arrive {
+  from {
     opacity: 0;
-    transform: scale(0.92, 0.004);
-    filter: contrast(0.3) brightness(3.5) saturate(0);
-    --mondo-scan: 0.3;
+    transform: perspective(1000px) translateZ(-1400px) rotateX(28deg);
   }
-  8% {
+  35% {
     opacity: 1;
-    transform: scale(1, 0.004);
-    filter: contrast(0.3) brightness(3) saturate(0);
-    animation-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
-  }
-  62% {
-    transform: none;
-    filter: contrast(1) brightness(1.2) saturate(1.15);
-    --mondo-scan: 0.45;
-    animation-timing-function: ease-out;
-  }
-  100% {
-    opacity: 1;
-    transform: none;
-    filter: none;
-    --mondo-scan: 1;
   }
 }

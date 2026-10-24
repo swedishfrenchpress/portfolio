@@ -14,5 +14,5 @@ export function MondoTop() {
 export function MondoBottom() {
   const { issue, layer } = useMondo();
   if (!issue || !layer) return null;
-  return <layer.MondoBottom issue={issue} />;
+  return <layer.MondoBottom />;
 }
