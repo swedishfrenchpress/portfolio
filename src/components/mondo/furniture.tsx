@@ -36,30 +36,54 @@ export function Marquee() {
 
 const DIGITS = 6;
 
-// A real hit counter: every MONDO page view bumps the count on the server
-// (src/app/api/visits). Each page is counted once, however many times React
-// mounts the counter, and switching issues on the same page isn't a new view.
-let lastPath = "";
-let latest: Promise<number | null> = Promise.resolve(null);
+// A real hit counter: a visitor's first MONDO page in a browser session bumps
+// the count on the server (src/app/api/visits). Their number is kept for the
+// rest of the session, so moving between pages, reloading, switching issues or
+// React remounting the counter never counts them again.
+const SESSION_KEY = "mondo:visitor";
+let visit: Promise<number | null> | null = null;
 
-function countVisit(pathname: string) {
-  if (pathname !== lastPath) {
-    lastPath = pathname;
-    latest = fetch("/api/visits", { method: "POST" })
-      .then((res) => (res.ok ? res.json() : null))
-      .then((body) => (typeof body?.count === "number" ? body.count : null))
-      .catch(() => null);
+/** sessionStorage, or nothing where the browser blocks it. */
+function session(): Storage | null {
+  try {
+    return window.sessionStorage;
+  } catch {
+    return null;
   }
-  return latest;
+}
+
+function countVisit() {
+  if (!visit) {
+    const seen = Number(session()?.getItem(SESSION_KEY));
+    visit =
+      seen > 0
+        ? Promise.resolve(seen)
+        : fetch("/api/visits", { method: "POST" })
+            .then((res) => (res.ok ? res.json() : null))
+            .then((body) => (typeof body?.count === "number" ? body.count : null))
+            .catch(() => null)
+            .then((count) => {
+              if (count === null) {
+                visit = null; // nothing was counted, so the next page may try again
+              } else {
+                try {
+                  session()?.setItem(SESSION_KEY, String(count));
+                } catch {}
+              }
+              return count;
+            });
+  }
+  return visit;
 }
 
 export function VisitorCounter() {
   const pathname = usePathname();
   const [count, setCount] = useState<number | null>(null);
 
+  // Asked again on each page only so a failed count gets another try.
   useEffect(() => {
     let live = true;
-    countVisit(pathname).then((n) => {
+    countVisit().then((n) => {
       if (live) setCount(n);
     });
     return () => {
