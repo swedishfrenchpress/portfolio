@@ -14,4 +14,8 @@ export const MASTHEADS: Readonly<Record<string, string>> = {
   "/": "Erik’s Webpage",
   "/projects": "Projects",
   "/talks": "Talks",
+  "/guestbook": "Guestbook",
 };
+
+/** Only reachable from the MONDO marquee, and only ever shown in MONDO. */
+export const GUESTBOOK_PATH = "/guestbook";

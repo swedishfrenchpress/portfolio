@@ -155,3 +155,8 @@
     @apply text-foreground/90;
   }
 
+  /* The guestbook only exists in MONDO mode, so it stays hidden until MONDO
+     has switched on. */
+  html:not([data-mondo]) main.guestbook {
+    visibility: hidden;
+  }

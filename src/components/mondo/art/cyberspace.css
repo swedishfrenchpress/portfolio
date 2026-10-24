@@ -16,6 +16,7 @@ html[data-mondo="cyberspace"] {
   --mondo-lo: #0e4a66;
   --mondo-nav: #ccff00;
   --mondo-glow: 2px 2px 0 #000, 0 0 10px rgb(69 194 238 / 0.85);
+  --mondo-field: #060c16;
   --mondo-fallback: radial-gradient(circle, #0a1a26, #000 70%);
 }
 

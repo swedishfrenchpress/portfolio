@@ -41,7 +41,7 @@ export function MondoTop({ issue }: { issue: Issue }) {
   return (
     <>
       <World issue={issue} />
-      <div className="mondo-cover" aria-hidden="true">
+      <div className="mondo-cover">
         <Masthead text={MASTHEADS[pathname] ?? MASTHEADS["/"]} />
         <Marquee />
       </div>

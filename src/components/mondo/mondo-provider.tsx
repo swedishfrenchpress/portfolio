@@ -1,7 +1,8 @@
 "use client";
 
 import { GlobeDefs } from "@/components/mondo/globe";
-import { ISSUES, type Issue } from "@/components/mondo/issues";
+import { GUESTBOOK_PATH, ISSUES, type Issue } from "@/components/mondo/issues";
+import { usePathname, useRouter } from "next/navigation";
 import {
   createContext,
   useCallback,
@@ -106,16 +107,38 @@ export function MondoProvider({ children }: { children: React.ReactNode }) {
       const transition = document.startViewTransition(() => {
         flushSync(apply);
       });
+      // A hidden tab aborts the animation; the switch itself still happens.
+      transition.ready.catch(() => {});
       await transition.finished.catch(() => {});
     } finally {
       busy.current = false;
     }
   }, []);
 
+  const pathname = usePathname();
+  const router = useRouter();
+  /** Set while switching MONDO off on the guestbook, until the way home lands. */
+  const leaving = useRef(false);
+
   const next = useCallback(() => {
     const index = issue ? ISSUES.indexOf(issue) : -1;
-    show(ISSUES[index + 1] ?? null, true);
-  }, [issue, show]);
+    const target = ISSUES[index + 1] ?? null;
+    // The guestbook only exists in MONDO, so leaving MONDO leaves it too.
+    if (!target && pathname === GUESTBOOK_PATH) {
+      leaving.current = true;
+      router.push("/");
+    }
+    show(target, true);
+  }, [issue, pathname, router, show]);
+
+  // Landing on the guestbook directly, or reloading it, switches MONDO on.
+  useEffect(() => {
+    if (pathname !== GUESTBOOK_PATH) {
+      leaving.current = false;
+    } else if (!leaving.current && !("mondo" in document.documentElement.dataset)) {
+      show(ISSUES[0], false);
+    }
+  }, [pathname, show]);
 
   // Dev only: ?issue=<id> opens straight into an issue while iterating.
   useEffect(() => {

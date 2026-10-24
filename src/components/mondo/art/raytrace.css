@@ -16,6 +16,7 @@ html[data-mondo="raytrace"] {
   --mondo-lo: #505050;
   --mondo-nav: #0a1f6e;
   --mondo-glow: 1px 1px 0 rgb(255 255 255 / 0.85);
+  --mondo-field: #fff;
   --mondo-fallback: linear-gradient(#1546c8, #8cc8ff 55%, #e9e86c 55.2%, #23439c);
 }
 
@@ -40,6 +41,11 @@ html[data-mondo="raytrace"] body > main {
 
 html[data-mondo="raytrace"] #intro h1 {
   text-shadow: 2px 2px 0 #fff, 4px 4px 0 #8a8a8a;
+}
+
+/* Windows 95 buttons have black labels. */
+html[data-mondo="raytrace"] .gb-button {
+  color: #000;
 }
 
 html[data-mondo="raytrace"] .mondo-counter .mondo-digit {

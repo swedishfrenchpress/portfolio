@@ -129,6 +129,19 @@ html.mondo-nogl .mondo-mast-text {
   padding-right: 0.3em;
 }
 
+/* Hold still under the cursor or keyboard so the guestbook link can be caught. */
+.mondo-marquee:is(:hover, :focus-within) .mondo-marquee-track {
+  animation-play-state: paused;
+}
+
+.mondo-marquee a:not(.plain) {
+  color: var(--mondo-link);
+}
+
+.mondo-marquee a:not(.plain):hover {
+  color: var(--mondo-hover);
+}
+
 @keyframes mondo-marquee {
   to {
     transform: translateX(-50%);

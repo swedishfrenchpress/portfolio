@@ -1,34 +1,34 @@
 "use client";
 
+import { GUESTBOOK_PATH } from "@/components/mondo/issues";
+import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 
-const WELCOME: Readonly<Record<string, string>> = {
-  "/": "WELCOME TO ERIK’S WEBPAGE",
-  "/projects": "YOU ARE NOW ENTERING THE PROJECTS ZONE",
-  "/talks": "LIVE ON STAGE: ERIK’S TALKS",
-};
+const NOTICE = "*** THIS PAGE IS UNDER CONSTRUCTION ***";
+const CALL = "SIGN MY GUESTBOOK";
+/** Enough copies of the line that half of them always overfill the marquee. */
+const COPIES = 4;
 
-const GAGS = [
-  "NOW IN 3D!!!",
-  "BEST VIEWED IN NETSCAPE NAVIGATOR 3.0 AT 800×600",
-  "THIS PAGE IS UNDER CONSTRUCTION",
-  "ECASH ACCEPTED HERE",
-  "SIGN MY GUESTBOOK",
-  "ADD ME TO YOUR WEBRING",
-  "THIS PAGE IS NEVER FINISHED",
-];
-
-/** A <marquee>, minus the deprecation: two copies scrolling end to end. */
+/**
+ * A <marquee>, minus the deprecation. The line repeats end to end; only the
+ * first copy is real to screen readers and the keyboard, and the scroll
+ * holds still under the cursor or focus so the link can be caught.
+ */
 export function Marquee() {
-  const pathname = usePathname();
-  const line = `*** ${[WELCOME[pathname] ?? WELCOME["/"], ...GAGS].join(" *** ")} `;
+  const chars = ((NOTICE.length + CALL.length + 2) * COPIES) / 2;
 
   return (
     <div className="mondo-marquee">
-      <div className="mondo-marquee-track" style={{ "--chars": line.length } as React.CSSProperties}>
-        <span>{line}</span>
-        <span>{line}</span>
+      <div className="mondo-marquee-track" style={{ "--chars": chars } as React.CSSProperties}>
+        {Array.from({ length: COPIES }, (_, i) => (
+          <span key={i} aria-hidden={i > 0 || undefined}>
+            {NOTICE}{" "}
+            <Link href={GUESTBOOK_PATH} tabIndex={i > 0 ? -1 : undefined}>
+              {CALL}
+            </Link>{" "}
+          </span>
+        ))}
       </div>
     </div>
   );

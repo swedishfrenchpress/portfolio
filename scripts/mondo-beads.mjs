@@ -17,7 +17,7 @@ import { existsSync, mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 
-const WORDS = ["ERIK’S", "WEBPAGE", "PROJECTS", "TALKS"];
+const WORDS = ["ERIK’S", "WEBPAGE", "PROJECTS", "TALKS", "GUESTBOOK"];
 
 // Glyphs without an SS05 drawing borrow a pixel one from a sibling set.
 const FALLBACK = { quoteright: "quoteright.ss01" };

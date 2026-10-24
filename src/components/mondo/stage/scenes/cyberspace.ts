@@ -93,8 +93,9 @@ export const cyberspace: SceneFactory = () => {
   }
   world.add(beads);
 
-  // The globe at the vanishing point: an icosphere, ocean and land by face.
-  const globeGeometry = new THREE.IcosahedronGeometry(3.2, 1).toNonIndexed();
+  // The globe at the vanishing point: an icosphere (already one vertex
+  // triple per face), ocean and land by face.
+  const globeGeometry = new THREE.IcosahedronGeometry(3.2, 1);
   const faceColors: number[] = [];
   const position = globeGeometry.getAttribute("position");
   for (let f = 0; f < position.count; f += 3) {
